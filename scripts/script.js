@@ -97,8 +97,11 @@ const vitoriaDiagonal2 = (simbolo,posicao) => {
     return false;
 };
 
-const checarVitoria = (jogador, posicao) => {
+const checarVitoria = (divMove, jogador) => {
   let simbolo = simbolJogador[jogador];
+  let posicao = divMove.getAttribute("data-linhaColuna").split(",");
+  posicao[0] = Number(posicao[0]);
+  posicao[1] = Number(posicao[1]);
   if (
     victDiagonal1(simbolo, posicao) ||
     victDiagonal2(simbolo, posicao) ||

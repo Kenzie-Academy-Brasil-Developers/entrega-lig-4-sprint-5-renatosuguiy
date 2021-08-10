@@ -1,5 +1,12 @@
 
 let boardArray = [];
+let torrePreta = document.getElementById('torreCorPreta')
+let torreVermelha = document.getElementById('torreCorVermelha')
+let bolaPreta
+let bolaVermelha
+let tabela = document.getElementById('tabela')
+let primeiroJogador = true;
+let segundoJogador = false;
 
 const creatBoardArray = (linhas, colunas) => {
     for(let linha = 0; linha < linhas; linha++){
@@ -11,16 +18,17 @@ const creatBoardArray = (linhas, colunas) => {
     }
 }; 
 
-const registroMovimento = (divMove, jogador) => {
-    let linhaColuna = divMove.getAttribute("data-linhaColuna").split(",");
-    if(jogador === 'jogador1'){
-        boardArray[linhaColuna[0]][linhaColuna[1]] = 'x';
+const registroMovimento = (divMove, jogador1, jogador2) => {
+    let linhaColuna = divMove.getAttribute("dataaddress").split(",");
+    if(jogador1){
+        boardArray[linhaColuna[1]][linhaColuna[0]] = 'x';
     }
-    if(jogador === 'jogador2'){
-        boardArray[linhaColuna[0]][linhaColuna[1]] = 'o';
+    if(jogador2){
+        boardArray[linhaColuna[1]][linhaColuna[0]] = 'o';
     }
 };
-let tabela = document.getElementById('tabela')
+
+
 //Função de criação da tabela : 
 function criarTabela(t,c){
     for(let i=0; i < t; i ++){
@@ -34,15 +42,12 @@ function criarTabela(t,c){
             celula.setAttribute('dataaddress',`${i},${n}`)
         }
     }
-    
+    creatBoardArray(c,t)
 }
 
 criarTabela(7,6)
 
-let torrePreta = document.getElementById('torreCorPreta')
-let torreVermelha = document.getElementById('torreCorVermelha')
-let bolaPreta
-let bolaVermelha
+
 for(let i=0;i<21;i++){
     bolaPreta = document.createElement('div')
     bolaPreta.classList.add('horizontal','black')
@@ -55,10 +60,6 @@ for(let i=0;i<21;i++){
     torreVermelha.appendChild(bolaVermelha)
 }
 
-
-let primeiroJogador = true;
-let segundoJogador = false;
-
 //Movimento:
 tabela.addEventListener('click',function(e){
     
@@ -67,7 +68,6 @@ tabela.addEventListener('click',function(e){
     let vazio = Array.from(filhos).filter((e)=>e.innerHTML==="")
     
     if(vazio.length!=0){
-        console.log(vazio)
         if(primeiroJogador===true) {
             
             let bolap = torrePreta.lastElementChild
@@ -84,7 +84,7 @@ tabela.addEventListener('click',function(e){
             vazio[vazio.length-1].appendChild(bolav);
             
         }
-        
+        registroMovimento(vazio[vazio.length-1],primeiroJogador,segundoJogador)
         if(primeiroJogador===true){
 
             primeiroJogador=false;

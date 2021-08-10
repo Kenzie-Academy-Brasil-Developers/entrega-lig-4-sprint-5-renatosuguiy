@@ -19,16 +19,3 @@ const registroMovimento = (divMove, jogador) => {
         boardArray[linhaColuna[0]][linhaColuna[1]] = 'o';
     }
 };
-
-const victHorizontal = () => {
-
-}
-const victHorizontal = () => {
-    
-}
-const victHorizontal = () => {
-    
-}
-const victHorizontal = () => {
-    
-}

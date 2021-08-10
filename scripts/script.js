@@ -1,4 +1,12 @@
+//variaveis globais:
+let torrePreta = document.getElementById('torreCorPreta')
+let torreVermelha = document.getElementById('torreCorVermelha')
+let bolaPreta
+let bolaVermelha
+let primeiroJogador = true;
+let segundoJogador = false;
 let tabela = document.getElementById('tabela')
+
 //Função de criação da tabela : 
 function criarTabela(t,c){
     for(let i=0; i < t; i ++){
@@ -12,69 +20,64 @@ function criarTabela(t,c){
             celula.setAttribute('dataaddress',`${i},${n}`)
         }
     }
-    
+    torres()
 }
 
 criarTabela(7,6)
 
-let torrePreta = document.getElementById('torreCorPreta')
-let torreVermelha = document.getElementById('torreCorVermelha')
-let bolaPreta
-let bolaVermelha
-for(let i=0;i<21;i++){
-    bolaPreta = document.createElement('div')
-    bolaPreta.classList.add('horizontal','black')
-    torrePreta.appendChild(bolaPreta)
+//Função criar torres
+function torres(){
+    for(let i=0;i<21;i++){
+        bolaPreta = document.createElement('div')
+        bolaPreta.classList.add('horizontal','black')
+        torrePreta.appendChild(bolaPreta)
+    }
+
+    for(let i=0;i<21;i++){
+        bolaVermelha = document.createElement('div')
+        bolaVermelha.classList.add('horizontal','red')        
+        torreVermelha.appendChild(bolaVermelha)
+    }
 }
-
-for(let i=0;i<21;i++){
-    bolaVermelha = document.createElement('div')
-    bolaVermelha.classList.add('horizontal','red')        
-    torreVermelha.appendChild(bolaVermelha)
-}
-
-
-let primeiroJogador = true;
-let segundoJogador = false;
 
 //Movimento:
 tabela.addEventListener('click',function(e){
     
-    let filhos = e.target.parentElement.children
+    let filhos = e.target.closest('.torre').children
     
-    let vago = Array.from(filhos).filter((e)=>e.innerHTML==="")
-    console.log(vago[0].classList[0])
-    let cont = vago.length
-    if(primeiroJogador===true && vago[0].classList[0]==="celula") {
-        
-        let bolap = torrePreta.lastElementChild
-        bolap.classList.remove('horizontal');
-        bolap.classList.add('vertical');
-        vago[vago.length-1].appendChild(bolap);
-        
-    }
-    if(segundoJogador===true  && vago[0].classList[0]==="celula"){
-       
-        let bolav = torreVermelha.lastElementChild
-        bolav.classList.remove('horizontal');
-        bolav.classList.add('vertical');
-        vago[vago.length-1].appendChild(bolav);
-        
-    }
+    let vazio = Array.from(filhos).filter((e)=>e.innerHTML==="")
     
-    if(primeiroJogador===true){
+    if(vazio.length!=0){
+        
+        if(primeiroJogador===true) {
+            
+            let bolap = torrePreta.lastElementChild
+            bolap.classList.remove('horizontal');
+            bolap.classList.add('vertical');
+            vazio[vazio.length-1].appendChild(bolap);
+            
+        }
+        if(segundoJogador===true){
+        
+            let bolav = torreVermelha.lastElementChild
+            bolav.classList.remove('horizontal');
+            bolav.classList.add('vertical');
+            vazio[vazio.length-1].appendChild(bolav);
+            
+        }
+        
+        if(primeiroJogador===true){
 
-        primeiroJogador=false;
-        segundoJogador=true;
+            primeiroJogador=false;
+            segundoJogador=true;
 
-    } else {
+        } else {
 
-        primeiroJogador=true;
-        segundoJogador=false;
+            primeiroJogador=true;
+            segundoJogador=false;
 
+        }
     }
-    
-    console.log(vago.length)
 })
 
 

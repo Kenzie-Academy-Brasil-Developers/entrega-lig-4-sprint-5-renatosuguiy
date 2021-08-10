@@ -156,10 +156,10 @@ const vitoriaDiagonal2 = (simbolo, posicao) => {
     if (contador === 4) {
       return true;
     }
+    linha--
     if(linha < 0){
-      linha--;
+      break;
     }
-    
   }
   return false;
 };

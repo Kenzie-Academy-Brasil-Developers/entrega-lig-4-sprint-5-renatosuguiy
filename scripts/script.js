@@ -1,22 +1,32 @@
-<<<<<<< HEAD
 let boardArray = [];
+let torrePreta = document.getElementById('torreCorPreta')
+let torreVermelha = document.getElementById('torreCorVermelha')
+let bolaPreta
+let bolaVermelha
+let tabela = document.getElementById('tabela')
+let primeiroJogador = true;
+let segundoJogador = false;
+
 const simbolJogador = { jogador1: "x", jogador2: "o" };
 
 const creatBoardArray = (linhas, colunas) => {
-  boardArray = [];
-  for (let linha = 0; linha < linhas; linha++) {
-    let linhaArray = [];
-    for (let coluna = 0; coluna < colunas; coluna++) {
-      linhaArray.push("v");
-    }
-    boardArray.push(linhaArray);
+  for(let linha = 0; linha < linhas; linha++){
+      let linhaArray = [];
+      for(let coluna = 0; coluna < colunas; coluna++){
+          linhaArray.push('v');
+      }
+      boardArray.push(linhaArray);
   }
-};
+}; 
 
-const registroMovimento = (divMove, jogador) => {
-  let linhaColuna = divMove.getAttribute("data-linhaColuna").split(",");
-  boardArray[Number(linhaColuna[0])][Number(linhaColuna[1])] =
-    simbolJogador[jogador];
+const registroMovimento = (divMove, jogador1, jogador2) => {
+  let linhaColuna = divMove.getAttribute("dataaddress").split(",");
+  if(jogador1){
+      boardArray[linhaColuna[1]][linhaColuna[0]] = 'x';
+  }
+  if(jogador2){
+      boardArray[linhaColuna[1]][linhaColuna[0]] = 'o';
+  }
 };
 
 const limiteLinnha = (numero) => {
@@ -42,10 +52,10 @@ const limiteColuna = (numero) => {
 };
 
 const vitoriaHorizontal = (simbolo, posicao) => {
-  let inicioLinha = limiteLinnha(posicao[0]);
-  let inicioColuna = limiteColuna(posicao[1] - 3);
-  let finalLinha = limiteLinnha(posicao[0]);
-  let finalColuna = limiteColuna(posicao[1] + 3);
+  let inicioLinha = limiteLinnha(posicao[1]);
+  let inicioColuna = limiteColuna(posicao[0] - 3);
+  let finalLinha = limiteLinnha(posicao[1]);
+  let finalColuna = limiteColuna(posicao[0] + 3);
   let contador = 0;
   for (let coluna = inicioColuna; coluna <= finalColuna; coluna++) {
     if (boardArray[inicioLinha][coluna] === undefined) {
@@ -54,7 +64,7 @@ const vitoriaHorizontal = (simbolo, posicao) => {
     if (boardArray[inicioLinha][coluna] === simbolo) {
       contador++;
     }
-    if (boardArray[inicioLinha][coluna] === "v") {
+    if (boardArray[inicioLinha][coluna] !== simbolo) {
       contador = 0;
     }
     if (contador === 4) {
@@ -65,10 +75,10 @@ const vitoriaHorizontal = (simbolo, posicao) => {
 };
 
 const vitoriaVertical = (simbolo, posicao) => {
-  let inicioLinha = limiteLinnha(posicao[0] - 3);
-  let inicioColuna = limiteColuna(posicao[1]);
-  let finalLinha = limiteLinnha(posicao[0] + 3);
-  let finalColuna = limiteColuna(posicao[1]);
+  let inicioLinha = limiteLinnha(posicao[1] - 3);
+  let inicioColuna = limiteColuna(posicao[0]);
+  let finalLinha = limiteLinnha(posicao[1] + 3);
+  let finalColuna = limiteColuna(posicao[0]);
   let contador = 0;
   for (let linha = inicioLinha; linha <= finalLinha; linha++) {
     if (boardArray[linha][inicioColuna] === undefined) {
@@ -77,7 +87,7 @@ const vitoriaVertical = (simbolo, posicao) => {
     if (boardArray[linha][inicioColuna] === simbolo) {
       contador++;
     }
-    if (boardArray[linha][inicioColuna] === "v") {
+    if (boardArray[linha][inicioColuna] !== simbolo) {
       contador = 0;
     }
     if (contador === 4) {
@@ -87,10 +97,10 @@ const vitoriaVertical = (simbolo, posicao) => {
   return false;
 };
 const vitoriaDiagonal1 = (simbolo, posicao) => {
-  let inicioLinha = limiteLinnha(posicao[0] - 3);
-  let inicioColuna = limiteColuna(posicao[1] - 3);
-  let finalLinha = limiteLinnha(posicao[0] + 3);
-  let finalColuna = limiteColuna(posicao[1] + 3);
+  let inicioLinha = limiteLinnha(posicao[1] - 3);
+  let inicioColuna = limiteColuna(posicao[0] - 3);
+  let finalLinha = limiteLinnha(posicao[1] + 3);
+  let finalColuna = limiteColuna(posicao[0] + 3);
   let linha = inicioLinha;
   let contador = 0;
   for (let coluna = inicioColuna; coluna <= finalColuna; coluna++) {
@@ -100,87 +110,69 @@ const vitoriaDiagonal1 = (simbolo, posicao) => {
     if (boardArray[linha][coluna] === simbolo) {
       contador++;
     }
-    if (boardArray[linha][coluna] === "v") {
+    if (boardArray[linha][coluna] !== simbolo) {
       contador = 0;
     }
     if (contador === 4) {
       return true;
     }
     linha++;
+    if(linha > finalLinha){
+      break;
+    }
   }
   return false;
 };
 const vitoriaDiagonal2 = (simbolo, posicao) => {
-  let inicioLinha = limiteLinnha(posicao[0] + 3);
-  let inicioColuna = limiteColuna(posicao[1] - 3);
-  let finalLinha = limiteLinnha(posicao[0] - 3);
-  let finalColuna = limiteColuna(posicao[1] + 3);
+  let inicioLinha = limiteLinnha(posicao[1] + 3);
+  let inicioColuna = limiteColuna(posicao[0] - 3);
+  let finalLinha = limiteLinnha(posicao[1] - 3);
+  let finalColuna = limiteColuna(posicao[0] + 3);
   let linha = inicioLinha;
   let contador = 0;
   for (let coluna = inicioColuna; coluna <= finalColuna; coluna++) {
+    console.log(linha, coluna)
     if (boardArray[linha][coluna] === undefined) {
       continue;
     }
     if (boardArray[linha][coluna] === simbolo) {
       contador++;
     }
-    if (boardArray[linha][coluna] === "v") {
+    if (boardArray[linha][coluna] !== simbolo) {
       contador = 0;
     }
     if (contador === 4) {
       return true;
     }
-    linha--;
+    if(linha < 0){
+      linha--;
+    }
+    
   }
   return false;
 };
 
-const checarVitoria = (divMove, jogador) => {
-  let simbolo = simbolJogador[jogador];
-  let posicao = divMove.getAttribute("data-linhaColuna").split(",");
+const checarVitoria = (divMove, jogador1, jogador2) => {
+  let simbolo = '';
+  let posicao = divMove.getAttribute("dataaddress").split(",");
+  if(jogador1){
+    simbolo = 'x';
+  }
+  if(jogador2){
+    simbolo = 'o';
+  }
   posicao[0] = Number(posicao[0]);
   posicao[1] = Number(posicao[1]);
   if (
-    victDiagonal1(simbolo, posicao) ||
-    victDiagonal2(simbolo, posicao) ||
-    victHorizontal(simbolo, posicao) ||
-    victVertical(simbolo, posicao)
+    vitoriaDiagonal1(simbolo, posicao) ||
+    vitoriaDiagonal2(simbolo, posicao) ||
+    vitoriaHorizontal(simbolo, posicao) ||
+    vitoriaVertical(simbolo, posicao)
   ) {
     return true;
   }
   return false;
 };
-=======
-
-let boardArray = [];
-let torrePreta = document.getElementById('torreCorPreta')
-let torreVermelha = document.getElementById('torreCorVermelha')
-let bolaPreta
-let bolaVermelha
-let tabela = document.getElementById('tabela')
-let primeiroJogador = true;
-let segundoJogador = false;
-
-const creatBoardArray = (linhas, colunas) => {
-    for(let linha = 0; linha < linhas; linha++){
-        let linhaArray = [];
-        for(let coluna = 0; coluna < colunas; coluna++){
-            linhaArray.push('v');
-        }
-        boardArray.push(linhaArray);
-    }
-}; 
-
-const registroMovimento = (divMove, jogador1, jogador2) => {
-    let linhaColuna = divMove.getAttribute("dataaddress").split(",");
-    if(jogador1){
-        boardArray[linhaColuna[1]][linhaColuna[0]] = 'x';
-    }
-    if(jogador2){
-        boardArray[linhaColuna[1]][linhaColuna[0]] = 'o';
-    }
-};
-
 
 //Função de criação da tabela : 
 function criarTabela(t,c){
@@ -238,6 +230,15 @@ tabela.addEventListener('click',function(e){
             
         }
         registroMovimento(vazio[vazio.length-1],primeiroJogador,segundoJogador)
+        if(checarVitoria(vazio[vazio.length-1],primeiroJogador,segundoJogador)){
+          if(primeiroJogador){
+            alert("Jogador preto ganhou!")
+          }
+          if(segundoJogador){
+            alert("Jogador vermelho ganhou!")
+          }
+
+        }
         if(primeiroJogador===true){
 
             primeiroJogador=false;
@@ -252,4 +253,3 @@ tabela.addEventListener('click',function(e){
     }
 })
 
->>>>>>> feature/moveRegister

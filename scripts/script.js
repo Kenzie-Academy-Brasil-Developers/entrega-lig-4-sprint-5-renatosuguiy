@@ -7,7 +7,20 @@ let tabela = document.getElementById('tabela')
 let primeiroJogador = true;
 let segundoJogador = false;
 
-const simbolJogador = { jogador1: "x", jogador2: "o" };
+const verificaEmpate = () => {
+  let flatBoardArray = [].concat(...boardArray);
+  
+  let counter = flatBoardArray.reduce((acc, item) => {
+      if(item === 'v'){
+        return  acc +1;
+      }
+      return acc;
+  }, 0);
+  if(counter === 0){
+      return true;
+  }
+  return false;
+};
 
 const creatBoardArray = (linhas, colunas) => {
   for(let linha = 0; linha < linhas; linha++){
@@ -131,7 +144,6 @@ const vitoriaDiagonal2 = (simbolo, posicao) => {
   let linha = inicioLinha;
   let contador = 0;
   for (let coluna = inicioColuna; coluna <= finalColuna; coluna++) {
-    console.log(linha, coluna)
     if (boardArray[linha][coluna] === undefined) {
       continue;
     }
@@ -214,20 +226,16 @@ tabela.addEventListener('click',function(e){
     
     if(vazio.length!=0){
         if(primeiroJogador===true) {
-            
             let bolap = torrePreta.lastElementChild
             bolap.classList.remove('horizontal');
             bolap.classList.add('vertical');
             vazio[vazio.length-1].appendChild(bolap);
-            
         }
         if(segundoJogador===true){
-        
             let bolav = torreVermelha.lastElementChild
             bolav.classList.remove('horizontal');
             bolav.classList.add('vertical');
-            vazio[vazio.length-1].appendChild(bolav);
-            
+            vazio[vazio.length-1].appendChild(bolav);   
         }
         registroMovimento(vazio[vazio.length-1],primeiroJogador,segundoJogador)
         if(checarVitoria(vazio[vazio.length-1],primeiroJogador,segundoJogador)){
@@ -237,8 +245,11 @@ tabela.addEventListener('click',function(e){
           if(segundoJogador){
             alert("Jogador vermelho ganhou!")
           }
-
         }
+        if(verificaEmpate()){
+          alert("Empate")
+        }
+
         if(primeiroJogador===true){
 
             primeiroJogador=false;
@@ -252,4 +263,5 @@ tabela.addEventListener('click',function(e){
         }
     }
 })
+
 

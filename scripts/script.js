@@ -1,4 +1,12 @@
+//variaveis globais:
+let torrePreta = document.getElementById('torreCorPreta')
+let torreVermelha = document.getElementById('torreCorVermelha')
+let bolaPreta
+let bolaVermelha
+let primeiroJogador = true;
+let segundoJogador = false;
 let tabela = document.getElementById('tabela')
+
 //Função de criação da tabela : 
 function criarTabela(t,c){
     for(let i=0; i < t; i ++){
@@ -12,30 +20,25 @@ function criarTabela(t,c){
             celula.setAttribute('dataaddress',`${i},${n}`)
         }
     }
-    
+    torres()
 }
 
 criarTabela(7,6)
 
-let torrePreta = document.getElementById('torreCorPreta')
-let torreVermelha = document.getElementById('torreCorVermelha')
-let bolaPreta
-let bolaVermelha
-for(let i=0;i<21;i++){
-    bolaPreta = document.createElement('div')
-    bolaPreta.classList.add('horizontal','black')
-    torrePreta.appendChild(bolaPreta)
+//Função criar torres
+function torres(){
+    for(let i=0;i<21;i++){
+        bolaPreta = document.createElement('div')
+        bolaPreta.classList.add('horizontal','black')
+        torrePreta.appendChild(bolaPreta)
+    }
+
+    for(let i=0;i<21;i++){
+        bolaVermelha = document.createElement('div')
+        bolaVermelha.classList.add('horizontal','red')        
+        torreVermelha.appendChild(bolaVermelha)
+    }
 }
-
-for(let i=0;i<21;i++){
-    bolaVermelha = document.createElement('div')
-    bolaVermelha.classList.add('horizontal','red')        
-    torreVermelha.appendChild(bolaVermelha)
-}
-
-
-let primeiroJogador = true;
-let segundoJogador = false;
 
 //Movimento:
 tabela.addEventListener('click',function(e){
@@ -45,7 +48,7 @@ tabela.addEventListener('click',function(e){
     let vazio = Array.from(filhos).filter((e)=>e.innerHTML==="")
     
     if(vazio.length!=0){
-        console.log(vazio)
+        
         if(primeiroJogador===true) {
             
             let bolap = torrePreta.lastElementChild

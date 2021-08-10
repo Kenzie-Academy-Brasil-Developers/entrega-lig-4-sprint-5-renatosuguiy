@@ -7,8 +7,46 @@ header {
 footer{
 
 }
-
-.container {
-    width: 95%;
+/*Configurações do jogo*/
+.torre {
+    display: flex;
+    flex-direction: column;
 }
 
+.celula {
+    height: 40px;
+    width: 40px;
+    border: 1px solid darkblue;
+}
+
+#tabela {
+    display: flex;
+}
+
+#jogo{
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    padding: 100px 0px;
+    align-items: flex-end;
+}
+.horizontal{
+    height: 10px;
+    width: 40px;
+    border-radius: 3px;
+}
+.vertical {
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+}
+
+.red {
+    background-color: darkred;
+}
+
+.black {
+    background-color: black;
+}
+/*Fim das configurações do jogo*/

@@ -301,7 +301,9 @@ tabela.addEventListener('click',function(e){
     }
 })
 
-
+/* Tela de Jogo */
+let telaJogo = document.getElementById("telaJogo")
+telaJogo.classList.add("hidden")
 /*Lógica dos Botões*/
 
 let btnMenu = document.createElement("button")
@@ -325,3 +327,54 @@ placar.appendChild(score)
 placar.appendChild(player1)
 placar.appendChild(player2)
 mainJogo.appendChild(placar)
+
+/* Tela inicial */
+
+let telaInicial = document.getElementById('telaInicial')
+telaInicial.classList.add("starter")
+let starterMain = document.createElement("main")
+starterMain.classList.add('starterMain')
+let titleMain = document.createElement("h1")
+titleMain.innerText="SUPER MARIO BROS Lig-4"
+let starterBtns = document.createElement("div")
+starterBtns.classList.add('btnContainer')
+let btnPlay = document.createElement('button')
+btnPlay.classList.add("btnPlay", "btnStarter")
+let btnCredits = document.createElement('button')
+btnCredits.classList.add('btnCredits', "btnStarter")
+let btnMenuS = document.createElement('button')
+btnMenuS.classList.add('btnMenuS', "btnStarter")
+
+starterBtns.appendChild(btnPlay);
+starterBtns.appendChild(btnMenuS)
+starterBtns.appendChild(btnCredits)
+
+starterMain.appendChild(titleMain)
+starterMain.appendChild(starterBtns)
+
+telaInicial.appendChild(starterMain)
+
+
+// let title = document.createElement("header")
+// title.classList.add("header")
+// let titleMain = document.createElement("h1")
+// titleMain.innerText= "SUPER MARIO BROS LIG-4"
+
+// title.appendChild(titleMain)
+// telaInicial.appendChild(title)
+
+// let starterMain = document.createElement('main')
+// starterMain.classList.add('starterMain')
+
+// telaInicial.appendChild()
+// let starterBtns = document.createElement('div')
+// starterBtns.classList.add("btnContainer")
+// let btnPlay = document.createElement("button")
+// btnPlay.classList.add("btnPlay")
+// let btnCredits = document.createElement('button')
+// btnCredits.classList.add('btnCredits')
+
+
+// starterBtns.appendChild(btnPlay)
+// starterBtns.appendChild(btnCredits)
+// telaInicial.appendChild(starterBtns)

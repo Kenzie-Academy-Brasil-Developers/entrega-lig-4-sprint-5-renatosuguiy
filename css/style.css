@@ -2,8 +2,6 @@ body {
     font-family: 'Press Start 2P', sans-serif;
     border: 1px solid black;
     position: relative;
-    
-
 }
 header {
 
@@ -25,7 +23,6 @@ footer{
     display: flex;
     align-items: center;
     justify-content: center;
-   
 }
 
 .celula:first-child{
@@ -164,4 +161,3 @@ footer{
     }
    
 /*Fim das configurações do jogo*/
-

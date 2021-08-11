@@ -1,3 +1,7 @@
+:root {
+    --titleSize : 60px
+}
+
 body {
     font-family: 'Press Start 2P', sans-serif;
     border: 1px solid black;
@@ -8,6 +12,10 @@ header {
 }
 footer{
 
+}
+
+h1{
+    margin: 0;
 }
 /*Configurações do jogo*/
 .torre {
@@ -73,7 +81,7 @@ footer{
 }
 
 .btnMenu{
-    background-image: url(/assets/MenuButtonyellow.png);
+    background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
     border: none;
     background-size: contain;
     position: absolute;
@@ -110,6 +118,38 @@ footer{
 
 /*Fim das configurações do jogo*/
 
+/* Tela Inicial */
+.starter {
+    background-image: url(/assets/background1.jpg);
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    
+}
+    .header{
+        font-size: var(--titleSize);
+    }
+.btnContainer {
+    background-color: blue;
+}
+    .btnPlay {
+        background-color: blue;
+    }
+    .btnMenu {
+        background-color: blue;
+    }
+    .btnCredits {
+        background-color: blue;
+    }
+
+/* Fim Tela Inicial */
+
+/* Transicao de Telas */
+.hidden {
+    display: none;
+}
+/* Fim Transicao de Telas */
 @media (min-width: 768px){
     #jogo {
         background-position: bottom;

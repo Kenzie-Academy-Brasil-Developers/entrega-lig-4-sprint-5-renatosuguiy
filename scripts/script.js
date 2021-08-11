@@ -301,7 +301,9 @@ tabela.addEventListener('click',function(e){
     }
 })
 
-
+/* Tela de Jogo */
+let telaJogo = document.getElementById("telaJogo")
+telaJogo.classList.add("hidden")
 /*Lógica dos Botões*/
 
 let btnMenu = document.createElement("button")
@@ -325,3 +327,24 @@ placar.appendChild(score)
 placar.appendChild(player1)
 placar.appendChild(player2)
 mainJogo.appendChild(placar)
+
+/* Tela inicial */
+
+let telaInicial = document.getElementById('telaInicial')
+telaInicial.classList.add("starter")
+
+let title = document.createElement("header")
+title.classList.add("header")
+let titleMain = document.createElement("h1")
+titleMain.innerText= "SUPER MARIO BROS LIG-4"
+
+title.appendChild(titleMain)
+telaInicial.appendChild(title)
+
+let starterBtns = document.createElement('div')
+starterBtns.classList.add("btnContainer")
+let btnPlay = document.createElement("button")
+btnPlay.classList.add("btnPlay")
+let btnCredits = document.createElement('button')
+btnCredits.classList.add('btnCredits')
+

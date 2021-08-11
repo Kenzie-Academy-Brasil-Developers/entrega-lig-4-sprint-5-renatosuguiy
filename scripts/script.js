@@ -13,7 +13,9 @@ audioFundo.volume = 0.5;
 let statusVolumeFundo = true;
 const volumeSliderGeral = document.getElementById('volume-musica-geral');
 const audiosGeral = document.querySelectorAll('.audio-geral');
-let statusVolumeGeral = true;
+const audioVitoria = document.getElementById('audio-vitoria');
+const audioEmpate = document.getElementById('audio-empate');
+const audioPeca = document.getElementById('audio-peca');
 
 const addAnimacaoVitoriaPeca = (orientacaoVitoria, posicaoUltimaPeca) => {
   if(orientacaoVitoria === 'horizontal'){
@@ -301,16 +303,20 @@ function startGame() {
           }
 
           registroMovimento(vazio[vazio.length-1],primeiroJogador,segundoJogador)
+          audioPeca.play();
           if(checarVitoria(vazio[vazio.length-1],primeiroJogador,segundoJogador)){
             if(primeiroJogador){
               alert("Jogador preto ganhou!")
+              audioVitoria.play();
             }
             if(segundoJogador){
               alert("Jogador vermelho ganhou!")
+              audioVitoria.play();
             }
           }
           if(verificaEmpate()){
             alert("Empate")
+            audioEmpate.play();
           }
 
           if(primeiroJogador===true){
@@ -414,7 +420,11 @@ volumeBtnFundo.addEventListener('click', (event)=>{
 
 volumeSliderGeral.addEventListener('input', (event) => {
   const value = event.target.value;
-  audioFundo.volume = value / 100;
+  let audiosArray = [...audiosGeral];
+  for(let index = 0; index < audiosArray.length; index++){
+    audiosArray[index].volume = value / 100;
+  }
+  
 });
 
 

@@ -13,11 +13,13 @@ function criarTabela(t,c){
         let torre = document.createElement('div')
         torre.classList.add('torre')
         tabela.appendChild(torre)
-        for(let n=0; n < c; n ++){
+        for(let n=0; n < c+1; n ++){
             let celula = document.createElement('div')
-            celula.classList.add('celula')
+            if(n>0){
+                celula.classList.add('celula')
+                celula.setAttribute('dataaddress',`${i},${n}`)
+            }
             torre.appendChild(celula)
-            celula.setAttribute('dataaddress',`${i},${n}`)
         }
     }
     torres()
@@ -42,24 +44,25 @@ function torres(){
 
 //Movimento:
 tabela.addEventListener('click',function(e){
+    console.log(e)
     
     let filhos = e.target.closest('.torre').children
     
     let vazio = Array.from(filhos).filter((e)=>e.innerHTML==="")
     
-    if(vazio.length!=0){
+    if(vazio.length!=1){
         
         if(primeiroJogador===true) {
             
-            let bolap = torrePreta.lastElementChild
+            let bolap = torrePreta.firstElementChild
             bolap.classList.remove('horizontal');
             bolap.classList.add('vertical');
-            vazio[vazio.length-1].appendChild(bolap);
-            
+            vazio[vazio.length-1].appendChild(bolap)
+                
         }
         if(segundoJogador===true){
         
-            let bolav = torreVermelha.lastElementChild
+            let bolav = torreVermelha.firstElementChild
             bolav.classList.remove('horizontal');
             bolav.classList.add('vertical');
             vazio[vazio.length-1].appendChild(bolav);
@@ -82,3 +85,15 @@ tabela.addEventListener('click',function(e){
 
 
 
+//Ideias para movimentação:
+//1- Criar mais uma celula em cada coluna, mas deixa-la sem tamanho, cor ou borda.
+//   Não lhe dar class, e mudar a validação do movimento na função movimento para
+//   que as bolinhas não entrem nela. Com forEach fazer com que a bola passe por 
+//   cada celula até chegar na correta, incluive das celulas invisiveis. Usar um 
+//   setTime dentro da forEach para que as bolinhas passem devagar.
+
+//2- Pegar a posição left do evento e usando position fazer a bola aparecer acima
+//   da coluna escolida e ir descendo até a posição desejada. As altura teria de 
+//   ser controlada.
+
+//3- Estudar arrastar.

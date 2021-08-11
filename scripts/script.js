@@ -296,6 +296,7 @@ tabela.addEventListener('click',function(e){
             bolav.classList.add('vertical');
             vazio[vazio.length-1].appendChild(bolav);   
         }
+
         registroMovimento(vazio[vazio.length-1],primeiroJogador,segundoJogador)
         if(checarVitoria(vazio[vazio.length-1],primeiroJogador,segundoJogador)){
           if(primeiroJogador){
@@ -320,9 +321,9 @@ tabela.addEventListener('click',function(e){
             segundoJogador=false;
 
         }
+        showPlayer()
     }
 })
-
 
 /*Lógica dos Botões*/
 
@@ -331,19 +332,53 @@ btnMenu.classList.add("btnMenu")
 let mainJogo = document.getElementById("jogo")
 mainJogo.appendChild(btnMenu)
 
-/*Placar*/
+// Placar
 
-let placar = document.createElement("div")
-placar.classList.add("placar")
-let score = document.createElement("h3")
-score.innerText = "Score"
-score.classList.add("score")
-let player1 = document.createElement("p")
-player1.innerText = "Player 1: "
-let player2 = document.createElement("p")
-player2.innerText = "Player 2: "
+// let placar = document.createElement("div")
+// placar.classList.add("placar")
+// let score = document.createElement("h3")
+// score.innerText = "Score"
+// score.classList.add("score")
+// let player1 = document.createElement("p")
+// player1.innerText = "Player 1: "
+// let player2 = document.createElement("p")
+// player2.innerText = "Player 2: "
 
-placar.appendChild(score)
-placar.appendChild(player1)
-placar.appendChild(player2)
-mainJogo.appendChild(placar)
+// placar.appendChild(score)
+// placar.appendChild(player1)
+// placar.appendChild(player2)
+// mainJogo.appendChild(placar)
+
+// Mostrar Jogador Corrente
+
+let display = document.createElement('div')
+display.classList.add("display")
+let texto = document.createElement('h3')
+display.classList.add('p1')
+texto.classList.add('texto')
+texto.innerText = "Turn"
+display.appendChild(texto)
+mainJogo.appendChild(display)
+
+let player1 = document.createElement('div')
+player1.classList.add("player1")
+let player2 = document.createElement('div')
+player2.classList.add("player2")
+
+
+mainJogo.appendChild(player1)
+mainJogo.appendChild(player2)
+
+function showPlayer(){
+  
+  if(primeiroJogador === false){
+    display.classList.remove('p1')
+    display.classList.add('p2')
+
+  }
+
+  if(primeiroJogador === true){
+    display.classList.remove('p2')
+    display.classList.add('p1')
+  }
+}

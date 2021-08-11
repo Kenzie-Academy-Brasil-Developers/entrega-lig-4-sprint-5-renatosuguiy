@@ -303,7 +303,6 @@ tabela.addEventListener('click',function(e){
 
 /* Tela de Jogo */
 let telaJogo = document.getElementById("telaJogo")
-telaJogo.classList.add("hidden")
 /*Lógica dos Botões*/
 
 let btnMenu = document.createElement("button")
@@ -370,8 +369,69 @@ btnMenuS.addEventListener('click',function() {
   telaJogo.classList.remove('hidden')
   telaInicial.classList.add('hidden')
 });
-btnPlay.addEventListener('click',function() {
-  telaJogo.classList.remove('hidden')
+btnCredits.addEventListener('click',function() {
+  telaJogo.classList.add('hidden')
   telaInicial.classList.add('hidden')
+  telaCreditos.classList.remove("hidden")
+  
 });
 
+/* Fim Tela Inicial*/
+
+/* Creditos */
+
+// Criar Html
+
+const membros = [
+  {
+    nome: 'Rafael G. de Sousa',
+    LinkedIn: 'linkedin.com/in/rafael-sousa-61b654112',
+    Github: 'https://github.com/rafaelgsousa',
+    Email: 'elderrafaelgomes@gmail.com',
+  },
+  {
+    nome: 'Thiago Trad',
+    LinkedIn: 'www.linkedin.com/in/thiagotrad',
+    Github: "https://github.com/TvsTrad",
+    Email: "thiago_trad@Hotmail.com",
+  },
+  {
+    nome: 'Renato T. Suguiy',
+    LinkedIn: 'https://www.linkedin.com/in/renatosuguiy/',
+    Github: 'https://github.com/renatosuguiy',
+    Email: 'renatosuguiy@gmail.com',
+
+  },
+  {
+    nome: 'Maria Eduarda B. Rubini',
+    LinkedIn: 'https://www.linkedin.com/in/madurubini/',
+    Github: 'https://github.com/madurubini',
+    Email: 'mariaed.rubini@gmail.com',
+  }
+]
+
+let creditos = document.getElementById('creditos')
+console.log(creditos)
+const gerarLista = () => {
+  for (i = 0; i < membros.length ; i++){
+    let nome = document.createElement('dt');
+    nome.innerText = `${membros[i].nome}`;
+    let LinkedIn = document.createElement('dd')
+    LinkedIn.innerText = `${membros[i].LinkedIn}`
+    let Github = document.createElement('dd')
+    Github.innerText = `${membros[i].Github}`
+    let Email = document.createElement('dd')
+    Email.innerText = `${membros[i].Email}`
+
+    creditos.append(nome, LinkedIn, Github, Email);
+  }
+};
+  creditos.appendChild(btnMenu)
+gerarLista()
+/* Fim Creditos */
+
+/* Controle de Telas */
+ let telas = document.getElementsByClassName('tela');
+ console.log(telas)
+
+/* Fim Controle de Telas */

@@ -11,10 +11,10 @@ body {
     box-sizing: border-box;
 }
 header {
-
+    box-sizing: border-box;
 }
 footer{
-
+    box-sizing: border-box;
 }
 h1{
     margin: 0;
@@ -185,11 +185,42 @@ h1{
 /* Fim Tela Inicial */
 
 /* Transicao de Telas */
+.tela {
+    position:fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top:0;
+    left: 0;
+    width:100%;
+    height:100%;
+    text-align: center;
+}
 .hidden {
     display: none;
 }
 /* Fim Transicao de Telas */
 
+/* Creditos */
+.telaCreditos {
+    background-color: var(--color-black);
+    color: white;
+    font-family: 'Press Start 2P', sans-serif;;
+    position:fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top:0;
+    left: 0;
+    width:100%;
+    height:100%;
+    text-align: center;
+    line-height: 200%;
+}
+
+/* Fim dos Creditos */
 /* Desktop */
 @media (min-width: 768px){
     #jogo {

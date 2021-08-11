@@ -50,3 +50,22 @@ footer{
     background-color: black;
 }
 /*Fim das configurações do jogo*/
+
+@keyframes animacaoVitoriaPeca {
+    0% {
+        transform: scale(1) rotateY(0deg);
+    }
+    35% {
+        transform: scale(1.2) rotateY(0deg);
+    }
+    70% {
+        transform: scale(1.2) rotateY(360deg);
+    }
+    100% {
+        transform: scale(1) rotateY(360deg);;
+    }
+}
+
+.animacaoVitoriaPeca{
+    animation: animacaoVitoriaPeca 2s infinite;
+}

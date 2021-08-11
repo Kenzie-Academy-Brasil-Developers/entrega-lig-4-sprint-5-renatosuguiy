@@ -376,6 +376,7 @@ btnCredits.addEventListener('click',function() {
   
 });
 
+
 /* Fim Tela Inicial*/
 
 /* Creditos */
@@ -408,30 +409,34 @@ const membros = [
     Github: 'https://github.com/madurubini',
     Email: 'mariaed.rubini@gmail.com',
   }
-]
+];
 
 let creditos = document.getElementById('creditos')
-console.log(creditos)
+
 const gerarLista = () => {
   for (i = 0; i < membros.length ; i++){
     let nome = document.createElement('dt');
     nome.innerText = `${membros[i].nome}`;
     let LinkedIn = document.createElement('dd')
-    LinkedIn.innerText = `${membros[i].LinkedIn}`
+    LinkedIn.innerText = `LinkedIn: ${membros[i].LinkedIn}`
     let Github = document.createElement('dd')
-    Github.innerText = `${membros[i].Github}`
+    Github.innerText = `GitHub: ${membros[i].Github}`
     let Email = document.createElement('dd')
-    Email.innerText = `${membros[i].Email}`
+    Email.innerText = `Email: ${membros[i].Email}`
 
     creditos.append(nome, LinkedIn, Github, Email);
   }
 };
-  creditos.appendChild(btnMenu)
-gerarLista()
+
+let btnMenuC = document.createElement('button')
+btnMenuC.classList.add('btnMenuC', "btnStarter");
+creditos.appendChild(btnMenuC);
+gerarLista();
+
+btnMenuC.addEventListener('click',function() {
+  telaInicial.classList.remove('hidden')
+  telaCreditos.classList.add('hidden')
+});
 /* Fim Creditos */
 
-/* Controle de Telas */
- let telas = document.getElementsByClassName('tela');
- console.log(telas)
 
-/* Fim Controle de Telas */

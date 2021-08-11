@@ -203,21 +203,24 @@ h1{
 /* Fim Transicao de Telas */
 
 /* Creditos */
-.telaCreditos {
+#telaCreditos {
     background-color: var(--color-black);
-    color: white;
-    font-family: 'Press Start 2P', sans-serif;;
-    position:fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    top:0;
-    left: 0;
-    width:100%;
-    height:100%;
-    text-align: center;
+    color: #ffff;
+}
+dd {
+    font-size: 0.5em;
     line-height: 200%;
+}
+dt {
+    margin: 50px auto;
+    line-height: 300%;
+}
+.btnMenuC {
+    background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
+    position: absolute;
+    bottom:0;
+    right:0;
+    max-width: 100px;
 }
 
 /* Fim dos Creditos */

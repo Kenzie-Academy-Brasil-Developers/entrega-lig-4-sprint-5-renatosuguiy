@@ -153,7 +153,16 @@ const vitoriaDiagonal1 = (simbolo, posicao) => {
   let linha = inicioLinha;
   let contador = 0;
   for (let coluna = inicioColuna; coluna <= finalColuna; coluna++) {
+    if(linha < 0 || coluna < 0){
+      linha++
+      continue;
+    }
+    if(linha > boardArray.length - 1 || coluna > boardArray[0].length - 1){
+      linha++
+      continue;
+    }
     if (boardArray[linha][coluna] === undefined) {
+      linha++
       continue;
     }
     if (boardArray[linha][coluna] === simbolo) {
@@ -174,14 +183,25 @@ const vitoriaDiagonal1 = (simbolo, posicao) => {
   return false;
 };
 const vitoriaDiagonal2 = (simbolo, posicao) => {
-  let inicioLinha = limiteLinnha(posicao[1] + 3);
-  let inicioColuna = limiteColuna(posicao[0] - 3);
-  let finalLinha = limiteLinnha(posicao[1] - 3);
-  let finalColuna = limiteColuna(posicao[0] + 3);
+  let inicioLinha = posicao[1] + 3; 
+  let inicioColuna = posicao[0] - 3;
+  let finalLinha = posicao[1] - 3;
+  let finalColuna = posicao[0] + 3;
   let linha = inicioLinha;
   let contador = 0;
   for (let coluna = inicioColuna; coluna <= finalColuna; coluna++) {
+    console.log(linha, coluna, contador)
+
+    if(linha < 0 || coluna < 0){
+      linha--
+      continue;
+    }
+    if(linha > boardArray.length - 1 || coluna > boardArray[0].length - 1){
+      linha--
+      continue;
+    }
     if (boardArray[linha][coluna] === undefined) {
+      linha--
       continue;
     }
     if (boardArray[linha][coluna] === simbolo) {

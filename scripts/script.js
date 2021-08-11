@@ -6,6 +6,7 @@ let bolaVermelha
 let tabela = document.getElementById('tabela')
 let primeiroJogador = true;
 let segundoJogador = false;
+let audioFundo = document.getElementById('audio-fundo');
 
 const addAnimacaoVitoriaPeca = (orientacaoVitoria, posicaoUltimaPeca) => {
   if(orientacaoVitoria === 'horizontal'){
@@ -236,7 +237,8 @@ function criarTabela(t,c){
             celula.setAttribute('dataaddress',`${i},${n}`)
         }
     }
-    creatBoardArray(c,t)
+    creatBoardArray(c,t);
+    audioFundo.play();
 }
 
 criarTabela(7,6)

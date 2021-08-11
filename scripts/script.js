@@ -278,11 +278,11 @@ tabela.addEventListener('click',function(e){
         registroMovimento(vazio[vazio.length-1],primeiroJogador,segundoJogador)
         if(checarVitoria(vazio[vazio.length-1],primeiroJogador,segundoJogador)){
           if(primeiroJogador){
-            alert("Jogador preto ganhou!")
+            alert("Player 1 ganhou!")
             mostraGanhador(primeiroJogador)
           }
           if(segundoJogador){
-            alert("Jogador vermelho ganhou!")
+            alert("Player 2 ganhou!")
           }
         }
         if(verificaEmpate()){
@@ -378,6 +378,8 @@ painelJogadores.appendChild(placarJogador2)
 
 mainJogo.appendChild(player1)
 mainJogo.appendChild(player2)
+
+//função de mostrar de quem é a vez 
 
 function showPlayer(){
   

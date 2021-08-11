@@ -1,8 +1,9 @@
 body {
     font-family: 'Press Start 2P', sans-serif;
     border: 1px solid black;
-    position: relative;
-    
+    background-color: #3918B9;
+    margin: 100px auto;  
+  
 
 }
 header {
@@ -11,6 +12,8 @@ header {
 footer{
 
 }
+
+
 /*Configurações do jogo*/
 .torre {
     display: flex;
@@ -35,17 +38,19 @@ footer{
 
 #tabela {
     display: flex;
+    position: absolute;
+    bottom: 35px;
 }
 
 #jogo{
     max-width: 1000px;
-    min-height: 450px;
+    width: 95vw;
+    min-height: 500px;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
-    padding-bottom: 30px; 
     align-items: flex-end;
-    background-image: url(/assets/fundo2.png);
+    background-image: url(/assets/fundo-grande.png);
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -82,11 +87,11 @@ footer{
     position: absolute;
     background-repeat: no-repeat;
     top: 10px;
-    right: 10px;
+    right: 50px;
     width: 45px;
     height: 15px;
     cursor: pointer;
-    background-color: #4A5EB8;
+    background-color: #3918B9;
 }
 
 .placar{
@@ -113,10 +118,18 @@ footer{
 
 /*Fim das configurações do jogo*/
 
-@media (min-width: 768px){
+@media (min-width: 640px){
     #jogo {
         background-position: bottom;
-        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+        background-size: 800px;
+       
+    }
+
+    #tabela {
+        position: absolute;
+        bottom: 43px;
     }
 
     .celula {
@@ -130,20 +143,12 @@ footer{
     }
 
     .btnMenu{
-        width: 70px;
-        height: 35px;
+        width: 60px;
+        height: 20px;
+        right: 0;
     }
-
-    .horizontal{
-        display: block;
-        height: 10px;
-        width: 30px;
-        border-radius: 20px;
-        background-position: center;
-        display: flex;
-        
-    }
-
+}   
+/* 
     .placar{
         display: block;
         position: absolute;
@@ -162,5 +167,5 @@ footer{
         margin-bottom: 5px;
         line-height: 1.6;
     }
-   
+    */
 /*Fim das configurações do jogo*/

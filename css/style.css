@@ -1,4 +1,8 @@
 body {
+    font-family: 'Press Start 2P', sans-serif;
+    border: 1px solid black;
+    position: relative;
+    
 
 }
 header {
@@ -15,9 +19,19 @@ footer{
 }
 
 .celula {
-    height: 40px;
-    width: 40px;
-    border: 1px solid darkblue;
+    height: 35px;
+    width: 35px;
+    background-image: url(/assets/base-tubo.png)  ;
+    background-size: contain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.celula:first-child{
+    background-image: url(/assets/topo-tubo.png)  ;
+    background-size: cover;
 }
 
 #tabela {
@@ -26,28 +40,129 @@ footer{
 
 #jogo{
     max-width: 1000px;
+    min-height: 450px;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
-    padding: 100px 0px;
+    padding-bottom: 30px; 
     align-items: flex-end;
+    background-image: url(/assets/fundo2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
 }
 .horizontal{
     height: 10px;
-    width: 40px;
-    border-radius: 3px;
+    width: 30px;
+    border-radius: 20px;
+    background-position: center;
+    display: none;
 }
 .vertical {
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     border-radius: 20px;
+
 }
 
 .red {
-    background-color: darkred;
+    background-image: url(/assets/red-cogu.png);
+    background-size: cover;
+    
 }
 
 .black {
-    background-color: black;
+    background-image: url(/assets/green-cogu.png);
+    background-size: cover;
 }
+
+.btnMenu{
+    background-image: url(/assets/MenuButtonyellow.png);
+    border: none;
+    background-size: contain;
+    position: absolute;
+    background-repeat: no-repeat;
+    top: 10px;
+    right: 10px;
+    width: 45px;
+    height: 15px;
+    cursor: pointer;
+    background-color: #4A5EB8;
+}
+
+.placar{
+    display: none;
+}
+@keyframes animacaoVitoriaPeca {
+    0% {
+        transform: scale(1) rotateY(0deg);
+    }
+    35% {
+        transform: scale(1.2) rotateY(0deg);
+    }
+    70% {
+        transform: scale(1.2) rotateY(360deg);
+    }
+    100% {
+        transform: scale(1) rotateY(360deg);;
+    }
+}
+
+.animacaoVitoriaPeca{
+    animation: animacaoVitoriaPeca 2s infinite;
+}
+
 /*Fim das configurações do jogo*/
+
+@media (min-width: 768px){
+    #jogo {
+        background-position: bottom;
+        background-size: cover;
+    }
+
+    .celula {
+        width: 50px;
+        height: 50px;
+    }
+
+    .vertical {
+        width: 40px;
+        height: 40px;
+    }
+
+    .btnMenu{
+        width: 70px;
+        height: 35px;
+    }
+
+    .horizontal{
+        display: block;
+        height: 10px;
+        width: 30px;
+        border-radius: 20px;
+        background-position: center;
+        display: flex;
+        
+    }
+
+    .placar{
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 10px;
+        color: #fff;
+    
+    }
+    .placar p{
+        padding: 2px
+    }
+
+    .score {
+        font-size: 16px;
+        margin-bottom: 5px;
+        line-height: 1.6;
+    }
+   
+/*Fim das configurações do jogo*/
+

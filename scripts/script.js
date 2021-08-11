@@ -228,6 +228,7 @@ function criarTabela(t,c){
     for(let i=0; i < t; i ++){
         let torre = document.createElement('div')
         torre.classList.add('torre')
+        torre.setAttribute('datatorre',`${i}`)
         tabela.appendChild(torre)
         for(let n=0; n < c; n ++){
             let celula = document.createElement('div')
@@ -236,27 +237,28 @@ function criarTabela(t,c){
             torre.appendChild(celula)
         }
     }
+    criarTorres()
     creatBoardArray(c,t)
 }
 
 criarTabela(7,6)
 
+function criarTorres(){
+  for(let i=0;i<21;i++){
+      bolaPreta = document.createElement('div')
+      bolaPreta.classList.add('horizontal','black')
+      torrePreta.appendChild(bolaPreta)
+  }
 
-for(let i=0;i<21;i++){
-    bolaPreta = document.createElement('div')
-    bolaPreta.classList.add('horizontal','black')
-    torrePreta.appendChild(bolaPreta)
-}
-
-for(let i=0;i<21;i++){
-        bolaVermelha = document.createElement('div')
-        bolaVermelha.classList.add('horizontal','red')        
-        torreVermelha.appendChild(bolaVermelha)
+  for(let i=0;i<21;i++){
+          bolaVermelha = document.createElement('div')
+          bolaVermelha.classList.add('horizontal','red')        
+          torreVermelha.appendChild(bolaVermelha)
+  }
 }
 
 //Movimento:
 tabela.addEventListener('click',function(e){
-    console.log(e)
     
     let filhos = e.target.closest('.torre').children
     
@@ -264,16 +266,29 @@ tabela.addEventListener('click',function(e){
     
     if(vazio.length!=0){
         if(primeiroJogador===true) {
-            let bolap = torrePreta.lastElementChild
+            let bolap = torrePreta.firstElementChild
             bolap.classList.remove('horizontal');
             bolap.classList.add('vertical');
+            bolap.classList.add('animacao');
             vazio[vazio.length-1].appendChild(bolap);
         }
         if(segundoJogador===true){
-            let bolav = torreVermelha.lastElementChild
+            let bolav = torreVermelha.firstElementChild
             bolav.classList.remove('horizontal');
             bolav.classList.add('vertical');
+            bolav.classList.add('animacao');
             vazio[vazio.length-1].appendChild(bolav);   
+        }
+        if(primeiroJogador===true){
+
+          primeiroJogador=false;
+          segundoJogador=true;
+
+        } else {
+
+          primeiroJogador=true;
+          segundoJogador=false;
+
         }
         registroMovimento(vazio[vazio.length-1],primeiroJogador,segundoJogador)
         if(checarVitoria(vazio[vazio.length-1],primeiroJogador,segundoJogador)){
@@ -286,18 +301,6 @@ tabela.addEventListener('click',function(e){
         }
         if(verificaEmpate()){
           alert("Empate")
-        }
-
-        if(primeiroJogador===true){
-
-            primeiroJogador=false;
-            segundoJogador=true;
-
-        } else {
-
-            primeiroJogador=true;
-            segundoJogador=false;
-
         }
     }
 })

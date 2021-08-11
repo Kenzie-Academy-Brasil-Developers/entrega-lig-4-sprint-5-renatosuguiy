@@ -302,3 +302,26 @@ tabela.addEventListener('click',function(e){
 })
 
 
+/*Lógica dos Botões*/
+
+let btnMenu = document.createElement("button")
+btnMenu.classList.add("btnMenu")
+let mainJogo = document.getElementById("jogo")
+mainJogo.appendChild(btnMenu)
+
+/*Placar*/
+
+let placar = document.createElement("div")
+placar.classList.add("placar")
+let score = document.createElement("h3")
+score.innerText = "Score"
+score.classList.add("score")
+let player1 = document.createElement("p")
+player1.innerText = "Player 1: "
+let player2 = document.createElement("p")
+player2.innerText = "Player 2: "
+
+placar.appendChild(score)
+placar.appendChild(player1)
+placar.appendChild(player2)
+mainJogo.appendChild(placar)

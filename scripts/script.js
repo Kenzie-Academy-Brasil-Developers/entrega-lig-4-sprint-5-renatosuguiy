@@ -311,6 +311,11 @@ btnMenu.classList.add("btnMenu")
 let mainJogo = document.getElementById("jogo")
 mainJogo.appendChild(btnMenu)
 
+btnMenu.addEventListener('click',function() {
+  telaJogo.classList.add('hidden')
+  telaInicial.classList.remove('hidden')
+});
+
 /*Placar*/
 
 let placar = document.createElement("div")
@@ -330,6 +335,7 @@ mainJogo.appendChild(placar)
 
 /* Tela inicial */
 
+/* Elementos */
 let telaInicial = document.getElementById('telaInicial')
 telaInicial.classList.add("starter")
 let starterMain = document.createElement("main")
@@ -354,27 +360,18 @@ starterMain.appendChild(starterBtns)
 
 telaInicial.appendChild(starterMain)
 
+// Funcionalidade botoes
 
-// let title = document.createElement("header")
-// title.classList.add("header")
-// let titleMain = document.createElement("h1")
-// titleMain.innerText= "SUPER MARIO BROS LIG-4"
+btnPlay.addEventListener('click',function() {
+  telaJogo.classList.remove('hidden')
+  telaInicial.classList.add('hidden')
+});
+btnMenuS.addEventListener('click',function() {
+  telaJogo.classList.remove('hidden')
+  telaInicial.classList.add('hidden')
+});
+btnPlay.addEventListener('click',function() {
+  telaJogo.classList.remove('hidden')
+  telaInicial.classList.add('hidden')
+});
 
-// title.appendChild(titleMain)
-// telaInicial.appendChild(title)
-
-// let starterMain = document.createElement('main')
-// starterMain.classList.add('starterMain')
-
-// telaInicial.appendChild()
-// let starterBtns = document.createElement('div')
-// starterBtns.classList.add("btnContainer")
-// let btnPlay = document.createElement("button")
-// btnPlay.classList.add("btnPlay")
-// let btnCredits = document.createElement('button')
-// btnCredits.classList.add('btnCredits')
-
-
-// starterBtns.appendChild(btnPlay)
-// starterBtns.appendChild(btnCredits)
-// telaInicial.appendChild(starterBtns)

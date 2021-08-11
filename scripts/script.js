@@ -7,6 +7,39 @@ let tabela = document.getElementById('tabela')
 let primeiroJogador = true;
 let segundoJogador = false;
 
+const addAnimacaoVitoriaPeca = (orientacaoVitoria, posicaoUltimaPeca) => {
+  if(orientacaoVitoria === 'horizontal'){
+    for(let index = 0; index < 4; index++){
+      let posicaoPeca = posicaoUltimaPeca[1] - index;
+      let selector = `[dataaddress="${posicaoPeca},${posicaoUltimaPeca[0]}"]`;
+      document.querySelector(selector).lastElementChild.classList.add("animacaoVitoriaPeca");
+    }
+  }
+  if(orientacaoVitoria === 'vertical'){
+    for(let index = 0; index < 4; index++){
+      let posicaoPeca = posicaoUltimaPeca[0] - index;
+      let selector = `[dataaddress="${posicaoUltimaPeca[1]},${posicaoPeca}"]`;
+      document.querySelector(selector).lastElementChild.classList.add("animacaoVitoriaPeca");
+    }
+  }
+  if(orientacaoVitoria === 'diagonal1'){
+    for(let index = 0; index < 4; index++){
+      let posicaoPecaColuna = posicaoUltimaPeca[1] - index;
+      let posicaoPecaLinha = posicaoUltimaPeca[0] - index;
+      let selector = `[dataaddress="${posicaoPecaColuna},${posicaoPecaLinha}"]`;
+      document.querySelector(selector).lastElementChild.classList.add("animacaoVitoriaPeca");
+    }
+  }
+  if(orientacaoVitoria === 'diagonal2'){
+    for(let index = 0; index < 4; index++){
+      let posicaoPecaColuna = posicaoUltimaPeca[1] - index;
+      let posicaoPecaLinha = posicaoUltimaPeca[0] + index;
+      let selector = `[dataaddress="${posicaoPecaColuna},${posicaoPecaLinha}"]`;
+      document.querySelector(selector).lastElementChild.classList.add("animacaoVitoriaPeca");
+    }
+  }
+}
+
 const verificaEmpate = () => {
   let flatBoardArray = [].concat(...boardArray);
   
@@ -81,6 +114,7 @@ const vitoriaHorizontal = (simbolo, posicao) => {
       contador = 0;
     }
     if (contador === 4) {
+      addAnimacaoVitoriaPeca('horizontal',[inicioLinha,coluna])
       return true;
     }
   }
@@ -104,6 +138,7 @@ const vitoriaVertical = (simbolo, posicao) => {
       contador = 0;
     }
     if (contador === 4) {
+      addAnimacaoVitoriaPeca('vertical',[linha,inicioColuna])
       return true;
     }
   }
@@ -127,6 +162,7 @@ const vitoriaDiagonal1 = (simbolo, posicao) => {
       contador = 0;
     }
     if (contador === 4) {
+      addAnimacaoVitoriaPeca('diagonal1',[linha,coluna])
       return true;
     }
     linha++;
@@ -154,6 +190,7 @@ const vitoriaDiagonal2 = (simbolo, posicao) => {
       contador = 0;
     }
     if (contador === 4) {
+      addAnimacaoVitoriaPeca('diagonal2',[linha,coluna])
       return true;
     }
     linha--
@@ -265,3 +302,26 @@ tabela.addEventListener('click',function(e){
 })
 
 
+/*Lógica dos Botões*/
+
+let btnMenu = document.createElement("button")
+btnMenu.classList.add("btnMenu")
+let mainJogo = document.getElementById("jogo")
+mainJogo.appendChild(btnMenu)
+
+/*Placar*/
+
+let placar = document.createElement("div")
+placar.classList.add("placar")
+let score = document.createElement("h3")
+score.innerText = "Score"
+score.classList.add("score")
+let player1 = document.createElement("p")
+player1.innerText = "Player 1: "
+let player2 = document.createElement("p")
+player2.innerText = "Player 2: "
+
+placar.appendChild(score)
+placar.appendChild(player1)
+placar.appendChild(player2)
+mainJogo.appendChild(placar)

@@ -1,11 +1,14 @@
 :root {
-    --titleSize : 60px
+    --titleSize : 60px;
+    --color-black: #131313;
+
 }
 
 body {
     font-family: 'Press Start 2P', sans-serif;
     border: 1px solid black;
     position: relative;
+    box-sizing: border-box;
 }
 header {
 
@@ -13,7 +16,6 @@ header {
 footer{
 
 }
-
 h1{
     margin: 0;
 }
@@ -122,26 +124,62 @@ h1{
 .starter {
     background-image: url(/assets/background1.jpg);
     background-position: center;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position:fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top:0;
+    left: 0;
+    width:100%;
+    height:100%;
+    text-align: center;
     
 }
-    .header{
+    .starterMain {
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+    }
+    .starterMain > h1{ 
         font-size: var(--titleSize);
+        margin-bottom: 150px;
     }
-.btnContainer {
-    background-color: blue;
-}
-    .btnPlay {
-        background-color: blue;
+    .btnContainer {
+        width: 250px;
+        display:flex ;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
     }
-    .btnMenu {
-        background-color: blue;
+    .btnStarter{
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        height: 50px;
+        cursor: pointer;
+        text-transform: none;
+        margin: 5px;
+        font-size: 100%;
+        line-height: 100%;
+        background-color: transparent;
+        border: none;
     }
-    .btnCredits {
-        background-color: blue;
-    }
+        .btnPlay {
+            background-image: url(/assets/Buttons-img/StartButtonyellow.png);
+        }
+        .btnMenuS {
+            background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
+        }
+        .btnCredits {
+            background-image: url(/assets/Buttons-img/CreditsButtonyellow.png);
+            width: 100%;
+        }
 
 /* Fim Tela Inicial */
 
@@ -150,6 +188,8 @@ h1{
     display: none;
 }
 /* Fim Transicao de Telas */
+
+/* Desktop */
 @media (min-width: 768px){
     #jogo {
         background-position: bottom;

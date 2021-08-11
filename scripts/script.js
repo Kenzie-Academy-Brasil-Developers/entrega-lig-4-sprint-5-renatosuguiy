@@ -279,6 +279,7 @@ tabela.addEventListener('click',function(e){
         if(checarVitoria(vazio[vazio.length-1],primeiroJogador,segundoJogador)){
           if(primeiroJogador){
             alert("Jogador preto ganhou!")
+            mostraGanhador(primeiroJogador)
           }
           if(segundoJogador){
             alert("Jogador vermelho ganhou!")
@@ -359,4 +360,12 @@ function showPlayer(){
     display.classList.remove('p2')
     display.classList.add('p1')
   }
+}
+
+function mostraGanhador(){
+  let telaGanhador = document.createElement('div')
+  telaGanhador.classList.add("telaGanhador")
+  telaGanhador.innerText("oi")
+  mainJogo.appendChild(telaGanhador)
+
 }

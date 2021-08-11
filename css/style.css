@@ -102,7 +102,6 @@ footer{
 .display {
     position: absolute;
     top: 20px;
-    left: 150px;
     height: 60px;
     width: 60px;
     text-align: center;
@@ -136,6 +135,11 @@ footer{
     border-radius: 5px;
 }
 
+.telaGanhador {
+    background-color: black;
+    width: 600px;
+    height: 600px;
+}
 
 /* .player1 {
     top: 0px;
@@ -196,7 +200,7 @@ footer{
         background-position: bottom;
         background-repeat: no-repeat;
         position: relative;
-        background-size: 800px;
+        max-width: 800px;
        
     }
 
@@ -254,7 +258,6 @@ footer{
     .display {
         top: 10px;
         display: flex;        
-        left: 380px;
 
     }
 }   
@@ -262,7 +265,6 @@ footer{
 @media (min-width: 1024px){
     .display {
         top: 10px;
-        left: 500px;
     }
 
 }

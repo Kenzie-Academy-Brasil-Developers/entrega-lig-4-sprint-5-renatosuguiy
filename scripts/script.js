@@ -381,12 +381,12 @@ function startGame() {
   let mainJogo = document.getElementById("jogo")
   mainJogo.appendChild(btnMenu)
   
-  btnMenu.addEventListener('click',function() {
-    setTimeout(function() {
-    telaInicial.classList.remove('hidden')
-    telaCreditos.classList.add('hidden')
-    telaJogo.classList.add('hidden')}, 1500);
-  });
+  // btnMenu.addEventListener('click',function() {
+  //   setTimeout(function() {
+  //   telaInicial.classList.remove('hidden')
+  //   telaCreditos.classList.add('hidden')
+  //   telaJogo.classList.add('hidden')}, 1500);
+  // });
 
   let display = document.createElement('div')
   display.classList.add("display")
@@ -517,6 +517,7 @@ starterMain.appendChild(starterBtns)
 
 telaInicial.appendChild(starterMain)
 
+
 // Funcionalidade botoes (BtnMenuS movido para secao modal)
 
 btnPlay.addEventListener('click',function() {
@@ -543,6 +544,7 @@ btnCredits.addEventListener('click',function() {
 
 // Criar Html
 audioFundo.play();
+
 const membros = [
   {
     nome: 'Rafael G. de Sousa',
@@ -620,18 +622,28 @@ function mostraGanhador(){
 
 
 /* Modal menu */
-let modal = document.getElementById("modalMenuS")
+let modalMenuS = document.getElementById("modalMenuS")
 let btnClose = [...document.getElementsByClassName("close")];
 btnMenuS.addEventListener('click',function() {
   setTimeout(function() {
-  modal.classList.remove('hidden');}, 1000);
+  modalMenuS.classList.remove('hidden');}, 1000);
 });
-console.log(btnClose)
 btnClose[0].addEventListener('click',function() {
-  modal.classList.add('hidden');
-  console.dir(btnClose)
+  modalMenuS.classList.add('hidden');
 });
 
+let modalMenuJ = document.getElementById('modalMenuJ')
+btnMenu.addEventListener('click',function() {
+  setTimeout(function() {
+    modalMenuJ.classList.remove('hidden')}, 1500);
+});
+btnClose[1].addEventListener('click',function() {
+  modalMenuJ.classList.add('hidden');
+  
+});
+
+
+/* Fim modal Menu */
 
 function mostraGanhador(status, ganhador ){
   let telaFinal = document.getElementById("telaVitoria")
@@ -643,7 +655,7 @@ function mostraGanhador(status, ganhador ){
   telaFinal.appendChild(texto)
   let btnVoltar = document.createElement('button') 
   btnVoltar.classList.add('btnVoltar')
-  btnVoltar.innerText = "PRESS HERE to Return menu"
+  btnVoltar.innerText = "Press HERE to return to start"
   telaFinal.appendChild(btnVoltar) 
   btnVoltar.addEventListener('click', function(){
     location.reload()

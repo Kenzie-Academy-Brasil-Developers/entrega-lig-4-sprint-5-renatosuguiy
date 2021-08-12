@@ -455,7 +455,9 @@ telaInicial.classList.add("starter")
 let starterMain = document.createElement("main")
 starterMain.classList.add('starterMain')
 let titleMain = document.createElement("h1")
-titleMain.innerText="SUPER MARIO BROS Lig-4"
+titleMain.innerText="TOQUE DE CLASSE"
+let subTitleMain = document.createElement("h2")
+subTitleMain.innerText="Lig-4"
 let starterBtns = document.createElement("div")
 starterBtns.classList.add('btnContainer')
 let btnPlay = document.createElement('button')
@@ -470,6 +472,7 @@ starterBtns.appendChild(btnMenuS)
 starterBtns.appendChild(btnCredits)
 
 starterMain.appendChild(titleMain)
+starterMain.appendChild(subTitleMain)
 starterMain.appendChild(starterBtns)
 
 telaInicial.appendChild(starterMain)

@@ -16,7 +16,7 @@ const audiosGeral = document.querySelectorAll('.audio-geral');
 const audioVitoria = document.getElementById('audio-vitoria');
 const audioEmpate = document.getElementById('audio-empate');
 const audioPeca = document.getElementById('audio-peca');
-
+let tabelaEventListener = false;
 const addAnimacaoVitoriaPeca = (orientacaoVitoria, posicaoUltimaPeca) => {
   if(orientacaoVitoria === 'horizontal'){
     for(let index = 0; index < 4; index++){
@@ -265,9 +265,7 @@ function criarTabela(t,c){
             torre.appendChild(celula)
         }
     }
-
     creatBoardArray(c,t);
-    audioFundo.play();
 }
 
 function startGame() {
@@ -285,8 +283,7 @@ function startGame() {
       torreVermelha.appendChild(bolaVermelha)
   }
 
-  //Movimento:
-  tabela.addEventListener('click',function(e){
+  function movimento(e){
       let filhos = e.target.closest('.torre').children
       let vazio = Array.from(filhos).filter((e)=>e.innerHTML==="")
       if(vazio.length!=0){
@@ -311,15 +308,18 @@ function startGame() {
             if(primeiroJogador){
               alert("Jogador preto ganhou!")
               audioVitoria.play();
+              
             }
             if(segundoJogador){
               alert("Jogador vermelho ganhou!")
               audioVitoria.play();
+           
             }
           }
           if(verificaEmpate()){
             alert("Empate")
             audioEmpate.play();
+   
           }
 
           if(primeiroJogador===true){
@@ -335,8 +335,13 @@ function startGame() {
           }
           showPlayer()
       }
-  })
-
+  
+  }
+  //Movimento:
+  if(!tabelaEventListener){
+  tabela.addEventListener('click',movimento);
+  tabelaEventListener = true;
+  }
   /*Lógica dos Botões*/
   let btnMenu = document.createElement("button")
   btnMenu.classList.add("btnMenu")
@@ -409,6 +414,14 @@ function showPlayer(){
       display.classList.add('p1')
     }
   }
+
+  if(audioFundo.paused === true){
+    statusVolumeFundo = false;
+    volumeBtnFundo.innerHTML = '<i class="fas fa-play"></i>';
+  } else {
+    statusVolumeFundo = true;
+    volumeBtnFundo.innerHTML = '<i class="fas fa-pause"></i>';
+  }
 }
 
 //Efeitos sonoros
@@ -416,14 +429,6 @@ volumeSliderFundo.addEventListener('input', (event) => {
   const value = event.target.value;
   audioFundo.volume = value / 100;
 });
-
-if(audioFundo.paused === true){
-  statusVolumeFundo = false;
-  volumeBtnFundo.innerHTML = '<i class="fas fa-play"></i>';
-} else {
-  statusVolumeFundo = true;
-  volumeBtnFundo.innerHTML = '<i class="fas fa-pause"></i>';
-}
 
 volumeBtnFundo.addEventListener('click', (event)=>{
   if(statusVolumeFundo === false) {
@@ -503,7 +508,7 @@ btnCredits.addEventListener('click',function() {
 /* Creditos */
 
 // Criar Html
-
+audioFundo.play();
 const membros = [
   {
     nome: 'Rafael G. de Sousa',

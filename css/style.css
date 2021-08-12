@@ -3,7 +3,10 @@
     --color-black: #131313;
 
 }
-
+a {
+    text-decoration: none;
+    color:inherit;
+}
 body {
     font-family: 'Press Start 2P', sans-serif;
     background-color: #3918B9;
@@ -14,10 +17,10 @@ body {
     box-sizing: border-box;
 }
 header {
-
+    box-sizing: border-box;
 }
 footer{
-
+    box-sizing: border-box;
 }
 
 h1{
@@ -101,7 +104,8 @@ h1{
     width: 45px;
     height: 15px;
     cursor: pointer;
-    background-color: #3918B9;
+    background-color: transparent;
+
 }
 
 .placar{
@@ -267,10 +271,69 @@ h1{
 /* Fim Tela Inicial */
 
 /* Transicao de Telas */
+.tela {
+    position:fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top:0;
+    left: 0;
+    width:100%;
+    height:100%;
+    text-align: center;
+}
 .hidden {
     display: none;
 }
 /* Fim Transicao de Telas */
+
+/* Creditos */
+#telaCreditos {
+    background-color: var(--color-black);
+    color: #ffff;
+}
+.nome {
+    margin: 25px auto;
+    line-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.socials {
+    font-size: 0.5em;
+    line-height: 150%;
+    margin: 30px 15px;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+}
+.btnMenuC {
+    background-image: url(/assets/Buttons-img/menuBlackAndWhite.png);
+    position: fixed;
+    bottom:0;
+    right:0;
+    max-width: 100px;
+}
+@keyframes animacaoCreditos {
+    from {transform: translateY(100%);}
+    to {transform: translateY(-100%);}
+}
+.scrolling {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    height: 100%;
+    animation: animacaoCreditos 25s linear infinite;
+}
+.scrolling:hover {
+    animation-play-state: paused;
+}
+
+/* Fim dos Creditos */
 
 /* Desktop */
 @media (min-width: 768px){

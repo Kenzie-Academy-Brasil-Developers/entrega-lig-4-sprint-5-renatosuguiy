@@ -392,7 +392,7 @@ const membros = [
   },
   {
     nome: 'Thiago Trad',
-    LinkedIn: 'www.linkedin.com/in/thiagotrad',
+    LinkedIn: 'https://www.linkedin.com/in/thiagotrad',
     Github: "https://github.com/TvsTrad",
     Email: "thiago_trad@Hotmail.com",
   },
@@ -410,33 +410,44 @@ const membros = [
     Email: 'mariaed.rubini@gmail.com',
   }
 ];
-
+let telaCreditos = document.getElementById('telaCreditos')
 let creditos = document.getElementById('creditos')
 
 const gerarLista = () => {
   for (i = 0; i < membros.length ; i++){
-    let nome = document.createElement('dt');
+    let nome = document.createElement('div');
+    nome.classList.add('nome')
     nome.innerText = `${membros[i].nome}`;
-    let LinkedIn = document.createElement('dd')
-    LinkedIn.innerText = `LinkedIn: ${membros[i].LinkedIn}`
-    let Github = document.createElement('dd')
-    Github.innerText = `GitHub: ${membros[i].Github}`
-    let Email = document.createElement('dd')
-    Email.innerText = `Email: ${membros[i].Email}`
+    let socialsContainer = document.createElement('div')
+    socialsContainer.classList.add('socials')
+    let LinkedIn = document.createElement('span')
+    LinkedIn.classList.add('socials')
+    LinkedIn.innerHTML = `<a href='${membros[i].LinkedIn}'><img src='/assets/logos/linkedin.png'></a>`
+    let Github = document.createElement('span')
+    Github.classList.add('socials')
+    Github.innerHTML = `<a href='${membros[i].Github}'><img src='/assets/logos/github.png'></a>`
+    let Email = document.createElement('span')
+    Email.classList.add('socials')
+    Email.innerHTML = `<a href='${membros[i].Email}'><img src='/assets/logos/email.png'></a>`
 
-    creditos.append(nome, LinkedIn, Github, Email);
+    socialsContainer.append(LinkedIn, Github, Email);
+    nome.appendChild(socialsContainer)
+    creditos.append(nome);
   }
 };
 
 let btnMenuC = document.createElement('button')
 btnMenuC.classList.add('btnMenuC', "btnStarter");
-creditos.appendChild(btnMenuC);
+telaCreditos.appendChild(btnMenuC);
 gerarLista();
 
 btnMenuC.addEventListener('click',function() {
   telaInicial.classList.remove('hidden')
   telaCreditos.classList.add('hidden')
 });
+
+
+
 /* Fim Creditos */
 
 

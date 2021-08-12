@@ -3,7 +3,10 @@
     --color-black: #131313;
 
 }
-
+a {
+    text-decoration: none;
+    color:inherit;
+}
 body {
     font-family: 'Press Start 2P', sans-serif;
     border: 1px solid black;
@@ -207,23 +210,48 @@ h1{
     background-color: var(--color-black);
     color: #ffff;
 }
-dd {
-    font-size: 0.5em;
-    line-height: 200%;
+.nome {
+    margin: 25px auto;
+    line-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
-dt {
-    margin: 50px auto;
-    line-height: 300%;
+.socials {
+    font-size: 0.5em;
+    line-height: 150%;
+    margin: 30px 15px;
+}
+
+img {
+    width: 50px;
+    height: 50px;
 }
 .btnMenuC {
-    background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
-    position: absolute;
+    background-image: url(/assets/Buttons-img/menuBlackAndWhite.png);
+    position: fixed;
     bottom:0;
     right:0;
     max-width: 100px;
 }
+@keyframes animacaoCreditos {
+    from {transform: translateY(100%);}
+    to {transform: translateY(-100%);}
+}
+.scrolling {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    height: 100%;
+    animation: animacaoCreditos 25s linear infinite;
+}
+.scrolling:hover {
+    animation-play-state: paused;
+}
 
 /* Fim dos Creditos */
+
 /* Desktop */
 @media (min-width: 768px){
     #jogo {

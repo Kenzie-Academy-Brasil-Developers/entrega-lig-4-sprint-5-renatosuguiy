@@ -494,7 +494,6 @@ btnCredits.addEventListener('click',function() {
   
 });
 
-
 /* Fim Tela Inicial*/
 
 /* Creditos */

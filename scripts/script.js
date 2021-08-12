@@ -386,6 +386,7 @@ function startGame() {
 
     }
 
+
     if(primeiroJogador === true){
       display.classList.remove('p2')
       display.classList.add('p1')
@@ -397,6 +398,8 @@ volumeSliderFundo.addEventListener('input', (event) => {
   const value = event.target.value;
   audioFundo.volume = value / 100;
 });
+
+
 
 if(audioFundo.paused === true){
   statusVolumeFundo = false;
@@ -428,4 +431,61 @@ volumeSliderGeral.addEventListener('input', (event) => {
 });
 
 
-startGame()
+
+startGame();
+
+ /* Tela de Jogo */
+let telaJogo = document.getElementById("telaJogo")
+telaJogo.classList.add("hidden")
+
+/* Tela inicial */
+
+let telaInicial = document.getElementById('telaInicial')
+telaInicial.classList.add("starter")
+let starterMain = document.createElement("main")
+starterMain.classList.add('starterMain')
+let titleMain = document.createElement("h1")
+titleMain.innerText="SUPER MARIO BROS Lig-4"
+let starterBtns = document.createElement("div")
+starterBtns.classList.add('btnContainer')
+let btnPlay = document.createElement('button')
+btnPlay.classList.add("btnPlay", "btnStarter")
+let btnCredits = document.createElement('button')
+btnCredits.classList.add('btnCredits', "btnStarter")
+let btnMenuS = document.createElement('button')
+btnMenuS.classList.add('btnMenuS', "btnStarter")
+
+starterBtns.appendChild(btnPlay);
+starterBtns.appendChild(btnMenuS)
+starterBtns.appendChild(btnCredits)
+
+starterMain.appendChild(titleMain)
+starterMain.appendChild(starterBtns)
+
+telaInicial.appendChild(starterMain)
+
+
+// let title = document.createElement("header")
+// title.classList.add("header")
+// let titleMain = document.createElement("h1")
+// titleMain.innerText= "SUPER MARIO BROS LIG-4"
+
+// title.appendChild(titleMain)
+// telaInicial.appendChild(title)
+
+// let starterMain = document.createElement('main')
+// starterMain.classList.add('starterMain')
+
+// telaInicial.appendChild()
+// let starterBtns = document.createElement('div')
+// starterBtns.classList.add("btnContainer")
+// let btnPlay = document.createElement("button")
+// btnPlay.classList.add("btnPlay")
+// let btnCredits = document.createElement('button')
+// btnCredits.classList.add('btnCredits')
+
+
+// starterBtns.appendChild(btnPlay)
+// starterBtns.appendChild(btnCredits)
+// telaInicial.appendChild(starterBtns)
+

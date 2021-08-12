@@ -20,18 +20,18 @@
 </head>
 
 <body>
-    <header>
-        <div class="container">
-
-        </div>
-    </header>
-    <main id="jogo">
-        <div id="torreCorPreta"></div>
-        <div id="tabela"></div>
-        <div id="torreCorVermelha"></div>
-    </main>
-    <footer>
-        <div class="container">
+    <div id="telaInicial"></div>
+    <div id="telaJogo">
+        <header>
+            <div class="container"></div>
+        </header>
+        <main id="jogo">
+            <div id="torreCorPreta"></div>
+            <div id="tabela"></div>
+            <div id="torreCorVermelha"></div>
+        </main>
+        <footer>
+            <div class="container">
             <div>
                 <p>Audio Fundo</p>
                 <audio id="audio-fundo" loop autoplay>
@@ -55,7 +55,10 @@
               
             </div>
         </div>
-    </footer>
+        </footer>
+    </div>
+    <div id="telaVitoria" class="hidden"></div>
+
     <script src="./scripts/script.js"></script>
 </body>
 

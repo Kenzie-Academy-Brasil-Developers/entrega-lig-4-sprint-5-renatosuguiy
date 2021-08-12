@@ -652,12 +652,6 @@ img {
 } 
 
 
-@media (min-width: 1024px){
-    .display {
-        top: 10px;
-    }
-
-}
 /* 
     .placar{
         display: block;

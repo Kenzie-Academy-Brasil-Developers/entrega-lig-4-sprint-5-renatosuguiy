@@ -528,6 +528,7 @@ btnPlay.addEventListener('click',function() {
   startGame();
   telaJogo.classList.remove('hidden')
   telaInicial.classList.add('hidden')
+  startGame();
 });
 btnMenuS.addEventListener('click',function() {
   telaJogo.classList.remove('hidden')

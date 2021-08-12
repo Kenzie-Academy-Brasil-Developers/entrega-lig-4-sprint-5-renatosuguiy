@@ -306,23 +306,26 @@ function startGame() {
           audioPeca.play();
           if(checarVitoria(vazio[vazio.length-1],primeiroJogador,segundoJogador)){
             if(primeiroJogador){
-              alert("Jogador preto ganhou!")
               audioVitoria.play();
-              mostraGanhador( "Victory" , "Player 1");
+              setTimeout(function(){
+                mostraGanhador( "Victory" , "Player 1")
+              },3000);
               
             }
             if(segundoJogador){
-              alert("Jogador vermelho ganhou!")
               audioVitoria.play();
-              mostraGanhador("Victory" , "Player 2");
+              setTimeout(function(){
+                mostraGanhador( "Victory" , "Player 2")
+              },3000);
 
               
             }
           }
           if(verificaEmpate()){
-            alert("Empate")
             audioEmpate.play();
-            mostraGanhador("Draw" , " ");
+            setTimeout(function(){
+              mostraGanhador( "Draw" , " ")
+            },3000);
             
           }
 
@@ -623,15 +626,15 @@ btnMenuC.addEventListener('click',function() {
 
 function mostraGanhador(status, ganhador ){
   let telaFinal = document.getElementById("telaVitoria")
-  telaJogo.classList.add('hidden')
+  setTimeout(telaJogo.classList.add('hidden'),3000)
   telaFinal.classList.remove('hidden')
   let texto = document.createElement('h3')
   texto.classList.add('textoGanhador')
-  texto.innerText =  status + ' ' + ganhador
+  texto.innerText =  ganhador + ' ' + status
   telaFinal.appendChild(texto)
   let btnVoltar = document.createElement('button') 
   btnVoltar.classList.add('btnVoltar')
-  btnVoltar.innerText = "Press Here to Return to menu"
+  btnVoltar.innerText = "PRESS HERE to Return menu"
   telaFinal.appendChild(btnVoltar) 
   btnVoltar.addEventListener('click', function(){
     location.reload()
@@ -639,12 +642,3 @@ function mostraGanhador(status, ganhador ){
   }) 
   
 }
-
-//Adicionar a Classe hidden na tela do jogo
-//Tirar o hidden da tela de vitória
-//Adicionar os elementos via DOM na tela de Vitória
-//adicionar o botão no Press Here para dar reload
-//Trocar classes p/ mostrar tela inicial ao pressionaro botão
-//Texto intuitivo 
-//chamar dentro da função
-//Fazer a tela no css antes, trocando as classes html

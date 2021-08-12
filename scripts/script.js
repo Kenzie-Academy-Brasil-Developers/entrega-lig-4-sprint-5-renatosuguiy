@@ -16,7 +16,8 @@ const audiosGeral = document.querySelectorAll('.audio-geral');
 const audioVitoria = document.getElementById('audio-vitoria');
 const audioEmpate = document.getElementById('audio-empate');
 const audioPeca = document.getElementById('audio-peca');
-
+let tabelaEventListener = false;
+let terminarJogo = false;
 const addAnimacaoVitoriaPeca = (orientacaoVitoria, posicaoUltimaPeca) => {
   if(orientacaoVitoria === 'horizontal'){
     for(let index = 0; index < 4; index++){
@@ -124,7 +125,10 @@ const vitoriaHorizontal = (simbolo, posicao) => {
       contador = 0;
     }
     if (contador === 4) {
-      addAnimacaoVitoriaPeca('horizontal',[inicioLinha,coluna])
+      if(!terminarJogo){
+        addAnimacaoVitoriaPeca('horizontal',[inicioLinha,coluna])
+      }
+      
       return true;
     }
   }
@@ -148,7 +152,10 @@ const vitoriaVertical = (simbolo, posicao) => {
       contador = 0;
     }
     if (contador === 4) {
-      addAnimacaoVitoriaPeca('vertical',[linha,inicioColuna])
+      if(!terminarJogo){
+        addAnimacaoVitoriaPeca('vertical',[linha,inicioColuna])
+      }
+      
       return true;
     }
   }
@@ -181,7 +188,10 @@ const vitoriaDiagonal1 = (simbolo, posicao) => {
       contador = 0;
     }
     if (contador === 4) {
-      addAnimacaoVitoriaPeca('diagonal1',[linha,coluna])
+      if(!terminarJogo){
+        addAnimacaoVitoriaPeca('diagonal1',[linha,coluna])
+      }
+      
       return true;
     }
     linha++;
@@ -218,7 +228,10 @@ const vitoriaDiagonal2 = (simbolo, posicao) => {
       contador = 0;
     }
     if (contador === 4) {
-      addAnimacaoVitoriaPeca('diagonal2',[linha,coluna])
+      if(!terminarJogo){
+        addAnimacaoVitoriaPeca('diagonal2',[linha,coluna]);
+      }
+      
       return true;
     }
     linha--
@@ -265,9 +278,7 @@ function criarTabela(t,c){
             torre.appendChild(celula)
         }
     }
-
     creatBoardArray(c,t);
-    audioFundo.play();
 }
 
 function startGame() {
@@ -285,8 +296,7 @@ function startGame() {
       torreVermelha.appendChild(bolaVermelha)
   }
 
-  //Movimento:
-  tabela.addEventListener('click',function(e){
+  function movimento(e){
       let filhos = e.target.closest('.torre').children
       let vazio = Array.from(filhos).filter((e)=>e.innerHTML==="")
       if(vazio.length!=0){
@@ -295,6 +305,9 @@ function startGame() {
               bolap.classList.remove('horizontal');
               bolap.classList.add('vertical');
               bolap.classList.add('animacao');
+              if(terminarJogo){
+                bolap.classList.add('hidden');
+              }
               vazio[vazio.length-1].appendChild(bolap);
           }
           if(segundoJogador===true){
@@ -302,41 +315,66 @@ function startGame() {
               bolav.classList.remove('horizontal');
               bolav.classList.add('vertical');
               bolav.classList.add('animacao');
+              if(terminarJogo){
+                bolav.classList.add('hidden');
+              }
               vazio[vazio.length-1].appendChild(bolav);   
           }
 
           registroMovimento(vazio[vazio.length-1],primeiroJogador,segundoJogador)
-          audioPeca.play();
+          if(!terminarJogo){
+            audioPeca.play();
+          }
+          
           if(checarVitoria(vazio[vazio.length-1],primeiroJogador,segundoJogador)){
             if(primeiroJogador){
-              alert("Jogador preto ganhou!")
               audioVitoria.play();
+              if(!terminarJogo){
+                terminarJogo = true;
+                setTimeout(function(){
+                  mostraGanhador( "Victory" , "Player 1")
+                },3000);
+              }              
             }
             if(segundoJogador){
-              alert("Jogador vermelho ganhou!")
               audioVitoria.play();
+              if(!terminarJogo){
+                terminarJogo = true;
+                setTimeout(function(){
+                  mostraGanhador( "Victory" , "Player 2")
+                },3000);
+              }   
+
             }
           }
           if(verificaEmpate()){
-            alert("Empate")
             audioEmpate.play();
+            if(!terminarJogo){
+              terminarJogo = true;
+              setTimeout(function(){
+                mostraGanhador( "Draw" , " ")
+              },3000);
+            }  
           }
-
           if(primeiroJogador===true){
-
               primeiroJogador=false;
               segundoJogador=true;
-
           } else {
-
               primeiroJogador=true;
               segundoJogador=false;
-
           }
-          showPlayer()
+          if(!terminarJogo){
+            showPlayer()
+          }
+          
       }
-  })
-
+  
+  }
+  //Movimento:
+  if(!tabelaEventListener){
+  tabela.addEventListener('click',movimento);
+  tabelaEventListener = true;
+  }
   /*Lógica dos Botões*/
   let btnMenu = document.createElement("button")
   btnMenu.classList.add("btnMenu")
@@ -359,40 +397,41 @@ function startGame() {
   display.appendChild(texto)
   mainJogo.appendChild(display)
 
-  let player1 = document.createElement('div')
-  player1.classList.add("player1")
-  let textoP1 = document.createElement('p')
-  textoP1.classList.add("textoP1")
-  textoP1.innerText = "P1"
-  player1.appendChild(textoP1)
+let player1 = document.createElement('div')
+player1.classList.add("player1")
+let textoP1 = document.createElement('p')
+textoP1.classList.add("textoP1")
+textoP1.innerText = "P1"
+player1.appendChild(textoP1)
 
-  let player2 = document.createElement('div')
-  player2.classList.add("player2")
-  let textoP2 = document.createElement('p')
-  textoP2.classList.add("textoP2")
-  textoP2.innerText = "P2"
-  player2.appendChild(textoP2)
+let player2 = document.createElement('div')
+player2.classList.add("player2")
+let textoP2 = document.createElement('p')
+textoP2.classList.add("textoP2")
+textoP2.innerText = "P2"
+player2.appendChild(textoP2)
 
-  let painelJogadores = document.createElement('div')
-  painelJogadores.classList.add("painel")
-  mainJogo.appendChild(painelJogadores)
+let painelJogadores = document.createElement('div')
+painelJogadores.classList.add("painel")
+mainJogo.appendChild(painelJogadores)
 
-  let placarJogador1 = document.createElement('div')
-  let textoPlacarJogador1 = document.createElement('p')
-  textoPlacarJogador1.classList.add("textoPlacarJogador1")
-  textoPlacarJogador1.innerText = "P1"
-  placarJogador1.classList.add("placarJogador1")
-  placarJogador1.appendChild(textoPlacarJogador1)
-  painelJogadores.appendChild(placarJogador1)
+let placarJogador1 = document.createElement('div')
+let textoPlacarJogador1 = document.createElement('p')
+textoPlacarJogador1.classList.add("textoPlacarJogador1")
+textoPlacarJogador1.innerText = "P1"
+placarJogador1.classList.add("placarJogador1")
+placarJogador1.appendChild(textoPlacarJogador1)
+painelJogadores.appendChild(placarJogador1)
 
 
-  let placarJogador2 = document.createElement('div')
-  let textoPlacarJogador2 = document.createElement('p')
-  textoPlacarJogador2.classList.add("textoPlacarJogador2")
-  textoPlacarJogador2.innerText = "P2"
-  placarJogador2.classList.add("placarJogador2")
-  placarJogador2.appendChild(textoPlacarJogador2)
-  painelJogadores.appendChild(placarJogador2)
+let placarJogador2 = document.createElement('div')
+let textoPlacarJogador2 = document.createElement('p')
+textoPlacarJogador2.classList.add("textoPlacarJogador2")
+textoPlacarJogador2.innerText = "P2"
+placarJogador2.classList.add("placarJogador2")
+placarJogador2.appendChild(textoPlacarJogador2)
+painelJogadores.appendChild(placarJogador2)
+
 
   mainJogo.appendChild(player1)
   mainJogo.appendChild(player2)
@@ -410,6 +449,14 @@ function showPlayer(){
       display.classList.add('p1')
     }
   }
+
+  if(audioFundo.paused === true){
+    statusVolumeFundo = false;
+    volumeBtnFundo.innerHTML = '<i class="fas fa-play"></i>';
+  } else {
+    statusVolumeFundo = true;
+    volumeBtnFundo.innerHTML = '<i class="fas fa-pause"></i>';
+  }
 }
 
 //Efeitos sonoros
@@ -417,14 +464,6 @@ volumeSliderFundo.addEventListener('input', (event) => {
   const value = event.target.value;
   audioFundo.volume = value / 100;
 });
-
-if(audioFundo.paused === true){
-  statusVolumeFundo = false;
-  volumeBtnFundo.innerHTML = '<i class="fas fa-play"></i>';
-} else {
-  statusVolumeFundo = true;
-  volumeBtnFundo.innerHTML = '<i class="fas fa-pause"></i>';
-}
 
 volumeBtnFundo.addEventListener('click', (event)=>{
   if(statusVolumeFundo === false) {
@@ -481,7 +520,9 @@ telaInicial.appendChild(starterMain)
 // Funcionalidade botoes (BtnMenuS movido para secao modal)
 
 btnPlay.addEventListener('click',function() {
+
   setTimeout(function() {startGame();
+
   telaJogo.classList.remove('hidden')
   telaInicial.classList.add('hidden')
   telaCreditos.classList.add('hidden')}, 1500);
@@ -501,7 +542,7 @@ btnCredits.addEventListener('click',function() {
 /* Creditos */
 
 // Criar Html
-
+audioFundo.play();
 const membros = [
   {
     nome: 'Rafael G. de Sousa',
@@ -577,6 +618,7 @@ function mostraGanhador(){
   mainJogo.appendChild(telaGanhador)
 }
 
+
 /* Modal menu */
 let modal = document.getElementById("modalMenuS")
 let btnClose = [...document.getElementsByClassName("close")];
@@ -589,3 +631,23 @@ btnClose[0].addEventListener('click',function() {
   modal.classList.add('hidden');
   console.dir(btnClose)
 });
+
+
+function mostraGanhador(status, ganhador ){
+  let telaFinal = document.getElementById("telaVitoria")
+  setTimeout(telaJogo.classList.add('hidden'),3000)
+  telaFinal.classList.remove('hidden')
+  let texto = document.createElement('h3')
+  texto.classList.add('textoGanhador')
+  texto.innerText =  ganhador + ' ' + status
+  telaFinal.appendChild(texto)
+  let btnVoltar = document.createElement('button') 
+  btnVoltar.classList.add('btnVoltar')
+  btnVoltar.innerText = "PRESS HERE to Return menu"
+  telaFinal.appendChild(btnVoltar) 
+  btnVoltar.addEventListener('click', function(){
+    location.reload()
+    
+  }) 
+  
+}

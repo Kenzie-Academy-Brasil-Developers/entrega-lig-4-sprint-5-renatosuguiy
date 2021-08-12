@@ -386,6 +386,7 @@ function startGame() {
 
     }
 
+
     if(primeiroJogador === true){
       display.classList.remove('p2')
       display.classList.add('p1')
@@ -397,6 +398,8 @@ volumeSliderFundo.addEventListener('input', (event) => {
   const value = event.target.value;
   audioFundo.volume = value / 100;
 });
+
+
 
 if(audioFundo.paused === true){
   statusVolumeFundo = false;
@@ -428,4 +431,156 @@ volumeSliderGeral.addEventListener('input', (event) => {
 });
 
 
-startGame()
+
+startGame();
+
+ /* Tela de Jogo */
+let telaJogo = document.getElementById("telaJogo")
+
+/*Lógica dos Botões*/
+
+let btnMenu = document.createElement("button")
+btnMenu.classList.add("btnMenu")
+let mainJogo = document.getElementById("jogo")
+mainJogo.appendChild(btnMenu)
+
+btnMenu.addEventListener('click',function() {
+  telaJogo.classList.add('hidden')
+  telaInicial.classList.remove('hidden')
+});
+
+/*Placar*/
+
+let placar = document.createElement("div")
+placar.classList.add("placar")
+let score = document.createElement("h3")
+score.innerText = "Score"
+score.classList.add("score")
+let player1 = document.createElement("p")
+player1.innerText = "Player 1: "
+let player2 = document.createElement("p")
+player2.innerText = "Player 2: "
+
+placar.appendChild(score)
+placar.appendChild(player1)
+placar.appendChild(player2)
+mainJogo.appendChild(placar)
+
+
+/* Tela inicial */
+
+/* Elementos */
+let telaInicial = document.getElementById('telaInicial')
+telaInicial.classList.add("starter")
+let starterMain = document.createElement("main")
+starterMain.classList.add('starterMain')
+let titleMain = document.createElement("h1")
+titleMain.innerText="SUPER MARIO BROS Lig-4"
+let starterBtns = document.createElement("div")
+starterBtns.classList.add('btnContainer')
+let btnPlay = document.createElement('button')
+btnPlay.classList.add("btnPlay", "btnStarter")
+let btnCredits = document.createElement('button')
+btnCredits.classList.add('btnCredits', "btnStarter")
+let btnMenuS = document.createElement('button')
+btnMenuS.classList.add('btnMenuS', "btnStarter")
+
+starterBtns.appendChild(btnPlay);
+starterBtns.appendChild(btnMenuS)
+starterBtns.appendChild(btnCredits)
+
+starterMain.appendChild(titleMain)
+starterMain.appendChild(starterBtns)
+
+telaInicial.appendChild(starterMain)
+
+// Funcionalidade botoes
+
+btnPlay.addEventListener('click',function() {
+  telaJogo.classList.remove('hidden')
+  telaInicial.classList.add('hidden')
+});
+btnMenuS.addEventListener('click',function() {
+  telaJogo.classList.remove('hidden')
+  telaInicial.classList.add('hidden')
+});
+btnCredits.addEventListener('click',function() {
+  telaJogo.classList.add('hidden')
+  telaInicial.classList.add('hidden')
+  telaCreditos.classList.remove("hidden")
+  
+});
+
+
+/* Fim Tela Inicial*/
+
+/* Creditos */
+
+// Criar Html
+
+const membros = [
+  {
+    nome: 'Rafael G. de Sousa',
+    LinkedIn: 'linkedin.com/in/rafael-sousa-61b654112',
+    Github: 'https://github.com/rafaelgsousa',
+    Email: 'elderrafaelgomes@gmail.com',
+  },
+  {
+    nome: 'Thiago Trad',
+    LinkedIn: 'https://www.linkedin.com/in/thiagotrad',
+    Github: "https://github.com/TvsTrad",
+    Email: "thiago_trad@Hotmail.com",
+  },
+  {
+    nome: 'Renato T. Suguiy',
+    LinkedIn: 'https://www.linkedin.com/in/renatosuguiy/',
+    Github: 'https://github.com/renatosuguiy',
+    Email: 'renatosuguiy@gmail.com',
+
+  },
+  {
+    nome: 'Maria Eduarda B. Rubini',
+    LinkedIn: 'https://www.linkedin.com/in/madurubini/',
+    Github: 'https://github.com/madurubini',
+    Email: 'mariaed.rubini@gmail.com',
+  }
+];
+let telaCreditos = document.getElementById('telaCreditos')
+let creditos = document.getElementById('creditos')
+
+const gerarLista = () => {
+  for (i = 0; i < membros.length ; i++){
+    let nome = document.createElement('div');
+    nome.classList.add('nome')
+    nome.innerText = `${membros[i].nome}`;
+    let socialsContainer = document.createElement('div')
+    socialsContainer.classList.add('socials')
+    let LinkedIn = document.createElement('span')
+    LinkedIn.classList.add('socials')
+    LinkedIn.innerHTML = `<a href='${membros[i].LinkedIn}'><img src='/assets/logos/linkedin.png'></a>`
+    let Github = document.createElement('span')
+    Github.classList.add('socials')
+    Github.innerHTML = `<a href='${membros[i].Github}'><img src='/assets/logos/github.png'></a>`
+    let Email = document.createElement('span')
+    Email.classList.add('socials')
+    Email.innerHTML = `<a href='${membros[i].Email}'><img src='/assets/logos/email.png'></a>`
+
+    socialsContainer.append(LinkedIn, Github, Email);
+    nome.appendChild(socialsContainer)
+    creditos.append(nome);
+  }
+};
+
+let btnMenuC = document.createElement('button')
+btnMenuC.classList.add('btnMenuC', "btnStarter");
+telaCreditos.appendChild(btnMenuC);
+gerarLista();
+
+btnMenuC.addEventListener('click',function() {
+  telaInicial.classList.remove('hidden')
+  telaCreditos.classList.add('hidden')
+});
+
+
+
+/* Fim Creditos */

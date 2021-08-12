@@ -1,18 +1,31 @@
+:root {
+    --titleSize : 60px;
+    --color-black: #131313;
+
+}
+a {
+    text-decoration: none;
+    color:inherit;
+}
 body {
     font-family: 'Press Start 2P', sans-serif;
     background-color: #3918B9;
     margin: 30px auto;  
     color: #fff;
-  
-
+    border: 1px solid black;
+    position: relative;
+    box-sizing: border-box;
 }
 header {
-
+    box-sizing: border-box;
 }
 footer{
-
+    box-sizing: border-box;
 }
 
+h1{
+    margin: 0;
+}
 
 /*Configurações do jogo*/
 .torre {
@@ -29,7 +42,6 @@ footer{
     display: flex;
     align-items: center;
     justify-content: center;
-   
 }
 
 .celula:first-child{
@@ -82,7 +94,7 @@ footer{
 }
 
 .btnMenu{
-    background-image: url(/assets/MenuButtonyellow.png);
+    background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
     border: none;
     background-size: contain;
     position: absolute;
@@ -92,7 +104,8 @@ footer{
     width: 45px;
     height: 15px;
     cursor: pointer;
-    background-color: #3918B9;
+    background-color: transparent;
+
 }
 
 .placar{
@@ -192,6 +205,139 @@ footer{
 /*Fim das configurações do jogo*/
 
 @media (min-width: 640px){
+
+/* Tela Inicial */
+.starter {
+    background-image: url(/assets/background1.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position:fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top:0;
+    left: 0;
+    width:100%;
+    height:100%;
+    text-align: center;
+    
+}
+    .starterMain {
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+    }
+    .starterMain > h1{ 
+        font-size: var(--titleSize);
+        margin-bottom: 130px;
+    }
+    .btnContainer {
+        width: 250px;
+        display:flex ;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: 110px;
+    }
+    .btnStarter{
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        height: 48px;
+        cursor: pointer;
+        text-transform: none;
+        margin: 5px;
+        font-size: 100%;
+        line-height: 100%;
+        background-color: transparent;
+        border: none;
+    }
+        .btnPlay {
+            background-image: url(/assets/Buttons-img/StartButtonyellow.png);
+        }
+        .btnMenuS {
+            background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
+        }
+        .btnCredits {
+            background-image: url(/assets/Buttons-img/CreditsButtonyellow.png);
+            width: 100%;
+        }
+
+/* Fim Tela Inicial */
+
+/* Transicao de Telas */
+.tela {
+    position:fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top:0;
+    left: 0;
+    width:100%;
+    height:100%;
+    text-align: center;
+}
+.hidden {
+    display: none;
+}
+/* Fim Transicao de Telas */
+
+/* Creditos */
+#telaCreditos {
+    background-color: var(--color-black);
+    color: #ffff;
+}
+.nome {
+    margin: 25px auto;
+    line-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.socials {
+    font-size: 0.5em;
+    line-height: 150%;
+    margin: 30px 15px;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+}
+.btnMenuC {
+    background-image: url(/assets/Buttons-img/menuBlackAndWhite.png);
+    position: fixed;
+    bottom:0;
+    right:0;
+    max-width: 100px;
+}
+@keyframes animacaoCreditos {
+    from {transform: translateY(100%);}
+    to {transform: translateY(-100%);}
+}
+.scrolling {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    height: 100%;
+    animation: animacaoCreditos 25s linear infinite;
+}
+.scrolling:hover {
+    animation-play-state: paused;
+}
+
+/* Fim dos Creditos */
+
+/* Desktop */
+@media (min-width: 768px){
+
     #jogo {
         background-position: bottom;
         background-repeat: no-repeat;
@@ -285,5 +431,35 @@ footer{
         margin-bottom: 5px;
         line-height: 1.6;
     }
+
     */
 /*Fim das configurações do jogo*/
+
+    /* Pag Inicial */
+    .btnStarter{
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 50%;
+        height: 48px;
+        cursor: pointer;
+        text-transform: none;
+        background-color: transparent;
+        border: none;
+        margin: 0;
+        
+    }
+        .btnPlay {
+            background-image: url(/assets/Buttons-img/StartButtonyellow.png);
+            background-size: cover;
+        }
+        .btnMenuS {
+            background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
+        }
+        .btnCredits {
+            background-image: url(/assets/Buttons-img/CreditsButtonyellow.png);
+            width: 100%;
+        }
+} 
+/*Fim das configurações do jogo*/
+

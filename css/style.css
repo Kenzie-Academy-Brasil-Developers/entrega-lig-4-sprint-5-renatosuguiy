@@ -30,22 +30,42 @@ h1{
 /*Configurações do jogo*/
 .torre {
     display: flex;
+    opacity: 100;
     flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+#torreCorPreta, #torreCorVermelha {
+    width: 35px;
+    display: none;
     margin: 0 3px;
 }
 
 .celula {
     height: 35px;
     width: 35px;
-    background-image: url(/assets/base-tubo.png)  ;
+    background-image: url(/assets/base-tubo.png);
     background-size: contain;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+@keyframes descer {
+    from {top:-260px;}
+    to {top:0px;}
+}
+
+.animacao {
+    position: absolute;
+    left:5px;
+    animation-name: descer;
+    animation-duration: 1s;
+
 }
 
 .celula:first-child{
-    background-image: url(/assets/topo-tubo.png)  ;
+    background-image: url(/assets/topo-tubo.png);
     background-size: cover;
 }
 
@@ -68,6 +88,7 @@ h1{
     background-size: cover;
     position: relative;
 }
+
 .horizontal{
     height: 10px;
     width: 30px;
@@ -75,6 +96,7 @@ h1{
     background-position: center;
     display: none;
 }
+
 .vertical {
     height: 30px;
     width: 30px;
@@ -232,7 +254,6 @@ h1{
     width: 25px;
 } */
 
-
 @keyframes animacaoVitoriaPeca {
     0% {
         transform: scale(1) rotateY(0deg);
@@ -261,7 +282,6 @@ h1{
     }
   }
 
-
 /*Fim das configurações do jogo*/
 /*Tela Final*/
 
@@ -286,7 +306,8 @@ h1{
 
 /*Fim das configurações da Tela Final*/
 
-@media (min-width: 640px){
+
+/*Fim das configurações do jogo*/
 
 
 /* Tela Inicial */
@@ -315,14 +336,24 @@ h1{
         align-items: center;
     }
     .starterMain > h1{ 
-        font-size: var(--titleSize);
-        margin-bottom: 130px;
+        font-size: 45px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 90px;
+        color: black;
+    }
+    .starterMain > h2{
+        font-size: 40px;
+        margin-bottom: 90px;
+        margin-top: 10px;
+        color: black;
     }
     .btnContainer {
         width: 250px;
         display:flex ;
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: space-around;
         align-items: center;
         margin-bottom: 110px;
     }
@@ -340,6 +371,25 @@ h1{
         background-color: transparent;
         border: none;
     }
+
+    @keyframes btnBounce {
+        0% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px)
+        }
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    .btnStarter:hover, .btnMenuC:hover, .btnMenu:hover{
+        animation: btnBounce 1s infinite ease-in-out;
+    }
+    .btnStarter:focus, .btnMenuC:focus, .btnMenu:focus{
+        animation: animacaoVitoriaPeca 1.5s infinite
+    }
         .btnPlay {
             background-image: url(/assets/Buttons-img/StartButtonyellow.png);
         }
@@ -354,6 +404,9 @@ h1{
 /* Fim Tela Inicial */
 
 /* Transicao de Telas */
+ .hidden {
+    display: none !important;
+    }
 .tela {
     position:fixed;
     display: flex;
@@ -391,7 +444,7 @@ img {
     height: 50px;
 }
 .btnMenuC {
-    background-image: url(/assets/Buttons-img/menuBlackAndWhite.png);
+    background-image: url(/assets/Buttons-img/BackButtonBW.png);
     position: fixed;
     bottom:0;
     right:0;
@@ -415,12 +468,19 @@ img {
 }
 
 /* Fim dos Creditos */
+@media (max-width: 450px) {
+    .starterMain > h1{ 
+        font-size: 45px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 90px;
+        color: black;
+    }
 
+}
 /* Desktop */
 @media (min-width: 768px){
-    .hidden {
-        display: none;
-    }
+
     #jogo {
         background-position: bottom;
         background-repeat: no-repeat;
@@ -506,7 +566,34 @@ img {
     .painel{
         display: none;
     }
-}   
+
+/* Pag Inicial */
+    .btnStarter{
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 50%;
+        height: 48px;
+        cursor: pointer;
+        text-transform: none;
+        background-color: transparent;
+        border: none;
+        margin: 0;
+    
+    }
+    .btnPlay {
+        background-image: url(/assets/Buttons-img/StartButtonyellow.png);
+        background-size: cover;
+    }
+    .btnMenuS {
+        background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
+    }
+    .btnCredits {
+        background-image: url(/assets/Buttons-img/CreditsButtonyellow.png);
+        width: 100%;
+    }
+} 
+
 
 @media (min-width: 1024px){
     .display {
@@ -535,33 +622,5 @@ img {
     }
 
     */
-/*Fim das configurações do jogo*/
 
-    /* Pag Inicial */
-    .btnStarter{
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        width: 50%;
-        height: 48px;
-        cursor: pointer;
-        text-transform: none;
-        background-color: transparent;
-        border: none;
-        margin: 0;
-        
-    }
-        .btnPlay {
-            background-image: url(/assets/Buttons-img/StartButtonyellow.png);
-            background-size: cover;
-        }
-        .btnMenuS {
-            background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
-        }
-        .btnCredits {
-            background-image: url(/assets/Buttons-img/CreditsButtonyellow.png);
-            width: 100%;
-        }
-} 
 /*Fim das configurações do jogo*/
-

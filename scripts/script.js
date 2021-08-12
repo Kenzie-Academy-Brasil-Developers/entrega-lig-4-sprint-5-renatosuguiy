@@ -16,7 +16,7 @@ const audiosGeral = document.querySelectorAll('.audio-geral');
 const audioVitoria = document.getElementById('audio-vitoria');
 const audioEmpate = document.getElementById('audio-empate');
 const audioPeca = document.getElementById('audio-peca');
-
+let tabelaEventListener = false;
 const addAnimacaoVitoriaPeca = (orientacaoVitoria, posicaoUltimaPeca) => {
   if(orientacaoVitoria === 'horizontal'){
     for(let index = 0; index < 4; index++){
@@ -256,22 +256,21 @@ function criarTabela(t,c){
     for(let i=0; i < t; i ++){
         let torre = document.createElement('div')
         torre.classList.add('torre')
+        torre.setAttribute('datatorre',`${i}`)
         tabela.appendChild(torre)
         for(let n=0; n < c; n ++){
             let celula = document.createElement('div')
             celula.classList.add('celula')
-            torre.appendChild(celula)
             celula.setAttribute('dataaddress',`${i},${n}`)
+            torre.appendChild(celula)
         }
     }
     creatBoardArray(c,t);
-    audioFundo.play();
 }
 
 function startGame() {
   tabela.innerHTML = ""; 
   criarTabela(7,6);
-
   for(let i=0;i<21;i++){
       bolaPreta = document.createElement('div')
       bolaPreta.classList.add('horizontal','black')
@@ -284,8 +283,7 @@ function startGame() {
       torreVermelha.appendChild(bolaVermelha)
   }
 
-  //Movimento:
-  tabela.addEventListener('click',function(e){
+  function movimento(e){
       let filhos = e.target.closest('.torre').children
       let vazio = Array.from(filhos).filter((e)=>e.innerHTML==="")
       if(vazio.length!=0){
@@ -293,12 +291,14 @@ function startGame() {
               let bolap = torrePreta.lastElementChild
               bolap.classList.remove('horizontal');
               bolap.classList.add('vertical');
+              bolap.classList.add('animacao');
               vazio[vazio.length-1].appendChild(bolap);
           }
           if(segundoJogador===true){
               let bolav = torreVermelha.lastElementChild
               bolav.classList.remove('horizontal');
               bolav.classList.add('vertical');
+              bolav.classList.add('animacao');
               vazio[vazio.length-1].appendChild(bolav);   
           }
 
@@ -307,26 +307,29 @@ function startGame() {
           if(checarVitoria(vazio[vazio.length-1],primeiroJogador,segundoJogador)){
             if(primeiroJogador){
               audioVitoria.play();
+
               setTimeout(function(){
                 mostraGanhador( "Victory" , "Player 1")
-              },3000);
-              
-            }
-            if(segundoJogador){
-              audioVitoria.play();
-              setTimeout(function(){
-                mostraGanhador( "Victory" , "Player 2")
               },3000);
 
               
             }
+            if(segundoJogador){
+              audioVitoria.play();
+
+              setTimeout(function(){
+                mostraGanhador( "Victory" , "Player 2")
+              },3000);
+
+            }
           }
           if(verificaEmpate()){
             audioEmpate.play();
+
             setTimeout(function(){
               mostraGanhador( "Draw" , " ")
             },3000);
-            
+
           }
 
           if(primeiroJogador===true){
@@ -342,33 +345,25 @@ function startGame() {
           }
           showPlayer()
       }
-  })
-
+  
+  }
+  //Movimento:
+  if(!tabelaEventListener){
+  tabela.addEventListener('click',movimento);
+  tabelaEventListener = true;
+  }
   /*Lógica dos Botões*/
-
   let btnMenu = document.createElement("button")
   btnMenu.classList.add("btnMenu")
   let mainJogo = document.getElementById("jogo")
   mainJogo.appendChild(btnMenu)
-
-  // Placar
-
-  // let placar = document.createElement("div")
-  // placar.classList.add("placar")
-  // let score = document.createElement("h3")
-  // score.innerText = "Score"
-  // score.classList.add("score")
-  // let player1 = document.createElement("p")
-  // player1.innerText = "Player 1: "
-  // let player2 = document.createElement("p")
-  // player2.innerText = "Player 2: "
-
-  // placar.appendChild(score)
-  // placar.appendChild(player1)
-  // placar.appendChild(player2)
-  // mainJogo.appendChild(placar)
-
-  // Mostrar Jogador Corrente
+  
+  btnMenu.addEventListener('click',function() {
+    setTimeout(function() {
+    telaInicial.classList.remove('hidden')
+    telaCreditos.classList.add('hidden')
+    telaJogo.classList.add('hidden')}, 1500);
+  });
 
   let display = document.createElement('div')
   display.classList.add("display")
@@ -415,8 +410,6 @@ placarJogador2.appendChild(textoPlacarJogador2)
 painelJogadores.appendChild(placarJogador2)
 
 
-
-
   mainJogo.appendChild(player1)
   mainJogo.appendChild(player2)
 
@@ -433,6 +426,14 @@ function showPlayer(){
       display.classList.add('p1')
     }
   }
+
+  if(audioFundo.paused === true){
+    statusVolumeFundo = false;
+    volumeBtnFundo.innerHTML = '<i class="fas fa-play"></i>';
+  } else {
+    statusVolumeFundo = true;
+    volumeBtnFundo.innerHTML = '<i class="fas fa-pause"></i>';
+  }
 }
 
 //Efeitos sonoros
@@ -440,14 +441,6 @@ volumeSliderFundo.addEventListener('input', (event) => {
   const value = event.target.value;
   audioFundo.volume = value / 100;
 });
-
-if(audioFundo.paused === true){
-  statusVolumeFundo = false;
-  volumeBtnFundo.innerHTML = '<i class="fas fa-play"></i>';
-} else {
-  statusVolumeFundo = true;
-  volumeBtnFundo.innerHTML = '<i class="fas fa-pause"></i>';
-}
 
 volumeBtnFundo.addEventListener('click', (event)=>{
   if(statusVolumeFundo === false) {
@@ -471,39 +464,6 @@ volumeSliderGeral.addEventListener('input', (event) => {
 });
 //fim dos efeitos sonoros
 
- /* Tela de Jogo */
-let telaJogo = document.getElementById("telaJogo")
-
-/*Lógica dos Botões*/
-
-let btnMenu = document.createElement("button")
-btnMenu.classList.add("btnMenu")
-let mainJogo = document.getElementById("jogo")
-mainJogo.appendChild(btnMenu)
-
-btnMenu.addEventListener('click',function() {
-  telaJogo.classList.add('hidden')
-  telaInicial.classList.remove('hidden')
-});
-
-/*Placar*/
-
-// let placar = document.createElement("div")
-// placar.classList.add("placar")
-// let score = document.createElement("h3")
-// score.innerText = "Score"
-// score.classList.add("score")
-// let player1 = document.createElement("p")
-// player1.innerText = "Player 1: "
-// let player2 = document.createElement("p")
-// player2.innerText = "Player 2: "
-
-// placar.appendChild(score)
-// placar.appendChild(player1)
-// placar.appendChild(player2)
-// mainJogo.appendChild(placar)
-
-
 /* Tela inicial */
 
 /* Elementos */
@@ -512,7 +472,9 @@ telaInicial.classList.add("starter")
 let starterMain = document.createElement("main")
 starterMain.classList.add('starterMain')
 let titleMain = document.createElement("h1")
-titleMain.innerText="SUPER MARIO BROS Lig-4"
+titleMain.innerText="TOQUE DE CLASSE"
+let subTitleMain = document.createElement("h2")
+subTitleMain.innerText="Lig-4"
 let starterBtns = document.createElement("div")
 starterBtns.classList.add('btnContainer')
 let btnPlay = document.createElement('button')
@@ -527,6 +489,7 @@ starterBtns.appendChild(btnMenuS)
 starterBtns.appendChild(btnCredits)
 
 starterMain.appendChild(titleMain)
+starterMain.appendChild(subTitleMain)
 starterMain.appendChild(starterBtns)
 
 telaInicial.appendChild(starterMain)
@@ -534,18 +497,24 @@ telaInicial.appendChild(starterMain)
 // Funcionalidade botoes
 
 btnPlay.addEventListener('click',function() {
-  startGame();
+
+  setTimeout(function() {startGame();
+
   telaJogo.classList.remove('hidden')
   telaInicial.classList.add('hidden')
+  telaCreditos.classList.add('hidden')}, 1500);
 });
 btnMenuS.addEventListener('click',function() {
+  setTimeout(function() {
   telaJogo.classList.remove('hidden')
   telaInicial.classList.add('hidden')
+  telaCreditos.classList.add('hidden')}, 1500);
 });
 btnCredits.addEventListener('click',function() {
+  setTimeout(function() {
   telaJogo.classList.add('hidden')
   telaInicial.classList.add('hidden')
-  telaCreditos.classList.remove("hidden")
+  telaCreditos.classList.remove("hidden")}, 1500);
   
 });
 
@@ -555,7 +524,7 @@ btnCredits.addEventListener('click',function() {
 /* Creditos */
 
 // Criar Html
-
+audioFundo.play();
 const membros = [
   {
     nome: 'Rafael G. de Sousa',
@@ -615,13 +584,21 @@ telaCreditos.appendChild(btnMenuC);
 gerarLista();
 
 btnMenuC.addEventListener('click',function() {
+  setTimeout(function() {
   telaInicial.classList.remove('hidden')
   telaCreditos.classList.add('hidden')
+  telaJogo.classList.add('hidden')}, 1500 );
 });
 
 /* Fim Creditos */
 
 //função de mensagem vitoria 
+function mostraGanhador(){
+  let telaGanhador = document.createElement('div')
+  telaGanhador.classList.add("telaGanhador")
+  telaGanhador.innerText("oi")
+  mainJogo.appendChild(telaGanhador)
+}
 
 
 function mostraGanhador(status, ganhador ){
@@ -642,3 +619,4 @@ function mostraGanhador(status, ganhador ){
   }) 
   
 }
+

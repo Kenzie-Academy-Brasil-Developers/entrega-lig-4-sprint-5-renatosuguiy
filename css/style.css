@@ -43,7 +43,7 @@ footer{
     position: absolute;
     left:5px;
     animation-name: descer;
-    animation-duration: 1s;
+    animation-duration: 1.5s;
 }
 
 .celula:first-child{

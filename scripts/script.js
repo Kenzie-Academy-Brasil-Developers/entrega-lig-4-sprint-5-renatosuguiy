@@ -294,6 +294,7 @@ function startGame() {
               bolap.classList.remove('horizontal');
               bolap.classList.add('vertical','animacao');
               bolap.style.animationName=`descer${vazio.length}`
+              bolap.style.animationDuration=`${vazio.length/10+0.5}s`
               vazio[vazio.length-1].appendChild(bolap);
           }
           if(segundoJogador===true){
@@ -301,7 +302,8 @@ function startGame() {
               bolav.classList.remove('horizontal');
               bolav.classList.add('vertical','animacao');
               bolav.style.animationName=`descer${vazio.length}`
-              vazio[vazio.length-1].appendChild(bolav);   
+              bolav.style.animationDuration=`${vazio.length/10+0.5}s`
+              vazio[vazio.length-1].appendChild(bolav);
           }
           console.log(vazio)
           registroMovimento(vazio[vazio.length-1],primeiroJogador,segundoJogador)

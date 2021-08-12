@@ -536,8 +536,6 @@ btnCredits.addEventListener('click',function() {
   telaCreditos.classList.remove("hidden")}, 1500);
   
 });
-
-
 /* Fim Tela Inicial*/
 
 /* Creditos */

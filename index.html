@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/93e5f51248.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
         integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -13,7 +14,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <title>Lig-4</title>
 </head>
@@ -30,10 +31,34 @@
             <div id="torreCorVermelha"></div>
         </main>
         <footer>
-            <div class="container"></div>
+            <div class="container">
+            <div>
+                <p>Audio Fundo</p>
+                <audio id="audio-fundo" loop autoplay>
+                    <source src="./assets/audio/super_mario_medley.mp3" type="audio/mp3">
+                </audio>
+                <input type="range" id="volume-musica-fundo" max="100" value="50">
+                <button id="play-btn-musica-fundo"><i class="fas fa-play"></i></button>
+            </div>
+            <div>
+                <p>Audio peca</p>
+                <audio id="audio-peca" class="audio-geral">
+                    <source src="./assets/audio/smb_pipe.wav" type="audio/wav">
+                </audio>
+                <audio id="audio-vitoria" class="audio-geral">
+                    <source src="./assets/audio/smb3_level_clear.wav" type="audio/wav">
+                </audio>
+                <audio id="audio-empate" class="audio-geral">
+                    <source src="./assets/audio/smb3_game_over.wav" type="audio/wav">
+                </audio>
+                <input type="range" id="volume-musica-geral" max="100" value="50">
+              
+            </div>
+        </div>
         </footer>
     </div>
     <div id="telaVitoria" class="hidden"></div>
+
     <script src="./scripts/script.js"></script>
 </body>
 

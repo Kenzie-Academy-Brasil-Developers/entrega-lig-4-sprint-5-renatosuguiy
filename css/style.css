@@ -59,7 +59,9 @@ h1{
 
 @keyframes descer6 {
     from {top:-245px;}
-    30%{top: -210px;}
+    30%{top:-235px;}
+    35%{top:-225px;}
+    40%{top:-210px}
     to {top:0px;}
 }
 @keyframes descer5 {
@@ -74,12 +76,12 @@ h1{
 }
 @keyframes descer3 {
     from {top:-140px;}
-    30%{top: -105px;}
+    40%{top: -105px;}
     to {top:0px;}
 }
 @keyframes descer2 {
     from {top:-105px;}
-    30%{top: -70px;}
+    40%{top: -70px;}
     to {top:0px;}
 }
 @keyframes descer1 {
@@ -89,7 +91,7 @@ h1{
 }
 @keyframes descer0 {
     from {top:-35px;}
-    10%{}
+    50%{top:-30px;}
     to {top:0px;}
 }
 .animacao {

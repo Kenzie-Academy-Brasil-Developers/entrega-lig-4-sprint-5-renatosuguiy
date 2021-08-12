@@ -30,9 +30,8 @@ h1{
 /*Configurações do jogo*/
 .torre {
     display: flex;
-    opacity: 100;
     flex-direction: column;
-    overflow: hidden;
+    margin: 0 3px;
     position: relative;
 }
 #torreCorPreta, #torreCorVermelha {
@@ -44,28 +43,16 @@ h1{
 .celula {
     height: 35px;
     width: 35px;
-    background-image: url(/assets/base-tubo.png);
+    background-image: url(/assets/base-tubo.png)  ;
     background-size: contain;
     display: flex;
     align-items: center;
-    justify-content: center;
     position: relative;
-}
-@keyframes descer {
-    from {top:-260px;}
-    to {top:0px;}
-}
-
-.animacao {
-    position: absolute;
-    left:5px;
-    animation-name: descer;
-    animation-duration: 1s;
-
+    justify-content: center;
 }
 
 .celula:first-child{
-    background-image: url(/assets/topo-tubo.png);
+    background-image: url(/assets/topo-tubo.png)  ;
     background-size: cover;
 }
 
@@ -73,6 +60,43 @@ h1{
     display: flex;
     position: absolute;
     bottom: 35px;
+}
+
+@keyframes descer6 {
+    from {top:-290px;}
+    20%{top:-290px;}
+    to {top:0px;}
+}
+@keyframes descer5 {
+    from {top:-240px;}
+    20%{top: -240px;}
+    to {top:0px;}
+}
+@keyframes descer4 {
+    from {top:-190px;}
+    20%{top: -190px;}
+    to {top:0px;}
+}
+@keyframes descer3 {
+    from {top:-140px;}
+    20%{top: -140px;}
+    to {top:0px;}
+}
+@keyframes descer2 {
+    from {top:-90px;}
+    20%{top: -90px;}
+    to {top:0px;}
+}
+@keyframes descer1 {
+    from {top:-40px;}
+    20%{top: -40px;}
+    to {top:0px;}
+}
+.animacao {
+    position: absolute;
+    left:5px;
+    /*animation-name: descer6;
+    animation-duration: 1s;*/
 }
 
 #jogo{
@@ -88,7 +112,6 @@ h1{
     background-size: cover;
     position: relative;
 }
-
 .horizontal{
     height: 10px;
     width: 30px;
@@ -96,7 +119,6 @@ h1{
     background-position: center;
     display: none;
 }
-
 .vertical {
     height: 30px;
     width: 30px;
@@ -242,7 +264,6 @@ h1{
     height: 25px;
     width: 25px;
 }
-
 .player2 {
    
     background-image: url(/assets/red-cogu.png);
@@ -311,6 +332,7 @@ h1{
 
 
 /*Fim das configurações do jogo*/
+
 
 
 /* Tela Inicial */
@@ -529,7 +551,9 @@ img {
 }
 /* Desktop */
 @media (min-width: 768px){
-
+    .hidden {
+        display: none;
+    }
     #jogo {
         background-position: bottom;
         background-repeat: no-repeat;
@@ -665,13 +689,39 @@ img {
     .placar p{
         padding: 2px
     }
-
     .score {
         font-size: 16px;
         margin-bottom: 5px;
         line-height: 1.6;
     }
-
     */
+/*Fim das configurações do jogo*/
+
+    /* Pag Inicial */
+    .btnStarter{
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 50%;
+        height: 48px;
+        cursor: pointer;
+        text-transform: none;
+        background-color: transparent;
+        border: none;
+        margin: 0;
+        
+    }
+        .btnPlay {
+            background-image: url(/assets/Buttons-img/StartButtonyellow.png);
+            background-size: cover;
+        }
+        .btnMenuS {
+            background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
+        }
+        .btnCredits {
+            background-image: url(/assets/Buttons-img/CreditsButtonyellow.png);
+            width: 100%;
+        }
+
 
 /*Fim das configurações do jogo*/

@@ -23,6 +23,9 @@ const addAnimacaoVitoriaPeca = (orientacaoVitoria, posicaoUltimaPeca) => {
     for(let index = 0; index < 4; index++){
       let posicaoPeca = posicaoUltimaPeca[1] - index;
       let selector = `[dataaddress="${posicaoPeca},${posicaoUltimaPeca[0]}"]`;
+      document.querySelector(selector).lastElementChild.classList.remove("animacao");
+      document.querySelector(selector).lastElementChild.style.animationName=""
+      document.querySelector(selector).lastElementChild.style.animationDuration=""
       document.querySelector(selector).lastElementChild.classList.add("animacaoVitoriaPeca");
     }
   }
@@ -30,6 +33,9 @@ const addAnimacaoVitoriaPeca = (orientacaoVitoria, posicaoUltimaPeca) => {
     for(let index = 0; index < 4; index++){
       let posicaoPeca = posicaoUltimaPeca[0] - index;
       let selector = `[dataaddress="${posicaoUltimaPeca[1]},${posicaoPeca}"]`;
+      document.querySelector(selector).lastElementChild.classList.remove("animacao");
+      document.querySelector(selector).lastElementChild.style.animationName=""
+      document.querySelector(selector).lastElementChild.style.animationDuration=""
       document.querySelector(selector).lastElementChild.classList.add("animacaoVitoriaPeca");
     }
   }
@@ -38,6 +44,9 @@ const addAnimacaoVitoriaPeca = (orientacaoVitoria, posicaoUltimaPeca) => {
       let posicaoPecaColuna = posicaoUltimaPeca[1] - index;
       let posicaoPecaLinha = posicaoUltimaPeca[0] - index;
       let selector = `[dataaddress="${posicaoPecaColuna},${posicaoPecaLinha}"]`;
+      document.querySelector(selector).lastElementChild.classList.remove("animacao");
+      document.querySelector(selector).lastElementChild.style.animationName=""
+      document.querySelector(selector).lastElementChild.style.animationDuration=""
       document.querySelector(selector).lastElementChild.classList.add("animacaoVitoriaPeca");
     }
   }
@@ -46,6 +55,9 @@ const addAnimacaoVitoriaPeca = (orientacaoVitoria, posicaoUltimaPeca) => {
       let posicaoPecaColuna = posicaoUltimaPeca[1] - index;
       let posicaoPecaLinha = posicaoUltimaPeca[0] + index;
       let selector = `[dataaddress="${posicaoPecaColuna},${posicaoPecaLinha}"]`;
+      document.querySelector(selector).lastElementChild.classList.remove("animacao");
+      document.querySelector(selector).lastElementChild.style.animationName=""
+      document.querySelector(selector).lastElementChild.style.animationDuration=""
       document.querySelector(selector).lastElementChild.classList.add("animacaoVitoriaPeca");
     }
   }
@@ -269,21 +281,22 @@ function criarTabela(t,c){
     for(let i=0; i < t; i ++){
         let torre = document.createElement('div')
         torre.classList.add('torre')
-        torre.setAttribute('datatorre',`${i}`)
         tabela.appendChild(torre)
         for(let n=0; n < c; n ++){
             let celula = document.createElement('div')
             celula.classList.add('celula')
-            celula.setAttribute('dataaddress',`${i},${n}`)
             torre.appendChild(celula)
+            celula.setAttribute('dataaddress',`${i},${n}`)
         }
     }
     creatBoardArray(c,t);
+    audioFundo.play();
 }
 
 function startGame() {
   tabela.innerHTML = ""; 
   criarTabela(7,6);
+
   for(let i=0;i<21;i++){
       bolaPreta = document.createElement('div')
       bolaPreta.classList.add('horizontal','black')
@@ -303,8 +316,9 @@ function startGame() {
           if(primeiroJogador===true) {
               let bolap = torrePreta.lastElementChild
               bolap.classList.remove('horizontal');
-              bolap.classList.add('vertical');
-              bolap.classList.add('animacao');
+              bolap.classList.add('vertical','animacao');
+              bolap.style.animationName=`descer${vazio.length}`
+              bolap.style.animationDuration=`${vazio.length/10+0.5}s`
               if(terminarJogo){
                 bolap.classList.add('hidden');
               }
@@ -313,14 +327,15 @@ function startGame() {
           if(segundoJogador===true){
               let bolav = torreVermelha.lastElementChild
               bolav.classList.remove('horizontal');
-              bolav.classList.add('vertical');
-              bolav.classList.add('animacao');
+              bolav.classList.add('vertical','animacao');
+              bolav.style.animationName=`descer${vazio.length}`
+              bolav.style.animationDuration=`${vazio.length/10+0.5}s`
               if(terminarJogo){
                 bolav.classList.add('hidden');
               }
               vazio[vazio.length-1].appendChild(bolav);   
           }
-
+          console.log(vazio)
           registroMovimento(vazio[vazio.length-1],primeiroJogador,segundoJogador)
           if(!terminarJogo){
             audioPeca.play();
@@ -356,6 +371,7 @@ function startGame() {
               },3000);
             }  
           }
+
           if(primeiroJogador===true){
               primeiroJogador=false;
               segundoJogador=true;
@@ -465,6 +481,14 @@ volumeSliderFundo.addEventListener('input', (event) => {
   audioFundo.volume = value / 100;
 });
 
+if(audioFundo.paused === true){
+  statusVolumeFundo = false;
+  volumeBtnFundo.innerHTML = '<i class="fas fa-play"></i>';
+} else {
+  statusVolumeFundo = true;
+  volumeBtnFundo.innerHTML = '<i class="fas fa-pause"></i>';
+}
+
 volumeBtnFundo.addEventListener('click', (event)=>{
   if(statusVolumeFundo === false) {
     statusVolumeFundo = true;
@@ -486,6 +510,39 @@ volumeSliderGeral.addEventListener('input', (event) => {
   
 });
 //fim dos efeitos sonoros
+
+ /* Tela de Jogo */
+let telaJogo = document.getElementById("telaJogo")
+
+/*Lógica dos Botões*/
+
+let btnMenu = document.createElement("button")
+btnMenu.classList.add("btnMenu")
+let mainJogo = document.getElementById("jogo")
+mainJogo.appendChild(btnMenu)
+
+btnMenu.addEventListener('click',function() {
+  telaJogo.classList.add('hidden')
+  telaInicial.classList.remove('hidden')
+});
+
+/*Placar*/
+
+let placar = document.createElement("div")
+placar.classList.add("placar")
+let score = document.createElement("h3")
+score.innerText = "Score"
+score.classList.add("score")
+let player1 = document.createElement("p")
+player1.innerText = "Player 1: "
+let player2 = document.createElement("p")
+player2.innerText = "Player 2: "
+
+placar.appendChild(score)
+placar.appendChild(player1)
+placar.appendChild(player2)
+mainJogo.appendChild(placar)
+
 
 /* Tela inicial */
 

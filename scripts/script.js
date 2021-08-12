@@ -394,12 +394,11 @@ function startGame() {
   }
 }
 
+//Efeitos sonoros
 volumeSliderFundo.addEventListener('input', (event) => {
   const value = event.target.value;
   audioFundo.volume = value / 100;
 });
-
-
 
 if(audioFundo.paused === true){
   statusVolumeFundo = false;
@@ -429,10 +428,8 @@ volumeSliderGeral.addEventListener('input', (event) => {
   }
   
 });
+//fim dos efeitos sonoros
 
-
-
-startGame();
 
  /* Tela de Jogo */
 let telaJogo = document.getElementById("telaJogo")
@@ -497,6 +494,7 @@ telaInicial.appendChild(starterMain)
 // Funcionalidade botoes
 
 btnPlay.addEventListener('click',function() {
+  startGame();
   telaJogo.classList.remove('hidden')
   telaInicial.classList.add('hidden')
 });

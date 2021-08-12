@@ -95,8 +95,6 @@ h1{
 .animacao {
     position: absolute;
     left:5px;
-    /*animation-name: descer6;
-    animation-duration: 1s;*/
 }
 
 #jogo{
@@ -547,6 +545,40 @@ img {
         margin-top: 90px;
         color: black;
     }
+    @keyframes descer6 {
+        from {top:-205px;}
+        20%{top:-205px;}
+        to {top:0px;}
+    }
+    @keyframes descer5 {
+        from {top:-170px;}
+        20%{top: -170px;}
+        to {top:0px;}
+    }
+    @keyframes descer4 {
+        from {top:-135px;}
+        20%{top: -135px;}
+        to {top:0px;}
+    }
+    @keyframes descer3 {
+        from {top:-100px;}
+        20%{top: -100px;}
+        to {top:0px;}
+    }
+    @keyframes descer2 {
+        from {top:-65px;}
+        20%{top: -65px;}
+        to {top:0px;}
+    }
+    @keyframes descer1 {
+        from {top:-35px;}
+        20%{top: -35;}
+    }
+    .animacao {
+        position: absolute;
+        left:3px;
+    }
+    
 
 }
 /* Desktop */

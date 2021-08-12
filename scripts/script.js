@@ -335,7 +335,6 @@ function startGame() {
               }
               vazio[vazio.length-1].appendChild(bolav);   
           }
-          console.log(vazio)
           registroMovimento(vazio[vazio.length-1],primeiroJogador,segundoJogador)
           if(!terminarJogo){
             audioPeca.play();

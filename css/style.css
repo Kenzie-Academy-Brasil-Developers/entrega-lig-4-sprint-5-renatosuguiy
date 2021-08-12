@@ -264,9 +264,6 @@ h1{
 
 /*Fim das configurações do jogo*/
 
-@media (min-width: 640px){
-
-
 /* Tela Inicial */
 .starter {
     background-image: url(/assets/background1.jpg);
@@ -332,6 +329,9 @@ h1{
 /* Fim Tela Inicial */
 
 /* Transicao de Telas */
+ .hidden {
+    display: none !important;
+    }
 .tela {
     position:fixed;
     display: flex;
@@ -369,7 +369,7 @@ img {
     height: 50px;
 }
 .btnMenuC {
-    background-image: url(/assets/Buttons-img/menuBlackAndWhite.png);
+    background-image: url(/assets/Buttons-img/BackButtonBW.png);
     position: fixed;
     bottom:0;
     right:0;
@@ -396,9 +396,7 @@ img {
 
 /* Desktop */
 @media (min-width: 768px){
-    .hidden {
-        display: none;
-    }
+   
     #jogo {
         background-position: bottom;
         background-repeat: no-repeat;
@@ -484,7 +482,32 @@ img {
     .painel{
         display: none;
     }
-}   
+/* Pag Inicial */
+    .btnStarter{
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 50%;
+        height: 48px;
+        cursor: pointer;
+        text-transform: none;
+        background-color: transparent;
+        border: none;
+        margin: 0;
+    
+    }
+    .btnPlay {
+        background-image: url(/assets/Buttons-img/StartButtonyellow.png);
+        background-size: cover;
+    }
+    .btnMenuS {
+        background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
+    }
+    .btnCredits {
+        background-image: url(/assets/Buttons-img/CreditsButtonyellow.png);
+        width: 100%;
+    }
+} 
 
 @media (min-width: 1024px){
     .display {
@@ -514,32 +537,3 @@ img {
 
     */
 /*Fim das configurações do jogo*/
-
-    /* Pag Inicial */
-    .btnStarter{
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        width: 50%;
-        height: 48px;
-        cursor: pointer;
-        text-transform: none;
-        background-color: transparent;
-        border: none;
-        margin: 0;
-        
-    }
-        .btnPlay {
-            background-image: url(/assets/Buttons-img/StartButtonyellow.png);
-            background-size: cover;
-        }
-        .btnMenuS {
-            background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
-        }
-        .btnCredits {
-            background-image: url(/assets/Buttons-img/CreditsButtonyellow.png);
-            width: 100%;
-        }
-} 
-/*Fim das configurações do jogo*/
-

@@ -472,8 +472,9 @@ let mainJogo = document.getElementById("jogo")
 mainJogo.appendChild(btnMenu)
 
 btnMenu.addEventListener('click',function() {
-  telaJogo.classList.add('hidden')
   telaInicial.classList.remove('hidden')
+  telaCreditos.classList.add('hidden')
+  telaJogo.classList.add('hidden')
 });
 
 /*Placar*/
@@ -527,10 +528,12 @@ btnPlay.addEventListener('click',function() {
   startGame();
   telaJogo.classList.remove('hidden')
   telaInicial.classList.add('hidden')
+  telaCreditos.classList.add('hidden')
 });
 btnMenuS.addEventListener('click',function() {
   telaJogo.classList.remove('hidden')
   telaInicial.classList.add('hidden')
+  telaCreditos.classList.add('hidden')
 });
 btnCredits.addEventListener('click',function() {
   telaJogo.classList.add('hidden')
@@ -607,6 +610,7 @@ gerarLista();
 btnMenuC.addEventListener('click',function() {
   telaInicial.classList.remove('hidden')
   telaCreditos.classList.add('hidden')
+  telaJogo.classList.add('hidden')
 });
 
 /* Fim Creditos */

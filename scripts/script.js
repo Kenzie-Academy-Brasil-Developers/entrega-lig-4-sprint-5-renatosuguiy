@@ -462,9 +462,6 @@ volumeSliderGeral.addEventListener('input', (event) => {
 });
 
 
-
-startGame();
-
  /* Tela de Jogo */
 let telaJogo = document.getElementById("telaJogo")
 
@@ -530,6 +527,7 @@ telaInicial.appendChild(starterMain)
 btnPlay.addEventListener('click',function() {
   telaJogo.classList.remove('hidden')
   telaInicial.classList.add('hidden')
+  startGame();
 });
 btnMenuS.addEventListener('click',function() {
   telaJogo.classList.remove('hidden')

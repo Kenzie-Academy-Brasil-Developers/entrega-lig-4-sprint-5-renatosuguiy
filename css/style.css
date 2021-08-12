@@ -136,7 +136,7 @@ h1{
 
 .display {
     position: absolute;
-    top: 20px;
+    top: 30px;
     height: 60px;
     width: 60px;
     text-align: center;
@@ -144,7 +144,7 @@ h1{
 }
 .texto {
     position: absolute;
-    top: -22px;
+    top: -21px;
     left: -12px;
 }
 
@@ -215,7 +215,7 @@ h1{
     width: 100px;
     height: 50px;
     position: absolute;
-    top: 0px;
+    top: 10px;
     left: 5px;
     margin: 3px;
     padding-bottom: 5px;
@@ -224,7 +224,6 @@ h1{
     align-items: flex-end;
     align-content: space-around;
 }
-
 .textoP1{
     display: none;
 }
@@ -283,6 +282,10 @@ h1{
   }
 
 /*Fim das configurações do jogo*/
+#telaJogo{
+    background-image: url(/assets/Background\ Teste.jpeg);
+    background-size: cover;
+}
 /*Tela Final*/
 
 #telaVitoria{
@@ -361,7 +364,7 @@ h1{
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-        width: 100%;
+        width: 200px;
         height: 48px;
         cursor: pointer;
         text-transform: none;
@@ -395,6 +398,7 @@ h1{
         }
         .btnMenuS {
             background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
+            height: 42px; 
         }
         .btnCredits {
             background-image: url(/assets/Buttons-img/CreditsButtonyellow.png);
@@ -488,20 +492,29 @@ img {
     padding: 20px;
     border: 1px solid #888;
     width: 40%;
+    height: 40vh;
     border: 2px solid black;
     border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .close {
     color: var(--color-black);
-    float: right;
     font-size: 28px;
     font-weight: bold;
+    background-color: coral;
+    text-align: center;
+    height: 28px;
+    line-height: 28px;
+    border: 2px solid var(--color-black);
+    padding: 5px;
 }
 .close:hover, .close:focus {
-    color:blue ;
+    color: red;
     cursor:pointer;
 }
-/* Fim Menus modais */
 
 /* MEDIA QUERIES */
 @media (max-width: 450px) {
@@ -594,7 +607,7 @@ img {
     }
 
     .display {
-        top: 10px;
+        top: 30px;
         display: flex;        
 
     }
@@ -604,30 +617,38 @@ img {
     }
 
 /* Pag Inicial */
+.btnContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 2fr 1fr;
+    grid-template-areas: 
+        "Play . Menu"
+        "Credits Credits Credits";                          
+}
     .btnStarter{
-        background-size: contain;
+        /* background-size: contain; */
         background-repeat: no-repeat;
         background-position: center;
-        width: 50%;
-        height: 48px;
         cursor: pointer;
         text-transform: none;
         background-color: transparent;
         border: none;
         margin: 0;
+        
     
     }
-    .btnPlay {
-        background-image: url(/assets/Buttons-img/StartButtonyellow.png);
-        background-size: cover;
-    }
-    .btnMenuS {
-        background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
-    }
-    .btnCredits {
-        background-image: url(/assets/Buttons-img/CreditsButtonyellow.png);
-        width: 100%;
-    }
+        .btnPlay {
+            background-image: url(/assets/Buttons-img/StartButtonyellow.png);
+            grid-area: Play;
+        }
+        .btnMenuS {
+            background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
+            grid-area: Menu;
+        }
+        .btnCredits {
+            background-image: url(/assets/Buttons-img/CreditsButtonyellow.png);
+            grid-area: Credits;
+        }
 } 
 
 

@@ -25,12 +25,22 @@
         <div id="modalMenuS" class="modal hidden">
             <div class="modal-content">
                 <div class="modal-header">
-                    <span class="close">&times;</span>
+                    
                 </div>
                 <div class="modal-body">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi itaque asperiores amet iste necessitatibus, error totam voluptatum illo quisquam voluptates dolor quo ullam excepturi magni sit a eos ipsa vero?</p>
+                    <br>
+                    <button id="play-btn-musica-fundo"><i class="fas fa-play"></i></button>
+                    <br>
+                    <p>Audio Fundo</p>
+                    <input type="range" id="volume-musica-fundo" max="100" value="50">
+                    <br>
+                    <p>Audio peca</p>
+                    <input type="range" id="volume-musica-geral" max="100" value="50">
+                    <br>
                 </div>
-                <div class="modal-footer"></div>
+                <div class="modal-footer">
+                    <span class="close">Close</span>
+                </div>
             </div>
         </div>
     <div id="telaJogo" class="tela hidden">
@@ -43,7 +53,13 @@
                     <div class="modal-header">
                         <span class="close">&times;</span>
                     </div>
-                    <div class="modal-body"></div>
+                    <div class="modal-body">
+                        <p>Audio Fundo</p>
+                        <input type="range" id="volume-musica-fundo" max="100" value="50">
+                        <button id="play-btn-musica-fundo"><i class="fas fa-play"></i></button>
+                        <p>Audio peca</p>
+                        <input type="range" id="volume-musica-geral" max="100" value="50">
+                    </div>
                     <div class="modal-footer"></div>
                 </div>
             </div>
@@ -54,15 +70,13 @@
         <footer>
             <div class="container">
             <div>
-                <p>Audio Fundo</p>
                 <audio id="audio-fundo" loop autoplay>
                     <source src="./assets/audio/super_mario_medley.mp3" type="audio/mp3">
                 </audio>
-                <input type="range" id="volume-musica-fundo" max="100" value="50">
-                <button id="play-btn-musica-fundo"><i class="fas fa-play"></i></button>
+               
             </div>
             <div>
-                <p>Audio peca</p>
+                
                 <audio id="audio-peca" class="audio-geral">
                     <source src="./assets/audio/smb_pipe.wav" type="audio/wav">
                 </audio>
@@ -72,7 +86,7 @@
                 <audio id="audio-empate" class="audio-geral">
                     <source src="./assets/audio/smb3_game_over.wav" type="audio/wav">
                 </audio>
-                <input type="range" id="volume-musica-geral" max="100" value="50">
+                
               
             </div>
         </div>

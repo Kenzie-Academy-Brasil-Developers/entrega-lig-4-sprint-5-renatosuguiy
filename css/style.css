@@ -260,7 +260,10 @@ h1{
       transform: translateY(-20px);
     }
   }
- 
+
+.hidden {
+    display: none;
+}
 
 /*Fim das configurações do jogo*/
 
@@ -343,9 +346,7 @@ h1{
     height:100%;
     text-align: center;
 }
-.hidden {
-    display: none;
-}
+
 /* Fim Transicao de Telas */
 
 /* Creditos */

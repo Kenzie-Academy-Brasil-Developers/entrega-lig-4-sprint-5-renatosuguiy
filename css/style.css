@@ -261,14 +261,14 @@ h1{
     }
   }
 
-.hidden {
-    display: none;
-}
 
 /*Fim das configurações do jogo*/
 
 @media (min-width: 640px){
 
+    .hidden {
+        display: none;
+    }
 /* Tela Inicial */
 .starter {
     background-image: url(/assets/background1.jpg);

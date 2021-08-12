@@ -462,6 +462,9 @@ volumeSliderGeral.addEventListener('input', (event) => {
 //fim dos efeitos sonoros
 
 
+
+startGame();
+
  /* Tela de Jogo */
 let telaJogo = document.getElementById("telaJogo")
 
@@ -528,7 +531,6 @@ btnPlay.addEventListener('click',function() {
   startGame();
   telaJogo.classList.remove('hidden')
   telaInicial.classList.add('hidden')
-  startGame();
 });
 btnMenuS.addEventListener('click',function() {
   telaJogo.classList.remove('hidden')

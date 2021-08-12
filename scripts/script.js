@@ -306,20 +306,30 @@ function startGame() {
           audioPeca.play();
           if(checarVitoria(vazio[vazio.length-1],primeiroJogador,segundoJogador)){
             if(primeiroJogador){
-              alert("Jogador preto ganhou!")
               audioVitoria.play();
+
+              setTimeout(function(){
+                mostraGanhador( "Victory" , "Player 1")
+              },3000);
+
               
             }
             if(segundoJogador){
-              alert("Jogador vermelho ganhou!")
               audioVitoria.play();
-           
+
+              setTimeout(function(){
+                mostraGanhador( "Victory" , "Player 2")
+              },3000);
+
             }
           }
           if(verificaEmpate()){
-            alert("Empate")
             audioEmpate.play();
-   
+
+            setTimeout(function(){
+              mostraGanhador( "Draw" , " ")
+            },3000);
+
           }
 
           if(primeiroJogador===true){
@@ -364,40 +374,41 @@ function startGame() {
   display.appendChild(texto)
   mainJogo.appendChild(display)
 
-  let player1 = document.createElement('div')
-  player1.classList.add("player1")
-  let textoP1 = document.createElement('p')
-  textoP1.classList.add("textoP1")
-  textoP1.innerText = "P1"
-  player1.appendChild(textoP1)
+let player1 = document.createElement('div')
+player1.classList.add("player1")
+let textoP1 = document.createElement('p')
+textoP1.classList.add("textoP1")
+textoP1.innerText = "P1"
+player1.appendChild(textoP1)
 
-  let player2 = document.createElement('div')
-  player2.classList.add("player2")
-  let textoP2 = document.createElement('p')
-  textoP2.classList.add("textoP2")
-  textoP2.innerText = "P2"
-  player2.appendChild(textoP2)
+let player2 = document.createElement('div')
+player2.classList.add("player2")
+let textoP2 = document.createElement('p')
+textoP2.classList.add("textoP2")
+textoP2.innerText = "P2"
+player2.appendChild(textoP2)
 
-  let painelJogadores = document.createElement('div')
-  painelJogadores.classList.add("painel")
-  mainJogo.appendChild(painelJogadores)
+let painelJogadores = document.createElement('div')
+painelJogadores.classList.add("painel")
+mainJogo.appendChild(painelJogadores)
 
-  let placarJogador1 = document.createElement('div')
-  let textoPlacarJogador1 = document.createElement('p')
-  textoPlacarJogador1.classList.add("textoPlacarJogador1")
-  textoPlacarJogador1.innerText = "P1"
-  placarJogador1.classList.add("placarJogador1")
-  placarJogador1.appendChild(textoPlacarJogador1)
-  painelJogadores.appendChild(placarJogador1)
+let placarJogador1 = document.createElement('div')
+let textoPlacarJogador1 = document.createElement('p')
+textoPlacarJogador1.classList.add("textoPlacarJogador1")
+textoPlacarJogador1.innerText = "P1"
+placarJogador1.classList.add("placarJogador1")
+placarJogador1.appendChild(textoPlacarJogador1)
+painelJogadores.appendChild(placarJogador1)
 
 
-  let placarJogador2 = document.createElement('div')
-  let textoPlacarJogador2 = document.createElement('p')
-  textoPlacarJogador2.classList.add("textoPlacarJogador2")
-  textoPlacarJogador2.innerText = "P2"
-  placarJogador2.classList.add("placarJogador2")
-  placarJogador2.appendChild(textoPlacarJogador2)
-  painelJogadores.appendChild(placarJogador2)
+let placarJogador2 = document.createElement('div')
+let textoPlacarJogador2 = document.createElement('p')
+textoPlacarJogador2.classList.add("textoPlacarJogador2")
+textoPlacarJogador2.innerText = "P2"
+placarJogador2.classList.add("placarJogador2")
+placarJogador2.appendChild(textoPlacarJogador2)
+painelJogadores.appendChild(placarJogador2)
+
 
   mainJogo.appendChild(player1)
   mainJogo.appendChild(player2)
@@ -486,7 +497,9 @@ telaInicial.appendChild(starterMain)
 // Funcionalidade botoes
 
 btnPlay.addEventListener('click',function() {
+
   setTimeout(function() {startGame();
+
   telaJogo.classList.remove('hidden')
   telaInicial.classList.add('hidden')
   telaCreditos.classList.add('hidden')}, 1500);
@@ -585,5 +598,25 @@ function mostraGanhador(){
   telaGanhador.classList.add("telaGanhador")
   telaGanhador.innerText("oi")
   mainJogo.appendChild(telaGanhador)
+}
+
+
+function mostraGanhador(status, ganhador ){
+  let telaFinal = document.getElementById("telaVitoria")
+  setTimeout(telaJogo.classList.add('hidden'),3000)
+  telaFinal.classList.remove('hidden')
+  let texto = document.createElement('h3')
+  texto.classList.add('textoGanhador')
+  texto.innerText =  ganhador + ' ' + status
+  telaFinal.appendChild(texto)
+  let btnVoltar = document.createElement('button') 
+  btnVoltar.classList.add('btnVoltar')
+  btnVoltar.innerText = "PRESS HERE to Return menu"
+  telaFinal.appendChild(btnVoltar) 
+  btnVoltar.addEventListener('click', function(){
+    location.reload()
+    
+  }) 
+  
 }
 

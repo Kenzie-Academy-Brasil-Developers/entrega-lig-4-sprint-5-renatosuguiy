@@ -461,10 +461,6 @@ volumeSliderGeral.addEventListener('input', (event) => {
 });
 //fim dos efeitos sonoros
 
-
-
-startGame();
-
  /* Tela de Jogo */
 let telaJogo = document.getElementById("telaJogo")
 

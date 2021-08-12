@@ -338,30 +338,16 @@ function startGame() {
   })
 
   /*Lógica dos Botões*/
-
   let btnMenu = document.createElement("button")
   btnMenu.classList.add("btnMenu")
   let mainJogo = document.getElementById("jogo")
   mainJogo.appendChild(btnMenu)
-
-  // Placar
-
-  // let placar = document.createElement("div")
-  // placar.classList.add("placar")
-  // let score = document.createElement("h3")
-  // score.innerText = "Score"
-  // score.classList.add("score")
-  // let player1 = document.createElement("p")
-  // player1.innerText = "Player 1: "
-  // let player2 = document.createElement("p")
-  // player2.innerText = "Player 2: "
-
-  // placar.appendChild(score)
-  // placar.appendChild(player1)
-  // placar.appendChild(player2)
-  // mainJogo.appendChild(placar)
-
-  // Mostrar Jogador Corrente
+  
+  btnMenu.addEventListener('click',function() {
+    telaInicial.classList.remove('hidden')
+    telaCreditos.classList.add('hidden')
+    telaJogo.classList.add('hidden')
+  });
 
   let display = document.createElement('div')
   display.classList.add("display")
@@ -462,38 +448,7 @@ volumeSliderGeral.addEventListener('input', (event) => {
 //fim dos efeitos sonoros
 
  /* Tela de Jogo */
-let telaJogo = document.getElementById("telaJogo")
-
-/*Lógica dos Botões*/
-
-let btnMenu = document.createElement("button")
-btnMenu.classList.add("btnMenu")
-let mainJogo = document.getElementById("jogo")
-mainJogo.appendChild(btnMenu)
-
-btnMenu.addEventListener('click',function() {
-  telaInicial.classList.remove('hidden')
-  telaCreditos.classList.add('hidden')
-  telaJogo.classList.add('hidden')
-});
-
-/*Placar*/
-
-let placar = document.createElement("div")
-placar.classList.add("placar")
-let score = document.createElement("h3")
-score.innerText = "Score"
-score.classList.add("score")
-let player1 = document.createElement("p")
-player1.innerText = "Player 1: "
-let player2 = document.createElement("p")
-player2.innerText = "Player 2: "
-
-placar.appendChild(score)
-placar.appendChild(player1)
-placar.appendChild(player2)
-mainJogo.appendChild(placar)
-
+// let telaJogo = document.getElementById("telaJogo")
 
 /* Tela inicial */
 

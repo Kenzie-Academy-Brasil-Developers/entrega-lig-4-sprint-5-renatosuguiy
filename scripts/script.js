@@ -256,14 +256,16 @@ function criarTabela(t,c){
     for(let i=0; i < t; i ++){
         let torre = document.createElement('div')
         torre.classList.add('torre')
+        torre.setAttribute('datatorre',`${i}`)
         tabela.appendChild(torre)
         for(let n=0; n < c; n ++){
             let celula = document.createElement('div')
             celula.classList.add('celula')
-            torre.appendChild(celula)
             celula.setAttribute('dataaddress',`${i},${n}`)
+            torre.appendChild(celula)
         }
     }
+
     creatBoardArray(c,t);
     audioFundo.play();
 }
@@ -271,7 +273,6 @@ function criarTabela(t,c){
 function startGame() {
   tabela.innerHTML = ""; 
   criarTabela(7,6);
-
   for(let i=0;i<21;i++){
       bolaPreta = document.createElement('div')
       bolaPreta.classList.add('horizontal','black')
@@ -293,12 +294,14 @@ function startGame() {
               let bolap = torrePreta.lastElementChild
               bolap.classList.remove('horizontal');
               bolap.classList.add('vertical');
+              bolap.classList.add('animacao');
               vazio[vazio.length-1].appendChild(bolap);
           }
           if(segundoJogador===true){
               let bolav = torreVermelha.lastElementChild
               bolav.classList.remove('horizontal');
               bolav.classList.add('vertical');
+              bolav.classList.add('animacao');
               vazio[vazio.length-1].appendChild(bolav);   
           }
 
@@ -369,43 +372,40 @@ function startGame() {
   display.appendChild(texto)
   mainJogo.appendChild(display)
 
-let player1 = document.createElement('div')
-player1.classList.add("player1")
-let textoP1 = document.createElement('p')
-textoP1.classList.add("textoP1")
-textoP1.innerText = "P1"
-player1.appendChild(textoP1)
+  let player1 = document.createElement('div')
+  player1.classList.add("player1")
+  let textoP1 = document.createElement('p')
+  textoP1.classList.add("textoP1")
+  textoP1.innerText = "P1"
+  player1.appendChild(textoP1)
 
-let player2 = document.createElement('div')
-player2.classList.add("player2")
-let textoP2 = document.createElement('p')
-textoP2.classList.add("textoP2")
-textoP2.innerText = "P2"
-player2.appendChild(textoP2)
+  let player2 = document.createElement('div')
+  player2.classList.add("player2")
+  let textoP2 = document.createElement('p')
+  textoP2.classList.add("textoP2")
+  textoP2.innerText = "P2"
+  player2.appendChild(textoP2)
 
-let painelJogadores = document.createElement('div')
-painelJogadores.classList.add("painel")
-mainJogo.appendChild(painelJogadores)
+  let painelJogadores = document.createElement('div')
+  painelJogadores.classList.add("painel")
+  mainJogo.appendChild(painelJogadores)
 
-let placarJogador1 = document.createElement('div')
-let textoPlacarJogador1 = document.createElement('p')
-textoPlacarJogador1.classList.add("textoPlacarJogador1")
-textoPlacarJogador1.innerText = "P1"
-placarJogador1.classList.add("placarJogador1")
-placarJogador1.appendChild(textoPlacarJogador1)
-painelJogadores.appendChild(placarJogador1)
-
-
-let placarJogador2 = document.createElement('div')
-let textoPlacarJogador2 = document.createElement('p')
-textoPlacarJogador2.classList.add("textoPlacarJogador2")
-textoPlacarJogador2.innerText = "P2"
-placarJogador2.classList.add("placarJogador2")
-placarJogador2.appendChild(textoPlacarJogador2)
-painelJogadores.appendChild(placarJogador2)
+  let placarJogador1 = document.createElement('div')
+  let textoPlacarJogador1 = document.createElement('p')
+  textoPlacarJogador1.classList.add("textoPlacarJogador1")
+  textoPlacarJogador1.innerText = "P1"
+  placarJogador1.classList.add("placarJogador1")
+  placarJogador1.appendChild(textoPlacarJogador1)
+  painelJogadores.appendChild(placarJogador1)
 
 
-
+  let placarJogador2 = document.createElement('div')
+  let textoPlacarJogador2 = document.createElement('p')
+  textoPlacarJogador2.classList.add("textoPlacarJogador2")
+  textoPlacarJogador2.innerText = "P2"
+  placarJogador2.classList.add("placarJogador2")
+  placarJogador2.appendChild(textoPlacarJogador2)
+  painelJogadores.appendChild(placarJogador2)
 
   mainJogo.appendChild(player1)
   mainJogo.appendChild(player2)

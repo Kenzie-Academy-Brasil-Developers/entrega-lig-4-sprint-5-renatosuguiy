@@ -30,22 +30,42 @@ h1{
 /*Configurações do jogo*/
 .torre {
     display: flex;
+    opacity: 100;
     flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+#torreCorPreta, #torreCorVermelha {
+    width: 35px;
+    display: none;
     margin: 0 3px;
 }
 
 .celula {
     height: 35px;
     width: 35px;
-    background-image: url(/assets/base-tubo.png)  ;
+    background-image: url(/assets/base-tubo.png);
     background-size: contain;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+@keyframes descer {
+    from {top:-260px;}
+    to {top:0px;}
+}
+
+.animacao {
+    position: absolute;
+    left:5px;
+    animation-name: descer;
+    animation-duration: 1s;
+
 }
 
 .celula:first-child{
-    background-image: url(/assets/topo-tubo.png)  ;
+    background-image: url(/assets/topo-tubo.png);
     background-size: cover;
 }
 
@@ -68,6 +88,7 @@ h1{
     background-size: cover;
     position: relative;
 }
+
 .horizontal{
     height: 10px;
     width: 30px;
@@ -75,6 +96,7 @@ h1{
     background-position: center;
     display: none;
 }
+
 .vertical {
     height: 30px;
     width: 30px;
@@ -231,7 +253,6 @@ h1{
     height: 25px;
     width: 25px;
 } */
-
 
 @keyframes animacaoVitoriaPeca {
     0% {
@@ -536,4 +557,5 @@ img {
     }
 
     */
+
 /*Fim das configurações do jogo*/

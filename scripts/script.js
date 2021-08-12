@@ -295,7 +295,6 @@ tabela.addEventListener('click',function(e){
           if(primeiroJogador){
             alert("Jogador preto ganhou!")
           }
-<<<<<<< HEAD
           if(segundoJogador){
             alert("Jogador vermelho ganhou!")
           }
@@ -303,7 +302,6 @@ tabela.addEventListener('click',function(e){
         if(verificaEmpate()){
           alert("Empate")
         }
-=======
           showPlayer()
       }
   })
@@ -395,12 +393,9 @@ function showPlayer(){
    if(primeiroJogador === true){
       display.classList.remove('p2')
       display.classList.add('p1')
->>>>>>> f05bb15962aa1dd94b43d5d2774ac18defcc4ee5
     }
-})
+}
 
-<<<<<<< HEAD
-=======
 volumeSliderGeral.addEventListener('input', (event) => {
   const value = event.target.value;
   let audiosArray = [...audiosGeral];
@@ -413,7 +408,6 @@ volumeSliderGeral.addEventListener('input', (event) => {
 
  /* Tela de Jogo */
 let telaJogo = document.getElementById("telaJogo")
->>>>>>> f05bb15962aa1dd94b43d5d2774ac18defcc4ee5
 
 /*Lógica dos Botões*/
 
@@ -438,8 +432,6 @@ placar.appendChild(score)
 placar.appendChild(player1)
 placar.appendChild(player2)
 mainJogo.appendChild(placar)
-<<<<<<< HEAD
-=======
 
 
 /* Tela inicial */
@@ -567,4 +559,3 @@ function mostraGanhador(){
   mainJogo.appendChild(telaGanhador)
 }
 
->>>>>>> f05bb15962aa1dd94b43d5d2774ac18defcc4ee5

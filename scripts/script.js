@@ -17,6 +17,7 @@ const audioVitoria = document.getElementById('audio-vitoria');
 const audioEmpate = document.getElementById('audio-empate');
 const audioPeca = document.getElementById('audio-peca');
 let tabelaEventListener = false;
+let terminarJogo = false;
 const addAnimacaoVitoriaPeca = (orientacaoVitoria, posicaoUltimaPeca) => {
   if(orientacaoVitoria === 'horizontal'){
     for(let index = 0; index < 4; index++){
@@ -124,7 +125,10 @@ const vitoriaHorizontal = (simbolo, posicao) => {
       contador = 0;
     }
     if (contador === 4) {
-      addAnimacaoVitoriaPeca('horizontal',[inicioLinha,coluna])
+      if(!terminarJogo){
+        addAnimacaoVitoriaPeca('horizontal',[inicioLinha,coluna])
+      }
+      
       return true;
     }
   }
@@ -148,7 +152,10 @@ const vitoriaVertical = (simbolo, posicao) => {
       contador = 0;
     }
     if (contador === 4) {
-      addAnimacaoVitoriaPeca('vertical',[linha,inicioColuna])
+      if(!terminarJogo){
+        addAnimacaoVitoriaPeca('vertical',[linha,inicioColuna])
+      }
+      
       return true;
     }
   }
@@ -181,7 +188,10 @@ const vitoriaDiagonal1 = (simbolo, posicao) => {
       contador = 0;
     }
     if (contador === 4) {
-      addAnimacaoVitoriaPeca('diagonal1',[linha,coluna])
+      if(!terminarJogo){
+        addAnimacaoVitoriaPeca('diagonal1',[linha,coluna])
+      }
+      
       return true;
     }
     linha++;
@@ -218,7 +228,10 @@ const vitoriaDiagonal2 = (simbolo, posicao) => {
       contador = 0;
     }
     if (contador === 4) {
-      addAnimacaoVitoriaPeca('diagonal2',[linha,coluna])
+      if(!terminarJogo){
+        addAnimacaoVitoriaPeca('diagonal2',[linha,coluna]);
+      }
+      
       return true;
     }
     linha--
@@ -292,6 +305,9 @@ function startGame() {
               bolap.classList.remove('horizontal');
               bolap.classList.add('vertical');
               bolap.classList.add('animacao');
+              if(terminarJogo){
+                bolap.classList.add('hidden');
+              }
               vazio[vazio.length-1].appendChild(bolap);
           }
           if(segundoJogador===true){
@@ -299,6 +315,9 @@ function startGame() {
               bolav.classList.remove('horizontal');
               bolav.classList.add('vertical');
               bolav.classList.add('animacao');
+              if(terminarJogo){
+                bolav.classList.add('hidden');
+              }
               vazio[vazio.length-1].appendChild(bolav);   
           }
 
@@ -307,43 +326,44 @@ function startGame() {
           if(checarVitoria(vazio[vazio.length-1],primeiroJogador,segundoJogador)){
             if(primeiroJogador){
               audioVitoria.play();
-
-              setTimeout(function(){
-                mostraGanhador( "Victory" , "Player 1")
-              },3000);
-
-              
+              if(!terminarJogo){
+                terminarJogo = true;
+                setTimeout(function(){
+                  mostraGanhador( "Victory" , "Player 1")
+                },3000);
+              }              
             }
             if(segundoJogador){
               audioVitoria.play();
-
-              setTimeout(function(){
-                mostraGanhador( "Victory" , "Player 2")
-              },3000);
+              if(!terminarJogo){
+                terminarJogo = true;
+                setTimeout(function(){
+                  mostraGanhador( "Victory" , "Player 2")
+                },3000);
+              }   
 
             }
           }
           if(verificaEmpate()){
             audioEmpate.play();
-
-            setTimeout(function(){
-              mostraGanhador( "Draw" , " ")
-            },3000);
-
+            if(!terminarJogo){
+              terminarJogo = true;
+              setTimeout(function(){
+                mostraGanhador( "Draw" , " ")
+              },3000);
+            }  
           }
-
           if(primeiroJogador===true){
-
               primeiroJogador=false;
               segundoJogador=true;
-
           } else {
-
               primeiroJogador=true;
               segundoJogador=false;
-
           }
-          showPlayer()
+          if(!terminarJogo){
+            showPlayer()
+          }
+          
       }
   
   }

@@ -349,9 +349,10 @@ function startGame() {
   mainJogo.appendChild(btnMenu)
   
   btnMenu.addEventListener('click',function() {
+    setTimeout(function() {
     telaInicial.classList.remove('hidden')
     telaCreditos.classList.add('hidden')
-    telaJogo.classList.add('hidden')
+    telaJogo.classList.add('hidden')}, 1500);
   });
 
   let display = document.createElement('div')
@@ -485,20 +486,22 @@ telaInicial.appendChild(starterMain)
 // Funcionalidade botoes
 
 btnPlay.addEventListener('click',function() {
-  startGame();
+  setTimeout(function() {startGame();
   telaJogo.classList.remove('hidden')
   telaInicial.classList.add('hidden')
-  telaCreditos.classList.add('hidden')
+  telaCreditos.classList.add('hidden')}, 1500);
 });
 btnMenuS.addEventListener('click',function() {
+  setTimeout(function() {
   telaJogo.classList.remove('hidden')
   telaInicial.classList.add('hidden')
-  telaCreditos.classList.add('hidden')
+  telaCreditos.classList.add('hidden')}, 1500);
 });
 btnCredits.addEventListener('click',function() {
+  setTimeout(function() {
   telaJogo.classList.add('hidden')
   telaInicial.classList.add('hidden')
-  telaCreditos.classList.remove("hidden")
+  telaCreditos.classList.remove("hidden")}, 1500);
   
 });
 
@@ -568,9 +571,10 @@ telaCreditos.appendChild(btnMenuC);
 gerarLista();
 
 btnMenuC.addEventListener('click',function() {
+  setTimeout(function() {
   telaInicial.classList.remove('hidden')
   telaCreditos.classList.add('hidden')
-  telaJogo.classList.add('hidden')
+  telaJogo.classList.add('hidden')}, 1500 );
 });
 
 /* Fim Creditos */

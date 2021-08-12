@@ -9,7 +9,7 @@ let segundoJogador = false;
 const volumeSliderFundo = document.getElementById('volume-musica-fundo');
 const volumeBtnFundo = document.getElementById('play-btn-musica-fundo');
 const audioFundo = document.getElementById('audio-fundo');
-audioFundo.volume = 0.5;
+audioFundo.volume = 0.2;
 let statusVolumeFundo = true;
 const volumeSliderGeral = document.getElementById('volume-musica-geral');
 const audiosGeral = document.querySelectorAll('.audio-geral');
@@ -517,7 +517,7 @@ starterMain.appendChild(starterBtns)
 
 telaInicial.appendChild(starterMain)
 
-// Funcionalidade botoes
+// Funcionalidade botoes (BtnMenuS movido para secao modal)
 
 btnPlay.addEventListener('click',function() {
 
@@ -527,12 +527,7 @@ btnPlay.addEventListener('click',function() {
   telaInicial.classList.add('hidden')
   telaCreditos.classList.add('hidden')}, 1500);
 });
-btnMenuS.addEventListener('click',function() {
-  setTimeout(function() {
-  telaJogo.classList.remove('hidden')
-  telaInicial.classList.add('hidden')
-  telaCreditos.classList.add('hidden')}, 1500);
-});
+
 btnCredits.addEventListener('click',function() {
   setTimeout(function() {
   telaJogo.classList.add('hidden')
@@ -601,12 +596,12 @@ const gerarLista = () => {
   }
 };
 
-let btnMenuC = document.createElement('button')
-btnMenuC.classList.add('btnMenuC', "btnStarter");
-telaCreditos.appendChild(btnMenuC);
+let btnBack = document.createElement('button')
+btnBack.classList.add('btnBack', "btnStarter");
+telaCreditos.appendChild(btnBack);
 gerarLista();
 
-btnMenuC.addEventListener('click',function() {
+btnBack.addEventListener('click',function() {
   setTimeout(function() {
   telaInicial.classList.remove('hidden')
   telaCreditos.classList.add('hidden')
@@ -622,6 +617,20 @@ function mostraGanhador(){
   telaGanhador.innerText("oi")
   mainJogo.appendChild(telaGanhador)
 }
+
+
+/* Modal menu */
+let modal = document.getElementById("modalMenuS")
+let btnClose = [...document.getElementsByClassName("close")];
+btnMenuS.addEventListener('click',function() {
+  setTimeout(function() {
+  modal.classList.remove('hidden');}, 1000);
+});
+console.log(btnClose)
+btnClose[0].addEventListener('click',function() {
+  modal.classList.add('hidden');
+  console.dir(btnClose)
+});
 
 
 function mostraGanhador(status, ganhador ){
@@ -642,4 +651,3 @@ function mostraGanhador(status, ganhador ){
   }) 
   
 }
-

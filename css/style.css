@@ -115,7 +115,6 @@ h1{
 .display {
     position: absolute;
     top: 20px;
-    left: 150px;
     height: 60px;
     width: 60px;
     text-align: center;
@@ -138,6 +137,31 @@ h1{
     border-radius: 5px;
 }
 
+.placarJogador1 {
+    background-image: url(/assets/green-cogu.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+   
+}
+
+.textoPlacarJogador1{
+    position: absolute;
+    top: -2px;
+    left: 12px;
+    font-size: 14px;
+
+}
+
+.textoPlacarJogador2{
+    position: absolute;
+    top: -2px;
+    right: 10px;
+    font-size: 14px;
+}
+
 .p2 {
     background-image: url(/assets/red-cogu.png);
     background-size: cover;
@@ -149,10 +173,47 @@ h1{
     border-radius: 5px;
 }
 
+.placarJogador2 {
+    background-image: url(/assets/red-cogu.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 35px;
+   
+}
+
+.telaGanhador {
+    background-color: black;
+    width: 600px;
+    height: 600px;
+}
+
+.painel {
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    margin: 3px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    align-content: space-around;
+}
+
+.textoP1{
+    display: none;
+}
+
+.textoP2{
+    display: none;
+}
+
 
 /* .player1 {
-    top: 0px;
-    left: 10px;
+    
     background-image: url(/assets/green-cogu.png);
     background-size: cover;
     background-position: center;
@@ -162,8 +223,7 @@ h1{
 }
 
 .player2 {
-    top: 30px;
-    left: 10px;
+   
     background-image: url(/assets/red-cogu.png);
     background-size: cover;
     background-position: center;
@@ -342,7 +402,7 @@ img {
         background-position: bottom;
         background-repeat: no-repeat;
         position: relative;
-        background-size: 800px;
+        max-width: 800px;
        
     }
 
@@ -379,7 +439,22 @@ img {
         height: 100px;
         animation: bounce 1s infinite alternate;
         text-align:start;
-        color: red;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .textoP1  {
+        position: absolute;
+        top: -25px;
+        display: block;
+    }
+
+    .textoP2  {
+        position: absolute;
+        top: -25px;
+        display: block;
+
     }
     
     .player2 {
@@ -394,21 +469,25 @@ img {
         height: 100px;
         animation: bounce 1s infinite alternate;
         text-align:end;
-        color: green;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
     }
 
     .display {
         top: 10px;
         display: flex;        
-        left: 380px;
 
+    }
+
+    .painel{
+        display: none;
     }
 }   
 
 @media (min-width: 1024px){
     .display {
         top: 10px;
-        left: 500px;
     }
 
 }

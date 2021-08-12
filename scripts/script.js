@@ -369,25 +369,56 @@ function startGame() {
   display.appendChild(texto)
   mainJogo.appendChild(display)
 
-  let player1 = document.createElement('div')
-  player1.classList.add("player1")
-  let player2 = document.createElement('div')
-  player2.classList.add("player2")
+let player1 = document.createElement('div')
+player1.classList.add("player1")
+let textoP1 = document.createElement('p')
+textoP1.classList.add("textoP1")
+textoP1.innerText = "P1"
+player1.appendChild(textoP1)
+
+let player2 = document.createElement('div')
+player2.classList.add("player2")
+let textoP2 = document.createElement('p')
+textoP2.classList.add("textoP2")
+textoP2.innerText = "P2"
+player2.appendChild(textoP2)
+
+let painelJogadores = document.createElement('div')
+painelJogadores.classList.add("painel")
+mainJogo.appendChild(painelJogadores)
+
+let placarJogador1 = document.createElement('div')
+let textoPlacarJogador1 = document.createElement('p')
+textoPlacarJogador1.classList.add("textoPlacarJogador1")
+textoPlacarJogador1.innerText = "P1"
+placarJogador1.classList.add("placarJogador1")
+placarJogador1.appendChild(textoPlacarJogador1)
+painelJogadores.appendChild(placarJogador1)
+
+
+let placarJogador2 = document.createElement('div')
+let textoPlacarJogador2 = document.createElement('p')
+textoPlacarJogador2.classList.add("textoPlacarJogador2")
+textoPlacarJogador2.innerText = "P2"
+placarJogador2.classList.add("placarJogador2")
+placarJogador2.appendChild(textoPlacarJogador2)
+painelJogadores.appendChild(placarJogador2)
+
+
 
 
   mainJogo.appendChild(player1)
   mainJogo.appendChild(player2)
 
-  function showPlayer(){
-    
-    if(primeiroJogador === false){
-      display.classList.remove('p1')
-      display.classList.add('p2')
+//função de mostrar de quem é a vez 
 
+function showPlayer(){
+  
+  if(primeiroJogador === false){
+    display.classList.remove('p1')
+    display.classList.add('p2')
     }
-
-
-    if(primeiroJogador === true){
+   if(primeiroJogador === true){
       display.classList.remove('p2')
       display.classList.add('p1')
     }
@@ -581,6 +612,13 @@ btnMenuC.addEventListener('click',function() {
   telaCreditos.classList.add('hidden')
 });
 
-
-
 /* Fim Creditos */
+
+//função de mensagem vitoria 
+function mostraGanhador(){
+  let telaGanhador = document.createElement('div')
+  telaGanhador.classList.add("telaGanhador")
+  telaGanhador.innerText("oi")
+  mainJogo.appendChild(telaGanhador)
+}
+

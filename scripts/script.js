@@ -634,8 +634,7 @@ function mostraGanhador(status, ganhador ){
   btnVoltar.innerText = "Press Here to Return to menu"
   telaFinal.appendChild(btnVoltar) 
   btnVoltar.addEventListener('click', function(){
-    telaFinal.classList.add('hidden')
-    telaInicial.classList.remove('hidden')
+    location.reload()
     
   }) 
   

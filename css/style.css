@@ -267,8 +267,7 @@ h1{
 
 #telaVitoria{
     background-color: var(--color-black);
-    /* display: flex;
-    justify-content: space-evenly; */
+   
 }
 
 .textoGanhador{
@@ -282,6 +281,7 @@ h1{
     border: none;
     color: white;
     cursor: pointer;
+    padding: 100px 0;
 }
 
 /*Fim das configurações da Tela Final*/

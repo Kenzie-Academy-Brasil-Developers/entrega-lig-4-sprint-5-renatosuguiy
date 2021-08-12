@@ -292,16 +292,18 @@ function startGame() {
           if(primeiroJogador===true) {
               let bolap = torrePreta.lastElementChild
               bolap.classList.remove('horizontal');
-              bolap.classList.add('vertical');
+              bolap.classList.add('vertical','animacao');
+              bolap.style.animationName=`descer${vazio.length}`
               vazio[vazio.length-1].appendChild(bolap);
           }
           if(segundoJogador===true){
               let bolav = torreVermelha.lastElementChild
               bolav.classList.remove('horizontal');
-              bolav.classList.add('vertical');
+              bolav.classList.add('vertical','animacao');
+              bolav.style.animationName=`descer${vazio.length}`
               vazio[vazio.length-1].appendChild(bolav);   
           }
-
+          console.log(vazio)
           registroMovimento(vazio[vazio.length-1],primeiroJogador,segundoJogador)
           audioPeca.play();
           if(checarVitoria(vazio[vazio.length-1],primeiroJogador,segundoJogador)){

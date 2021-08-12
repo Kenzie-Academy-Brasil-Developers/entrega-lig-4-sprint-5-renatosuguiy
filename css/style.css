@@ -32,6 +32,7 @@ h1{
     display: flex;
     flex-direction: column;
     margin: 0 3px;
+    overflow: hidden;
 }
 
 .celula {
@@ -41,6 +42,7 @@ h1{
     background-size: contain;
     display: flex;
     align-items: center;
+    position: relative;
     justify-content: center;
 }
 
@@ -53,6 +55,48 @@ h1{
     display: flex;
     position: absolute;
     bottom: 35px;
+}
+
+@keyframes descer6 {
+    from {top:-245px;}
+    30%{top: -210px;}
+    to {top:0px;}
+}
+@keyframes descer5 {
+    from {top:-210px;}
+    30%{top: -175px;}
+    to {top:0px;}
+}
+@keyframes descer4 {
+    from {top:-175px;}
+    30%{top: -140px;}
+    to {top:0px;}
+}
+@keyframes descer3 {
+    from {top:-140px;}
+    30%{top: -105px;}
+    to {top:0px;}
+}
+@keyframes descer2 {
+    from {top:-105px;}
+    30%{top: -70px;}
+    to {top:0px;}
+}
+@keyframes descer1 {
+    from {top:-70px;}
+    30%{top: -35px;}
+    to {top:0px;}
+}
+@keyframes descer0 {
+    from {top:-35px;}
+    10%{}
+    to {top:0px;}
+}
+.animacao {
+    position: absolute;
+    left:5px;
+    /*animation-name: descer6;*/
+    animation-duration: 1s;
 }
 
 #jogo{

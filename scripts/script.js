@@ -394,6 +394,7 @@ function startGame() {
   }
 }
 
+
 volumeSliderFundo.addEventListener('input', (event) => {
   const value = event.target.value;
   audioFundo.volume = value / 100;
@@ -451,20 +452,20 @@ btnMenu.addEventListener('click',function() {
 
 /*Placar*/
 
-let placar = document.createElement("div")
-placar.classList.add("placar")
-let score = document.createElement("h3")
-score.innerText = "Score"
-score.classList.add("score")
-let player1 = document.createElement("p")
-player1.innerText = "Player 1: "
-let player2 = document.createElement("p")
-player2.innerText = "Player 2: "
+// let placar = document.createElement("div")
+// placar.classList.add("placar")
+// let score = document.createElement("h3")
+// score.innerText = "Score"
+// score.classList.add("score")
+// let player1 = document.createElement("p")
+// player1.innerText = "Player 1: "
+// let player2 = document.createElement("p")
+// player2.innerText = "Player 2: "
 
-placar.appendChild(score)
-placar.appendChild(player1)
-placar.appendChild(player2)
-mainJogo.appendChild(placar)
+// placar.appendChild(score)
+// placar.appendChild(player1)
+// placar.appendChild(player2)
+// mainJogo.appendChild(placar)
 
 
 /* Tela inicial */
@@ -584,3 +585,10 @@ btnMenuC.addEventListener('click',function() {
 
 
 /* Fim Creditos */
+
+// //Mostrar Vencedor
+// let telaFinal = document.getElementById("telaVitoria")
+// function mostrarVencedor(jogador){
+//   telaFinal.classList.remove("hidden")
+
+// }

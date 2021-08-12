@@ -322,7 +322,10 @@ function startGame() {
           }
 
           registroMovimento(vazio[vazio.length-1],primeiroJogador,segundoJogador)
-          audioPeca.play();
+          if(!terminarJogo){
+            audioPeca.play();
+          }
+          
           if(checarVitoria(vazio[vazio.length-1],primeiroJogador,segundoJogador)){
             if(primeiroJogador){
               audioVitoria.play();

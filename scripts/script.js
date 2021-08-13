@@ -626,13 +626,13 @@ const gerarLista = () => {
     socialsContainer.classList.add('socials')
     let LinkedIn = document.createElement('span')
     LinkedIn.classList.add('socials')
-    LinkedIn.innerHTML = `<a href='${membros[i].LinkedIn}'><img src='../assets/logos/linkedin.png'></a>`
+    LinkedIn.innerHTML = `<a href='${membros[i].LinkedIn}'><img src='./assets/logos/linkedin.png'></a>`
     let Github = document.createElement('span')
     Github.classList.add('socials')
-    Github.innerHTML = `<a href='${membros[i].Github}'><img src='../assets/logos/github.png'></a>`
+    Github.innerHTML = `<a href='${membros[i].Github}'><img src='./assets/logos/github.png'></a>`
     let Email = document.createElement('span')
     Email.classList.add('socials')
-    Email.innerHTML = `<a href='${membros[i].Email}'><img src='../assets/logos/email.png'></a>`
+    Email.innerHTML = `<a href='${membros[i].Email}'><img src='./assets/logos/email.png'></a>`
 
     socialsContainer.append(LinkedIn, Github, Email);
     nome.appendChild(socialsContainer)

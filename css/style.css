@@ -42,7 +42,7 @@ h1{
 .celula {
     height: 35px;
     width: 35px;
-    background-image: url(/assets/base-tubo.png)  ;
+    background-image: url(../assets/base-tubo.png)  ;
     background-size: contain;
     display: flex;
     align-items: center;
@@ -51,7 +51,7 @@ h1{
 }
 
 .celula:first-child{
-    background-image: url(/assets/topo-tubo.png)  ;
+    background-image: url(../assets/topo-tubo.png)  ;
     background-size: cover;
 }
 
@@ -104,7 +104,7 @@ h1{
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
-    background-image: url(/assets/fundo-grande.png);
+    background-image: url(../assets/fundo-grande.png);
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -125,18 +125,18 @@ h1{
 }
 
 .red {
-    background-image: url(/assets/red-cogu.png);
+    background-image: url(../assets/red-cogu.png);
     background-size: cover;
     
 }
 
 .black {
-    background-image: url(/assets/green-cogu.png);
+    background-image: url(../assets/green-cogu.png);
     background-size: cover;
 }
 
 .btnMenuJ{
-    background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
+    background-image: url(../assets/Buttons-img/MenuButtonyellow.png);
     border: none;
     background-size: contain;
     position: absolute;
@@ -169,7 +169,7 @@ h1{
 }
 
 .p1 {
-    background-image: url(/assets/green-cogu.png);
+    background-image: url(../assets/green-cogu.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -180,7 +180,7 @@ h1{
 }
 
 .placarJogador1 {
-    background-image: url(/assets/green-cogu.png);
+    background-image: url(../assets/green-cogu.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -205,7 +205,7 @@ h1{
 }
 
 .p2 {
-    background-image: url(/assets/red-cogu.png);
+    background-image: url(../assets/red-cogu.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -216,7 +216,7 @@ h1{
 }
 
 .placarJogador2 {
-    background-image: url(/assets/red-cogu.png);
+    background-image: url(../assets/red-cogu.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -302,7 +302,7 @@ h1{
 
 /*Fim das configurações do jogo*/
 #telaJogo{
-    background-image: url(/assets/Background\ Teste.jpeg);
+    background-image: url(../assets/Background\ Teste.jpeg);
     background-size: cover;
 }
 /*Tela Final*/
@@ -335,7 +335,7 @@ h1{
 
 /* Tela Inicial */
 .starter {
-    background-image: url(/assets/background1.jpg);
+    background-image: url(../assets/background1.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -415,14 +415,14 @@ h1{
         animation: animacaoVitoriaPeca 1.5s infinite
     }
         .btnPlay {
-            background-image: url(/assets/Buttons-img/StartButtonyellow.png);
+            background-image: url(../assets/Buttons-img/StartButtonyellow.png);
         }
         .btnMenuS {
-            background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
+            background-image: url(../assets/Buttons-img/MenuButtonyellow.png);
             height: 42px; 
         }
         .btnCredits {
-            background-image: url(/assets/Buttons-img/CreditsButtonyellow.png);
+            background-image: url(../assets/Buttons-img/CreditsButtonyellow.png);
             width: 100%;
         }
 
@@ -469,7 +469,7 @@ img {
     height: 50px;
 }
 .btnBack {
-    background-image: url(/assets/Buttons-img/BackButtonBW.png);
+    background-image: url(../assets/Buttons-img/BackButtonBW.png);
     position: fixed;
     bottom:0;
     right:0;
@@ -579,13 +579,13 @@ img {
             appearance: none;
             width: 30px;
             height: 40px;
-            background-image: url(/assets/coin.png);
+            background-image: url(../assets/coin.png);
             background-color: var(--color-black);
             cursor: pointer;
         }
         .close {
             color: transparent;
-            background-image: url(/assets/Buttons-img/BackButtonyellow.png);
+            background-image: url(../assets/Buttons-img/BackButtonyellow.png);
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -680,7 +680,7 @@ img {
         position: absolute;
         left: 50px;
         bottom: 200px;
-        background-image: url(/assets/green-cogu.png);
+        background-image: url(../assets/green-cogu.png);
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -710,7 +710,7 @@ img {
         position: absolute;
         right: 50px;
         bottom: 200px;
-        background-image: url(/assets/red-cogu.png);
+        background-image: url(../assets/red-cogu.png);
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -762,16 +762,16 @@ img {
     
     }
         .btnPlay {
-            background-image: url(/assets/Buttons-img/StartButtonyellow.png);
+            background-image: url(../assets/Buttons-img/StartButtonyellow.png);
             grid-area: Play;
             
         }
         .btnMenuS {
-            background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
+            background-image: url(../assets/Buttons-img/MenuButtonyellow.png);
             grid-area: Menu;
         }
         .btnCredits {
-            background-image: url(/assets/Buttons-img/CreditsButtonyellow.png);
+            background-image: url(../assets/Buttons-img/CreditsButtonyellow.png);
             grid-area: Credits;
         }
 } 

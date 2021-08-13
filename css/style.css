@@ -1,7 +1,6 @@
 :root {
     --titleSize : 60px;
     --color-black: #131313;
-
 }
 a {
     text-decoration: none;
@@ -30,9 +29,8 @@ h1{
 /*Configurações do jogo*/
 .torre {
     display: flex;
-    opacity: 100;
     flex-direction: column;
-    overflow: hidden;
+    margin: 0 3px;
     position: relative;
 }
 #torreCorPreta, #torreCorVermelha {
@@ -44,28 +42,16 @@ h1{
 .celula {
     height: 35px;
     width: 35px;
-    background-image: url(/assets/base-tubo.png);
+    background-image: url(/assets/base-tubo.png)  ;
     background-size: contain;
     display: flex;
     align-items: center;
-    justify-content: center;
     position: relative;
-}
-@keyframes descer {
-    from {top:-260px;}
-    to {top:0px;}
-}
-
-.animacao {
-    position: absolute;
-    left:5px;
-    animation-name: descer;
-    animation-duration: 1s;
-
+    justify-content: center;
 }
 
 .celula:first-child{
-    background-image: url(/assets/topo-tubo.png);
+    background-image: url(/assets/topo-tubo.png)  ;
     background-size: cover;
 }
 
@@ -73,6 +59,41 @@ h1{
     display: flex;
     position: absolute;
     bottom: 35px;
+}
+
+@keyframes descer6 {
+    from {top:-290px;}
+    20%{top:-290px;}
+    to {top:0px;}
+}
+@keyframes descer5 {
+    from {top:-240px;}
+    20%{top: -240px;}
+    to {top:0px;}
+}
+@keyframes descer4 {
+    from {top:-190px;}
+    20%{top: -190px;}
+    to {top:0px;}
+}
+@keyframes descer3 {
+    from {top:-140px;}
+    20%{top: -140px;}
+    to {top:0px;}
+}
+@keyframes descer2 {
+    from {top:-90px;}
+    20%{top: -90px;}
+    to {top:0px;}
+}
+@keyframes descer1 {
+    from {top:-40px;}
+    20%{top: -40px;}
+    to {top:0px;}
+}
+.animacao {
+    position: absolute;
+    left:5px;
 }
 
 #jogo{
@@ -88,7 +109,6 @@ h1{
     background-size: cover;
     position: relative;
 }
-
 .horizontal{
     height: 10px;
     width: 30px;
@@ -96,7 +116,6 @@ h1{
     background-position: center;
     display: none;
 }
-
 .vertical {
     height: 30px;
     width: 30px;
@@ -115,7 +134,7 @@ h1{
     background-size: cover;
 }
 
-.btnMenu{
+.btnMenuJ{
     background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
     border: none;
     background-size: contain;
@@ -136,7 +155,7 @@ h1{
 
 .display {
     position: absolute;
-    top: 20px;
+    top: 30px;
     height: 60px;
     width: 60px;
     text-align: center;
@@ -144,7 +163,7 @@ h1{
 }
 .texto {
     position: absolute;
-    top: -22px;
+    top: -21px;
     left: -12px;
 }
 
@@ -215,7 +234,7 @@ h1{
     width: 100px;
     height: 50px;
     position: absolute;
-    top: 0px;
+    top: 10px;
     left: 5px;
     margin: 3px;
     padding-bottom: 5px;
@@ -224,7 +243,6 @@ h1{
     align-items: flex-end;
     align-content: space-around;
 }
-
 .textoP1{
     display: none;
 }
@@ -243,7 +261,6 @@ h1{
     height: 25px;
     width: 25px;
 }
-
 .player2 {
    
     background-image: url(/assets/red-cogu.png);
@@ -283,6 +300,10 @@ h1{
   }
 
 /*Fim das configurações do jogo*/
+#telaJogo{
+    background-image: url(/assets/Background\ Teste.jpeg);
+    background-size: cover;
+}
 /*Tela Final*/
 
 #telaVitoria{
@@ -308,6 +329,7 @@ h1{
 
 
 /*Fim das configurações do jogo*/
+
 
 
 /* Tela Inicial */
@@ -361,7 +383,7 @@ h1{
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-        width: 100%;
+        width: 200px;
         height: 48px;
         cursor: pointer;
         text-transform: none;
@@ -383,11 +405,12 @@ h1{
             transform: translateY(0px);
         }
     }
-
-    .btnStarter:hover, .btnMenuC:hover, .btnMenu:hover{
+    .close:hover ,
+    .btnStarter:hover,.close:hover ,.btnBack:hover, .btnMenuJ:hover{
         animation: btnBounce 1s infinite ease-in-out;
+        cursor: pointer;
     }
-    .btnStarter:focus, .btnMenuC:focus, .btnMenu:focus{
+    .btnStarter:focus, .close:focus, .btnBack:focus, .btnMenuJ:focus{
         animation: animacaoVitoriaPeca 1.5s infinite
     }
         .btnPlay {
@@ -395,6 +418,7 @@ h1{
         }
         .btnMenuS {
             background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
+            height: 42px; 
         }
         .btnCredits {
             background-image: url(/assets/Buttons-img/CreditsButtonyellow.png);
@@ -443,7 +467,7 @@ img {
     width: 50px;
     height: 50px;
 }
-.btnMenuC {
+.btnBack {
     background-image: url(/assets/Buttons-img/BackButtonBW.png);
     position: fixed;
     bottom:0;
@@ -468,6 +492,111 @@ img {
 }
 
 /* Fim dos Creditos */
+
+/* Menus Modais  */
+.modal {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0,0.7);
+}
+.modal-content {
+    background-color: coral;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    height: 40vh;
+    border: 2px solid black;
+    border-radius: 2px;
+    display: grid;
+    grid-template-areas: 
+        "header header header"
+        ". body ."
+        ". body ."
+        ". footer .";
+    align-items: center;
+    justify-content: center;
+    animation: enterModal 1.5s;
+}
+@keyframes enterModal {
+    from {top:-300px; opacity: 0;}
+    to{top:0; opacity: 1;}
+    
+}
+    .modal-header {
+        grid-area: header;
+        text-align: center;
+    }
+    .modal-header > h3 {
+        font-size: 30px;
+        width: 100%;
+        color: var(--color-black);
+    }
+    .modal-body {
+        grid-area: body;
+        color: var(--color-black);
+        line-height: 250%;
+        align-self: center;
+        justify-self: center;
+        text-align: center;
+    }
+    .modal-footer {
+        grid-area: footer;
+        justify-items: center;
+        text-align: center;
+    }   
+        .btnMusic {
+            background-color: #fff600;
+            width: 50px;
+            height: 30px;
+            
+        }
+        .slideContainer{
+            width: 100%;
+        }
+        .volumeBar {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 25px;
+            background-color: #d3d3d38c;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+        .volumeBar:hover{
+            opacity: 1;
+        }
+        .volumeBar::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 30px;
+            height: 40px;
+            background-image: url(/assets/coin.png);
+            background-color: var(--color-black);
+            cursor: pointer;
+        }
+        .close {
+            color: transparent;
+            background-image: url(/assets/Buttons-img/BackButtonyellow.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 45px;
+            width: 100px;
+            background-color: transparent;
+            border: none;
+
+            
+        }
+
+/* MEDIA QUERIES */
 @media (max-width: 450px) {
     .starterMain > h1{ 
         font-size: 45px;
@@ -476,11 +605,47 @@ img {
         margin-top: 90px;
         color: black;
     }
+    @keyframes descer6 {
+        from {top:-205px;}
+        20%{top:-205px;}
+        to {top:0px;}
+    }
+    @keyframes descer5 {
+        from {top:-170px;}
+        20%{top: -170px;}
+        to {top:0px;}
+    }
+    @keyframes descer4 {
+        from {top:-135px;}
+        20%{top: -135px;}
+        to {top:0px;}
+    }
+    @keyframes descer3 {
+        from {top:-100px;}
+        20%{top: -100px;}
+        to {top:0px;}
+    }
+    @keyframes descer2 {
+        from {top:-65px;}
+        20%{top: -65px;}
+        to {top:0px;}
+    }
+    @keyframes descer1 {
+        from {top:-35px;}
+        20%{top: -35;}
+    }
+    .animacao {
+        position: absolute;
+        left:3px;
+    }
+    
 
 }
 /* Desktop */
 @media (min-width: 768px){
-
+    .hidden {
+        display: none;
+    }
     #jogo {
         background-position: bottom;
         background-repeat: no-repeat;
@@ -504,10 +669,10 @@ img {
         height: 40px;
     }
 
-    .btnMenu{
+    .btnMenuJ{
         width: 60px;
         height: 20px;
-        right: 0;
+        right: 10px;
     }
 
     .player1 {
@@ -558,7 +723,7 @@ img {
     }
 
     .display {
-        top: 10px;
+        top: 30px;
         display: flex;        
 
     }
@@ -568,59 +733,45 @@ img {
     }
 
 /* Pag Inicial */
+
+.starterMain > h1{ 
+    font-size: 80px;
+}
+.starterMain > h2{
+    font-size: 60px;
+}
+.btnContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 2fr 1fr;
+    grid-template-areas: 
+        "Play . Menu"
+        "Credits Credits Credits";                          
+}
     .btnStarter{
-        background-size: contain;
+        /* background-size: contain; */
         background-repeat: no-repeat;
         background-position: center;
-        width: 50%;
-        height: 48px;
         cursor: pointer;
         text-transform: none;
         background-color: transparent;
         border: none;
         margin: 0;
+        
     
     }
-    .btnPlay {
-        background-image: url(/assets/Buttons-img/StartButtonyellow.png);
-        background-size: cover;
-    }
-    .btnMenuS {
-        background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
-    }
-    .btnCredits {
-        background-image: url(/assets/Buttons-img/CreditsButtonyellow.png);
-        width: 100%;
-    }
+        .btnPlay {
+            background-image: url(/assets/Buttons-img/StartButtonyellow.png);
+            grid-area: Play;
+            
+        }
+        .btnMenuS {
+            background-image: url(/assets/Buttons-img/MenuButtonyellow.png);
+            grid-area: Menu;
+        }
+        .btnCredits {
+            background-image: url(/assets/Buttons-img/CreditsButtonyellow.png);
+            grid-area: Credits;
+        }
 } 
-
-
-@media (min-width: 1024px){
-    .display {
-        top: 10px;
-    }
-
-}
-/* 
-    .placar{
-        display: block;
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        font-size: 10px;
-        color: #fff;
-    
-    }
-    .placar p{
-        padding: 2px
-    }
-
-    .score {
-        font-size: 16px;
-        margin-bottom: 5px;
-        line-height: 1.6;
-    }
-
-    */
-
 /*Fim das configurações do jogo*/

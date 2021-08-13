@@ -22,6 +22,28 @@
 
 <body>
     <div id="telaInicial" ></div>
+        <div id="modalMenuS" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Options Menu</h3>
+                </div>
+                <div class="modal-body">
+                    <button id="play-btn-musica-fundo" class = 'btnMusic'><i class="fas fa-play"></i></button>
+                    <p>Theme Music: <span id="musicVolNum">50%</span></p>
+                    <div class="slideContainer">
+                        <input type="range" id="volume-musica-fundo" min="1" max="100" value="50"
+                    class = "volumeBar">
+                    </div>
+                    <p>Sound Effects: <span id="effectsVolNum">50%</span></p>
+                    <div class="slideContainer">
+                        <input type="range" id="volume-musica-geral" min="1" max="100" value="50" class = "volumeBar">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="close"></button>
+                </div>
+            </div>
+        </div>
     <div id="telaJogo" class="tela hidden">
         <header>
             <div class="container"></div>
@@ -34,15 +56,13 @@
         <footer>
             <div class="container">
             <div>
-                <p>Audio Fundo</p>
                 <audio id="audio-fundo" loop autoplay>
                     <source src="./assets/audio/super_mario_medley.mp3" type="audio/mp3">
                 </audio>
-                <input type="range" id="volume-musica-fundo" max="100" value="50">
-                <button id="play-btn-musica-fundo"><i class="fas fa-play"></i></button>
+               
             </div>
             <div>
-                <p>Audio peca</p>
+                
                 <audio id="audio-peca" class="audio-geral">
                     <source src="./assets/audio/smb_pipe.wav" type="audio/wav">
                 </audio>
@@ -52,7 +72,7 @@
                 <audio id="audio-empate" class="audio-geral">
                     <source src="./assets/audio/smb3_game_over.wav" type="audio/wav">
                 </audio>
-                <input type="range" id="volume-musica-geral" max="100" value="50">
+                
               
             </div>
         </div>
@@ -61,7 +81,9 @@
 
     <div id="telaVitoria" class="tela hidden"></div>
     <div id="telaCreditos" class="tela hidden">
-        <div id="creditos" class="scrolling"></div>
+        <div id="creditos" class="scrolling">
+            <h2>Creditos</h2>
+        </div>
     </div>
 
     <script src="./scripts/script.js"></script>

@@ -9,7 +9,7 @@ let segundoJogador = false;
 const volumeSliderFundo = document.getElementById('volume-musica-fundo');
 const volumeBtnFundo = document.getElementById('play-btn-musica-fundo');
 const audioFundo = document.getElementById('audio-fundo');
-audioFundo.volume = 0.5;
+audioFundo.volume = 0.2;
 let statusVolumeFundo = true;
 const volumeSliderGeral = document.getElementById('volume-musica-geral');
 const audiosGeral = document.querySelectorAll('.audio-geral');
@@ -17,11 +17,15 @@ const audioVitoria = document.getElementById('audio-vitoria');
 const audioEmpate = document.getElementById('audio-empate');
 const audioPeca = document.getElementById('audio-peca');
 let tabelaEventListener = false;
+let terminarJogo = false;
 const addAnimacaoVitoriaPeca = (orientacaoVitoria, posicaoUltimaPeca) => {
   if(orientacaoVitoria === 'horizontal'){
     for(let index = 0; index < 4; index++){
       let posicaoPeca = posicaoUltimaPeca[1] - index;
       let selector = `[dataaddress="${posicaoPeca},${posicaoUltimaPeca[0]}"]`;
+      document.querySelector(selector).lastElementChild.classList.remove("animacao");
+      document.querySelector(selector).lastElementChild.style.animationName=""
+      document.querySelector(selector).lastElementChild.style.animationDuration=""
       document.querySelector(selector).lastElementChild.classList.add("animacaoVitoriaPeca");
     }
   }
@@ -29,6 +33,9 @@ const addAnimacaoVitoriaPeca = (orientacaoVitoria, posicaoUltimaPeca) => {
     for(let index = 0; index < 4; index++){
       let posicaoPeca = posicaoUltimaPeca[0] - index;
       let selector = `[dataaddress="${posicaoUltimaPeca[1]},${posicaoPeca}"]`;
+      document.querySelector(selector).lastElementChild.classList.remove("animacao");
+      document.querySelector(selector).lastElementChild.style.animationName=""
+      document.querySelector(selector).lastElementChild.style.animationDuration=""
       document.querySelector(selector).lastElementChild.classList.add("animacaoVitoriaPeca");
     }
   }
@@ -37,6 +44,9 @@ const addAnimacaoVitoriaPeca = (orientacaoVitoria, posicaoUltimaPeca) => {
       let posicaoPecaColuna = posicaoUltimaPeca[1] - index;
       let posicaoPecaLinha = posicaoUltimaPeca[0] - index;
       let selector = `[dataaddress="${posicaoPecaColuna},${posicaoPecaLinha}"]`;
+      document.querySelector(selector).lastElementChild.classList.remove("animacao");
+      document.querySelector(selector).lastElementChild.style.animationName=""
+      document.querySelector(selector).lastElementChild.style.animationDuration=""
       document.querySelector(selector).lastElementChild.classList.add("animacaoVitoriaPeca");
     }
   }
@@ -45,6 +55,9 @@ const addAnimacaoVitoriaPeca = (orientacaoVitoria, posicaoUltimaPeca) => {
       let posicaoPecaColuna = posicaoUltimaPeca[1] - index;
       let posicaoPecaLinha = posicaoUltimaPeca[0] + index;
       let selector = `[dataaddress="${posicaoPecaColuna},${posicaoPecaLinha}"]`;
+      document.querySelector(selector).lastElementChild.classList.remove("animacao");
+      document.querySelector(selector).lastElementChild.style.animationName=""
+      document.querySelector(selector).lastElementChild.style.animationDuration=""
       document.querySelector(selector).lastElementChild.classList.add("animacaoVitoriaPeca");
     }
   }
@@ -124,7 +137,10 @@ const vitoriaHorizontal = (simbolo, posicao) => {
       contador = 0;
     }
     if (contador === 4) {
-      addAnimacaoVitoriaPeca('horizontal',[inicioLinha,coluna])
+      if(!terminarJogo){
+        addAnimacaoVitoriaPeca('horizontal',[inicioLinha,coluna])
+      }
+      
       return true;
     }
   }
@@ -148,7 +164,10 @@ const vitoriaVertical = (simbolo, posicao) => {
       contador = 0;
     }
     if (contador === 4) {
-      addAnimacaoVitoriaPeca('vertical',[linha,inicioColuna])
+      if(!terminarJogo){
+        addAnimacaoVitoriaPeca('vertical',[linha,inicioColuna])
+      }
+      
       return true;
     }
   }
@@ -181,7 +200,10 @@ const vitoriaDiagonal1 = (simbolo, posicao) => {
       contador = 0;
     }
     if (contador === 4) {
-      addAnimacaoVitoriaPeca('diagonal1',[linha,coluna])
+      if(!terminarJogo){
+        addAnimacaoVitoriaPeca('diagonal1',[linha,coluna])
+      }
+      
       return true;
     }
     linha++;
@@ -218,7 +240,10 @@ const vitoriaDiagonal2 = (simbolo, posicao) => {
       contador = 0;
     }
     if (contador === 4) {
-      addAnimacaoVitoriaPeca('diagonal2',[linha,coluna])
+      if(!terminarJogo){
+        addAnimacaoVitoriaPeca('diagonal2',[linha,coluna]);
+      }
+      
       return true;
     }
     linha--
@@ -256,21 +281,22 @@ function criarTabela(t,c){
     for(let i=0; i < t; i ++){
         let torre = document.createElement('div')
         torre.classList.add('torre')
-        torre.setAttribute('datatorre',`${i}`)
         tabela.appendChild(torre)
         for(let n=0; n < c; n ++){
             let celula = document.createElement('div')
             celula.classList.add('celula')
-            celula.setAttribute('dataaddress',`${i},${n}`)
             torre.appendChild(celula)
+            celula.setAttribute('dataaddress',`${i},${n}`)
         }
     }
     creatBoardArray(c,t);
+    audioFundo.play();
 }
 
 function startGame() {
   tabela.innerHTML = ""; 
   criarTabela(7,6);
+
   for(let i=0;i<21;i++){
       bolaPreta = document.createElement('div')
       bolaPreta.classList.add('horizontal','black')
@@ -290,60 +316,72 @@ function startGame() {
           if(primeiroJogador===true) {
               let bolap = torrePreta.lastElementChild
               bolap.classList.remove('horizontal');
-              bolap.classList.add('vertical');
-              bolap.classList.add('animacao');
+              bolap.classList.add('vertical','animacao');
+              bolap.style.animationName=`descer${vazio.length}`
+              bolap.style.animationDuration=`${vazio.length/10+0.5}s`
+              if(terminarJogo){
+                bolap.classList.add('hidden');
+              }
               vazio[vazio.length-1].appendChild(bolap);
           }
           if(segundoJogador===true){
               let bolav = torreVermelha.lastElementChild
               bolav.classList.remove('horizontal');
-              bolav.classList.add('vertical');
-              bolav.classList.add('animacao');
+              bolav.classList.add('vertical','animacao');
+              bolav.style.animationName=`descer${vazio.length}`
+              bolav.style.animationDuration=`${vazio.length/10+0.5}s`
+              if(terminarJogo){
+                bolav.classList.add('hidden');
+              }
               vazio[vazio.length-1].appendChild(bolav);   
           }
-
           registroMovimento(vazio[vazio.length-1],primeiroJogador,segundoJogador)
-          audioPeca.play();
+          if(!terminarJogo){
+            audioPeca.play();
+          }
+          
           if(checarVitoria(vazio[vazio.length-1],primeiroJogador,segundoJogador)){
             if(primeiroJogador){
               audioVitoria.play();
-
-              setTimeout(function(){
-                mostraGanhador( "Victory" , "Player 1")
-              },3000);
-
-              
+              if(!terminarJogo){
+                terminarJogo = true;
+                setTimeout(function(){
+                  mostraGanhador( "Victory" , "Player 1")
+                },3000);
+              }              
             }
             if(segundoJogador){
               audioVitoria.play();
-
-              setTimeout(function(){
-                mostraGanhador( "Victory" , "Player 2")
-              },3000);
+              if(!terminarJogo){
+                terminarJogo = true;
+                setTimeout(function(){
+                  mostraGanhador( "Victory" , "Player 2")
+                },3000);
+              }   
 
             }
           }
           if(verificaEmpate()){
             audioEmpate.play();
-
-            setTimeout(function(){
-              mostraGanhador( "Draw" , " ")
-            },3000);
-
+            if(!terminarJogo){
+              terminarJogo = true;
+              setTimeout(function(){
+                mostraGanhador( "Draw" , " ")
+              },3000);
+            }  
           }
 
           if(primeiroJogador===true){
-
               primeiroJogador=false;
               segundoJogador=true;
-
           } else {
-
               primeiroJogador=true;
               segundoJogador=false;
-
           }
-          showPlayer()
+          if(!terminarJogo){
+            showPlayer()
+          }
+          
       }
   
   }
@@ -352,18 +390,6 @@ function startGame() {
   tabela.addEventListener('click',movimento);
   tabelaEventListener = true;
   }
-  /*Lógica dos Botões*/
-  let btnMenu = document.createElement("button")
-  btnMenu.classList.add("btnMenu")
-  let mainJogo = document.getElementById("jogo")
-  mainJogo.appendChild(btnMenu)
-  
-  btnMenu.addEventListener('click',function() {
-    setTimeout(function() {
-    telaInicial.classList.remove('hidden')
-    telaCreditos.classList.add('hidden')
-    telaJogo.classList.add('hidden')}, 1500);
-  });
 
   let display = document.createElement('div')
   display.classList.add("display")
@@ -410,8 +436,8 @@ placarJogador2.appendChild(textoPlacarJogador2)
 painelJogadores.appendChild(placarJogador2)
 
 
-  mainJogo.appendChild(player1)
-  mainJogo.appendChild(player2)
+mainJogo.appendChild(player1)
+mainJogo.appendChild(player2)
 
 //função de mostrar de quem é a vez 
 
@@ -442,6 +468,14 @@ volumeSliderFundo.addEventListener('input', (event) => {
   audioFundo.volume = value / 100;
 });
 
+if(audioFundo.paused === true){
+  statusVolumeFundo = false;
+  volumeBtnFundo.innerHTML = '<i class="fas fa-play"></i>';
+} else {
+  statusVolumeFundo = true;
+  volumeBtnFundo.innerHTML = '<i class="fas fa-pause"></i>';
+}
+
 volumeBtnFundo.addEventListener('click', (event)=>{
   if(statusVolumeFundo === false) {
     statusVolumeFundo = true;
@@ -463,6 +497,39 @@ volumeSliderGeral.addEventListener('input', (event) => {
   
 });
 //fim dos efeitos sonoros
+
+ /* Tela de Jogo */
+let telaJogo = document.getElementById("telaJogo")
+
+/*Lógica dos Botões*/
+let mainJogo = document.getElementById("jogo")
+
+// let btnMenu = document.createElement("button")
+// btnMenu.classList.add("btnMenu")
+// mainJogo.appendChild(btnMenu)
+
+// btnMenu.addEventListener('click',function() {
+//   telaJogo.classList.add('hidden')
+//   telaInicial.classList.remove('hidden')
+// });
+
+/*Placar*/
+
+let placar = document.createElement("div")
+placar.classList.add("placar")
+let score = document.createElement("h3")
+score.innerText = "Score"
+score.classList.add("score")
+let player1 = document.createElement("p")
+player1.innerText = "Player 1: "
+let player2 = document.createElement("p")
+player2.innerText = "Player 2: "
+
+placar.appendChild(score)
+placar.appendChild(player1)
+placar.appendChild(player2)
+mainJogo.appendChild(placar)
+
 
 /* Tela inicial */
 
@@ -494,7 +561,8 @@ starterMain.appendChild(starterBtns)
 
 telaInicial.appendChild(starterMain)
 
-// Funcionalidade botoes
+
+// Funcionalidade botoes (BtnMenuS movido para secao modal)
 
 btnPlay.addEventListener('click',function() {
 
@@ -504,12 +572,7 @@ btnPlay.addEventListener('click',function() {
   telaInicial.classList.add('hidden')
   telaCreditos.classList.add('hidden')}, 1500);
 });
-btnMenuS.addEventListener('click',function() {
-  setTimeout(function() {
-  telaJogo.classList.remove('hidden')
-  telaInicial.classList.add('hidden')
-  telaCreditos.classList.add('hidden')}, 1500);
-});
+
 btnCredits.addEventListener('click',function() {
   setTimeout(function() {
   telaJogo.classList.add('hidden')
@@ -517,14 +580,13 @@ btnCredits.addEventListener('click',function() {
   telaCreditos.classList.remove("hidden")}, 1500);
   
 });
-
-
 /* Fim Tela Inicial*/
 
 /* Creditos */
 
 // Criar Html
 audioFundo.play();
+
 const membros = [
   {
     nome: 'Rafael G. de Sousa',
@@ -578,12 +640,12 @@ const gerarLista = () => {
   }
 };
 
-let btnMenuC = document.createElement('button')
-btnMenuC.classList.add('btnMenuC', "btnStarter");
-telaCreditos.appendChild(btnMenuC);
+let btnBack = document.createElement('button')
+btnBack.classList.add('btnBack', "btnStarter");
+telaCreditos.appendChild(btnBack);
 gerarLista();
 
-btnMenuC.addEventListener('click',function() {
+btnBack.addEventListener('click',function() {
   setTimeout(function() {
   telaInicial.classList.remove('hidden')
   telaCreditos.classList.add('hidden')
@@ -601,6 +663,51 @@ function mostraGanhador(){
 }
 
 
+/* Modal menu */
+
+let modalMenuS = document.getElementById("modalMenuS")
+let btnClose = [...document.getElementsByClassName("close")];
+btnMenuS.addEventListener('click',function() {
+  setTimeout(function() {
+  modalMenuS.classList.remove('hidden');}, 1000);
+});
+btnClose[0].addEventListener('click',function() {
+  setTimeout(function() {
+  modalMenuS.classList.add('hidden')}, 1500);
+});
+
+let btnMenuJ = document.createElement("button")
+btnMenuJ.classList.add("btnMenuJ")
+mainJogo.appendChild(btnMenuJ)
+
+
+let modalMenuJ = document.getElementById('modalMenuJ')
+btnMenuJ.addEventListener('click',function() {
+  setTimeout(function() {
+    modalMenuS.classList.remove('hidden')}, 1000);
+});
+
+
+/* Fim modal Menu */
+
+/* Barras de Volume */
+let musicVol = document.getElementById('volume-musica-fundo')
+let musicVolNum = document.getElementById('musicVolNum')
+
+musicVol.oninput = function () {
+  musicVolNum.innerHTML = `${this.value}%`;
+}
+
+let effectsVol = document.getElementById('volume-musica-geral')
+let effectsVolNum = document.getElementById('effectsVolNum')
+
+effectsVol.oninput = function () {
+  effectsVolNum.innerHTML = `${this.value}%`;
+}
+/* Barras de Volume */
+
+
+
 function mostraGanhador(status, ganhador ){
   let telaFinal = document.getElementById("telaVitoria")
   setTimeout(telaJogo.classList.add('hidden'),3000)
@@ -611,7 +718,7 @@ function mostraGanhador(status, ganhador ){
   telaFinal.appendChild(texto)
   let btnVoltar = document.createElement('button') 
   btnVoltar.classList.add('btnVoltar')
-  btnVoltar.innerText = "PRESS HERE to Return menu"
+  btnVoltar.innerText = "Press HERE to return to start"
   telaFinal.appendChild(btnVoltar) 
   btnVoltar.addEventListener('click', function(){
     location.reload()
@@ -619,4 +726,3 @@ function mostraGanhador(status, ganhador ){
   }) 
   
 }
-

@@ -367,7 +367,7 @@ function startGame() {
               terminarJogo = true;
               setTimeout(function(){
                 mostraGanhador( "Draw" , " ")
-              },3000);
+              },1000);
             }  
           }
 

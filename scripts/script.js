@@ -391,18 +391,6 @@ function startGame() {
   tabela.addEventListener('click',movimento);
   tabelaEventListener = true;
   }
-  /*Lógica dos Botões*/
-  let btnMenu = document.createElement("button")
-  btnMenu.classList.add("btnMenu")
-  let mainJogo = document.getElementById("jogo")
-  mainJogo.appendChild(btnMenu)
-  
-  // btnMenu.addEventListener('click',function() {
-  //   setTimeout(function() {
-  //   telaInicial.classList.remove('hidden')
-  //   telaCreditos.classList.add('hidden')
-  //   telaJogo.classList.add('hidden')}, 1500);
-  // });
 
   let display = document.createElement('div')
   display.classList.add("display")
@@ -449,8 +437,8 @@ placarJogador2.appendChild(textoPlacarJogador2)
 painelJogadores.appendChild(placarJogador2)
 
 
-  mainJogo.appendChild(player1)
-  mainJogo.appendChild(player2)
+mainJogo.appendChild(player1)
+mainJogo.appendChild(player2)
 
 //função de mostrar de quem é a vez 
 
@@ -515,16 +503,16 @@ volumeSliderGeral.addEventListener('input', (event) => {
 let telaJogo = document.getElementById("telaJogo")
 
 /*Lógica dos Botões*/
-
-let btnMenu = document.createElement("button")
-btnMenu.classList.add("btnMenu")
 let mainJogo = document.getElementById("jogo")
-mainJogo.appendChild(btnMenu)
 
-btnMenu.addEventListener('click',function() {
-  telaJogo.classList.add('hidden')
-  telaInicial.classList.remove('hidden')
-});
+// let btnMenu = document.createElement("button")
+// btnMenu.classList.add("btnMenu")
+// mainJogo.appendChild(btnMenu)
+
+// btnMenu.addEventListener('click',function() {
+//   telaJogo.classList.add('hidden')
+//   telaInicial.classList.remove('hidden')
+// });
 
 /*Placar*/
 
@@ -677,6 +665,7 @@ function mostraGanhador(){
 
 
 /* Modal menu */
+
 let modalMenuS = document.getElementById("modalMenuS")
 let btnClose = [...document.getElementsByClassName("close")];
 btnMenuS.addEventListener('click',function() {
@@ -684,21 +673,45 @@ btnMenuS.addEventListener('click',function() {
   modalMenuS.classList.remove('hidden');}, 1000);
 });
 btnClose[0].addEventListener('click',function() {
-  modalMenuS.classList.add('hidden');
+  setTimeout(function() {
+  modalMenuS.classList.add('hidden')}, 1500);
 });
 
+let btnMenuJ = document.createElement("button")
+btnMenuJ.classList.add("btnMenuJ")
+mainJogo.appendChild(btnMenuJ)
+
+
 let modalMenuJ = document.getElementById('modalMenuJ')
-btnMenu.addEventListener('click',function() {
+btnMenuJ.addEventListener('click',function() {
   setTimeout(function() {
-    modalMenuJ.classList.remove('hidden')}, 1500);
+    modalMenuJ.classList.remove('hidden')}, 1000);
 });
 btnClose[1].addEventListener('click',function() {
-  modalMenuJ.classList.add('hidden');
+  setTimeout(function() {
+  modalMenuJ.classList.add('hidden')}, 1000);
   
 });
 
-
 /* Fim modal Menu */
+
+/* Barras de Volume */
+let musicVol = document.getElementById('volume-musica-fundo')
+let musicVolNum = document.getElementById('musicVolNum')
+
+musicVol.oninput = function () {
+  musicVolNum.innerHTML = `${this.value}%`;
+}
+
+let effectsVol = document.getElementById('volume-musica-geral')
+let effectsVolNum = document.getElementById('effectsVolNum')
+
+effectsVol.oninput = function () {
+  effectsVolNum.innerHTML = `${this.value}%`;
+}
+/* Barras de Volume */
+
+
 
 function mostraGanhador(status, ganhador ){
   let telaFinal = document.getElementById("telaVitoria")

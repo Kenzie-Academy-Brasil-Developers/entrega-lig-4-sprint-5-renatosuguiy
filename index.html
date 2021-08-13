@@ -25,21 +25,22 @@
         <div id="modalMenuS" class="modal hidden">
             <div class="modal-content">
                 <div class="modal-header">
-                    
+                    <h3>Options Menu</h3>
                 </div>
                 <div class="modal-body">
-                    <br>
-                    <button id="play-btn-musica-fundo"><i class="fas fa-play"></i></button>
-                    <br>
-                    <p>Audio Fundo</p>
-                    <input type="range" id="volume-musica-fundo" max="100" value="50">
-                    <br>
-                    <p>Audio peca</p>
-                    <input type="range" id="volume-musica-geral" max="100" value="50">
-                    <br>
+                    <button id="play-btn-musica-fundo" class = 'btnMusic'><i class="fas fa-play"></i></button>
+                    <p>Theme Music: <span id="musicVolNum">50%</span></p>
+                    <div class="slideContainer">
+                        <input type="range" id="volume-musica-fundo" min="1" max="100" value="50"
+                    class = "volumeBar">
+                    </div>
+                    <p>Sound Effects: <span id="effectsVolNum">50%</span></p>
+                    <div class="slideContainer">
+                        <input type="range" id="volume-musica-geral" min="1" max="100" value="50" class = "volumeBar">
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <span class="close">Close</span>
+                    <button class="close"></button>
                 </div>
             </div>
         </div>
@@ -48,21 +49,6 @@
             <div class="container"></div>
         </header>
         <main id="jogo">
-            <div id="modalMenuJ" class="modal hidden">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="close">&times;</span>
-                    </div>
-                    <div class="modal-body">
-                        <p>Audio Fundo</p>
-                        <input type="range" id="volume-musica-fundo" max="100" value="50">
-                        <button id="play-btn-musica-fundo"><i class="fas fa-play"></i></button>
-                        <p>Audio peca</p>
-                        <input type="range" id="volume-musica-geral" max="100" value="50">
-                    </div>
-                    <div class="modal-footer"></div>
-                </div>
-            </div>
             <div id="torreCorPreta"></div>
             <div id="tabela"></div>
             <div id="torreCorVermelha"></div>
@@ -95,7 +81,9 @@
 
     <div id="telaVitoria" class="tela hidden"></div>
     <div id="telaCreditos" class="tela hidden">
-        <div id="creditos" class="scrolling"></div>
+        <div id="creditos" class="scrolling">
+            <h2>Creditos</h2>
+        </div>
     </div>
 
     <script src="./scripts/script.js"></script>

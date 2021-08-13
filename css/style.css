@@ -506,6 +506,7 @@ img {
     background-color: rgb(0,0,0,0.7);
 }
 .modal-content {
+    overflow: auto;
     background-color: coral;
     margin: 15% auto;
     padding: 20px;

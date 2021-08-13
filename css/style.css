@@ -407,11 +407,12 @@ h1{
             transform: translateY(0px);
         }
     }
-
-    .btnStarter:hover, .btnBack:hover, .btnMenuJ:hover{
+    .close:hover ,
+    .btnStarter:hover,.close:hover ,.btnBack:hover, .btnMenuJ:hover{
         animation: btnBounce 1s infinite ease-in-out;
+        cursor: pointer;
     }
-    .btnStarter:focus, .btnBack:focus, .btnMenuJ:focus{
+    .btnStarter:focus, .close:focus, .btnBack:focus, .btnMenuJ:focus{
         animation: animacaoVitoriaPeca 1.5s infinite
     }
         .btnPlay {
@@ -522,7 +523,13 @@ img {
         ". footer .";
     align-items: center;
     justify-content: center;
-}   
+    animation: enterModal 1.5s;
+}
+@keyframes enterModal {
+    from {top:-300px; opacity: 0;}
+    to{top:0; opacity: 1;}
+    
+}
     .modal-header {
         grid-area: header;
         text-align: center;
@@ -571,26 +578,24 @@ img {
         .volumeBar::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 25px;
-            height: 25px;
+            width: 30px;
+            height: 40px;
+            background-image: url(/assets/coin.png);
             background-color: var(--color-black);
             cursor: pointer;
-
         }
         .close {
-            color: var(--color-black);
-            font-size: 28px;
-            font-weight: bold;
-            background-color: #fff600;
-            text-align: center;
-            height: 28px;
-            line-height: 28px;
-            border: 2px solid var(--color-black);
-            padding: 15px;
-        }
-        .close:hover, .close:focus {
-            background-color: #fff600;
-            cursor:pointer;
+            color: transparent;
+            background-image: url(/assets/Buttons-img/BackButtonyellow.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 45px;
+            width: 100px;
+            background-color: transparent;
+            border: none;
+
+            
         }
 
 /* MEDIA QUERIES */

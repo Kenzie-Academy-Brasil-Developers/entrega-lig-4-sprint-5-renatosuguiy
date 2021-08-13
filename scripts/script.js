@@ -685,13 +685,9 @@ mainJogo.appendChild(btnMenuJ)
 let modalMenuJ = document.getElementById('modalMenuJ')
 btnMenuJ.addEventListener('click',function() {
   setTimeout(function() {
-    modalMenuJ.classList.remove('hidden')}, 1000);
+    modalMenuS.classList.remove('hidden')}, 1000);
 });
-btnClose[1].addEventListener('click',function() {
-  setTimeout(function() {
-  modalMenuJ.classList.add('hidden')}, 1000);
-  
-});
+
 
 /* Fim modal Menu */
 
